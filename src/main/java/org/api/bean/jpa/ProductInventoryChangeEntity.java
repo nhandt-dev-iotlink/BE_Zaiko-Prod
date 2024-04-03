@@ -68,7 +68,7 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     //inventoryProductType
     @Column(name = "inventory_product_type",nullable = false)
     @JsonProperty("inventoryProductType")
-    private String inventory_product_type;
+    private Integer inventory_product_type;
 
     //inventoryQuantity
     @Column(name = "inventory_quantity",nullable = false)
