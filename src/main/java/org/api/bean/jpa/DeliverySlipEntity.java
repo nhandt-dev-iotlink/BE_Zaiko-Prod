@@ -39,7 +39,7 @@ public class DeliverySlipEntity extends CommonEntity implements Serializable {
     // Slip Number
     @Column(name = "slip_number")
     @JsonProperty("slipNumber")
-    private Integer slipNumber;
+    private Integer slipNumber = null;
 
     // Slip Type
     @Column(name = "slip_type", length = 1, nullable = false)
@@ -54,17 +54,17 @@ public class DeliverySlipEntity extends CommonEntity implements Serializable {
     // Print Status
     @Column(name = "print_status", length = 1, nullable = false)
     @JsonProperty("printStatus")
-    private String printStatus;
+    private String printStatus = "0";
 
     // Text Print Status
     @Column(name = "text_print_status", length = 1, nullable = false)
     @JsonProperty("textPrintStatus")
-    private String textPrintStatus;
+    private String textPrintStatus ="0";
 
     // Output ID
     @Column(name = "output_id", nullable = false)
     @JsonProperty("outputId")
-    private Integer outputId;
+    private Integer outputId=0;
 
     // Free Item 1
     @Column(name = "free_item1", length = 100)
