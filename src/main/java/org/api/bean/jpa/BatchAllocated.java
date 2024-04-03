@@ -91,17 +91,17 @@ public class BatchAllocated extends CommonEntity implements Serializable {
     private Double tax;
 
     // Free Item 1
-    @Column(name = "free_item1", length = 100)
+    @Column(name = "free_item1")
     @JsonProperty("freeItem1")
     private String freeItem1;
 
     // Free Item 2
-    @Column(name = "free_item2", length = 100)
+    @Column(name = "free_item2")
     @JsonProperty("freeItem2")
     private String freeItem2;
 
     // Free Item 3
-    @Column(name = "free_item3", length = 100)
+    @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String freeItem3;
 
