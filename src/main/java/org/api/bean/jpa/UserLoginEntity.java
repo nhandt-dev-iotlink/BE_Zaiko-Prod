@@ -3,7 +3,12 @@ package org.api.bean.jpa;
 import java.io.Serial;
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -99,6 +104,7 @@ public class UserLoginEntity extends CommonEntity implements Serializable {
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String freeItem3;
+
 
 
 
