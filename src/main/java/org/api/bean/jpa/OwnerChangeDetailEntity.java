@@ -1,10 +1,11 @@
 package org.api.bean.jpa;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -75,7 +76,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "cs_price")
     @JsonProperty("csPrice")
-    private BigDecimal csPrice;
+    private Double csPrice;
 
     @Column(name = "cs_quantity")
     @JsonProperty("csQuantity")
@@ -83,7 +84,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "bl_price")
     @JsonProperty("blPrice")
-    private BigDecimal blPrice;
+    private Double blPrice;
 
     @Column(name = "bl_quantity")
     @JsonProperty("blQuantity")
@@ -91,7 +92,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "piece_price")
     @JsonProperty("piecePrice")
-    private BigDecimal piecePrice;
+    private Double piecePrice;
 
     @Column(name = "ps_quantity")
     @JsonProperty("psQuantity")
@@ -99,7 +100,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "amount_total")
     @JsonProperty("amountTotal")
-    private BigDecimal amountTotal;
+    private Double amountTotal;
 
     @Column(name = "quantity")
     @JsonProperty("quantity")
@@ -115,7 +116,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "tax")
     @JsonProperty("tax")
-    private BigDecimal tax;
+    private Double tax;
 
     @Column(name = "free_item1")
     @JsonProperty("freeItem1")
