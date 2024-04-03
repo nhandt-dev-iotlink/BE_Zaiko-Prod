@@ -112,7 +112,7 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     //inventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private String inventory_product_type;
+    private Integer inventory_product_type;
 
     //actual_cs_price
     @Column(name = "actual_cs_price",precision = 7,scale = 2)

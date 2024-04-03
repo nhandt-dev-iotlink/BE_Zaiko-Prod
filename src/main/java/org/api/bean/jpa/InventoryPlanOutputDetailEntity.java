@@ -102,7 +102,7 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
     //inventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private String inventory_product_type;
+    private Integer inventory_product_type;
 
     //detailNote
     @Column(name = "detail_note")
