@@ -1,6 +1,7 @@
 package org.api.bean.jpa;
 
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,55 +20,45 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "t_inventory_set_product")
+@Table(name = "t_inventory_set_product_detail")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class InventorySetProduct extends CommonEntity {
+public class InventorySetProductDetailEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // InventorySetProduct ID
+    // InventorySetProductDetail ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "inventory_set_product_detail_id")
     @JsonProperty("id")
     private Integer id;
 
-    // WorkingDate
-    @Column(name = "working_date", nullable = false)
-    @JsonProperty("workingDate")
-    private String workingDate;
+    // InventorySetProductId
+    @Column(name = "inventory_set_product_id")
+    @JsonProperty("inventorySetProductId")
+    private Integer inventorySetProductId;
 
-    // CreateSlipType
-    @Column(name = "create_slip_type", nullable = false)
-    @JsonProperty("createSlipType")
-    private String createSlipType;
-
-    // SlipNo
-    @Column(name = "slip_no", nullable = false)
-    @JsonProperty("slipNo")
-    private String slipNo;
-
-    // SlipNote
-    @Column(name = "slip_note")
-    @JsonProperty("slipNote")
-    private String slipNote;
+    // InventoryId
+    @Column(name = "inventory_id")
+    @JsonProperty("inventoryId")
+    private Integer inventoryId;
 
     // ProductID
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer productId;
 
     // DatetimeMng
-    @Column(name = "datetime_mng", nullable = false)
+    @Column(name = "datetime_mng")
     @JsonProperty("datetimeMng")
     private String datetimeMng;
 
     // NumberMng
-    @Column(name = "number_mng", nullable = false)
+    @Column(name = "number_mng")
     @JsonProperty("numberMng")
     private String numberMng;
 
@@ -77,12 +68,12 @@ public class InventorySetProduct extends CommonEntity {
     private Integer productOwnerID;
 
     // RepositoryId
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repositoryId;
 
     // LocationId
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer locationId;
 
@@ -96,25 +87,20 @@ public class InventorySetProduct extends CommonEntity {
     @JsonProperty("supplierId")
     private Integer supplierId;
 
-    // CsQuantity
-    @Column(name = "cs_quantity", precision = 7, scale = 2)
-    @JsonProperty("csQuantity")
-    private BigDecimal csQuantity;
+    // SubQuantity
+    @Column(name = "sub_quantity", precision = 7, scale = 2)
+    @JsonProperty("subQuantity")
+    private BigDecimal subQuantity;
 
-    // BlQuantity
-    @Column(name = "bl_quantity", precision = 7, scale = 2)
-    @JsonProperty("blQuantity")
-    private BigDecimal blQuantity;
+    // ConstituentQuantity
+    @Column(name = "constituent_quantity", precision = 7, scale = 2)
+    @JsonProperty("constituentQuantity")
+    private BigDecimal constituentQuantity;
 
-    // PsQuantity
-    @Column(name = "ps_quantity", precision = 7, scale = 2)
-    @JsonProperty("psQuantity")
-    private BigDecimal psQuantity;
-
-    // Quantity
-    @Column(name = "quantity", precision = 7, scale = 2)
-    @JsonProperty("quantity")
-    private BigDecimal quantity;
+    // InventoryChildSetProductId
+    @Column(name = "inventory_child_set_product_id")
+    @JsonProperty("inventoryChildSetProductId")
+    private Integer inventoryChildSetProductId;
 
     // FreeItem1
     @Column(name = "free_item1")

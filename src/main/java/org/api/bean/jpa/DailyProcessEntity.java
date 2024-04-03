@@ -1,6 +1,5 @@
 package org.api.bean.jpa;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,28 +10,28 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Table(name = "m_holiday")
+@Table(name = "t_daily_process")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class Holiday extends CommonEntity {
+public class DailyProcessEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // Holiday ID
+    // DailyProcessId
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "daily_process_id")
     @JsonProperty("id")
     private Integer id;
 
@@ -41,20 +40,15 @@ public class Holiday extends CommonEntity {
     @JsonProperty("companyId")
     private Integer companyId;
 
-    // HolidayDate
-    @Column(name = "holiday_date", nullable = false)
-    @JsonProperty("holidayDate")
-    private String holidayDate;
+    // ProcessDate
+    @Column(name = "process_date", nullable = false)
+    @JsonProperty("processDate")
+    private String processDate;
 
-    // HolidayName
-    @Column(name = "holiday_name", nullable = false)
-    @JsonProperty("holidayName")
-    private String holidayName;
-
-    // Annual
-    @Column(name = "annual", nullable = false)
-    @JsonProperty("annual")
-    private String annual = "0";
+    // BusinessDate
+    @Column(name = "business_date", nullable = false)
+    @JsonProperty("businessDate")
+    private String businessDate;
 
     // FreeItem1
     @Column(name = "free_item1")

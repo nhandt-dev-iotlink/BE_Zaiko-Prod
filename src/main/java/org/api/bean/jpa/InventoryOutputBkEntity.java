@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,27 +18,27 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "t_inventory_input_bk")
+@Table(name = "t_inventory_output_bk")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class InventoryInputBk extends CommonEntity {
+public class InventoryOutputBkEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // InventoryInputBk ID
+    // InventoryOutputBkId
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "inventory_output_bk_id")
     @JsonProperty("id")
-    private Integer id;
+    private int id;
 
-    // InventoryInputId
-    @Column(name = "inventory_input_id", nullable = false)
-    @JsonProperty("inventoryInputId")
-    private Integer inventoryInputId;
+    // InventoryOuputId
+    @Column(name = "inventory_output_id", nullable = false)
+    @JsonProperty("inventoryOutputId")
+    private Integer inventoryOutputId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)

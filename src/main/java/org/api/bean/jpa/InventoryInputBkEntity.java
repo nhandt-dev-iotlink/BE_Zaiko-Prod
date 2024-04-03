@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,47 +17,37 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "t_receipt_order_detail")
+@Table(name = "t_inventory_input_bk")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReceiptOrderDetail extends CommonEntity {
+public class InventoryInputBkEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // ReceiptOrderDetail ID
+    // InventoryInputBk ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "inventory_input_bk_id")
     @JsonProperty("id")
     private Integer id;
+
+    // InventoryInputId
+    @Column(name = "inventory_input_id", nullable = false)
+    @JsonProperty("inventoryInputId")
+    private Integer inventoryInputId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
     private Integer companyId;
 
-    // ReceiptOrderId
-    @Column(name = "receipt_order_id", nullable = false)
-    @JsonProperty("receiptOrderId")
-    private Integer receiptOrderId;
-
-    // ProductId
-    @Column(name = "product_id", nullable = false)
-    @JsonProperty("productId")
-    private Integer productId;
-
-    // Quantity
-    @Column(name = "quantity", nullable = false)
-    @JsonProperty("quantity")
-    private Integer quantity;
-
-    // PackUnitCode
-    @Column(name = "pack_unit_code", nullable = false)
-    @JsonProperty("packUnitCode")
-    private String packUnitCode;
+    // ChangeDate
+    @Column(name = "change_date")
+    @JsonProperty("changeDate")
+    private String changeDate;
 
     // FreeItem1
     @Column(name = "free_item1")
@@ -74,6 +63,16 @@ public class ReceiptOrderDetail extends CommonEntity {
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String freeItem3;
+
+    // FreeItem4
+    @Column(name = "free_item4")
+    @JsonProperty("freeItem4")
+    private String freeItem4;
+
+    // FreeItem5
+    @Column(name = "free_item5")
+    @JsonProperty("freeItem5")
+    private String freeItem5;
 
 
 }

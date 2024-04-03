@@ -1,5 +1,6 @@
 package org.api.bean.jpa;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,37 +19,42 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "t_inventory_output_bk")
+@Table(name = "m_holiday")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class InventoryOutputBk extends CommonEntity {
+public class HolidayEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // InventoryOutputBk ID
+    // HolidayId
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "holiday_id")
     @JsonProperty("id")
-    private int id;
-
-    // InventoryOuputId
-    @Column(name = "inventory_output_id", nullable = false)
-    @JsonProperty("inventoryOutputId")
-    private Integer inventoryOutputId;
+    private Integer id;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
     private Integer companyId;
 
-    // ChangeDate
-    @Column(name = "change_date")
-    @JsonProperty("changeDate")
-    private String changeDate;
+    // HolidayDate
+    @Column(name = "holiday_date", nullable = false)
+    @JsonProperty("holidayDate")
+    private String holidayDate;
+
+    // HolidayName
+    @Column(name = "holiday_name", nullable = false)
+    @JsonProperty("holidayName")
+    private String holidayName;
+
+    // Annual
+    @Column(name = "annual", nullable = false)
+    @JsonProperty("annual")
+    private String annual = "0";
 
     // FreeItem1
     @Column(name = "free_item1")
@@ -64,16 +70,6 @@ public class InventoryOutputBk extends CommonEntity {
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String freeItem3;
-
-    // FreeItem4
-    @Column(name = "free_item4")
-    @JsonProperty("freeItem4")
-    private String freeItem4;
-
-    // FreeItem5
-    @Column(name = "free_item5")
-    @JsonProperty("freeItem5")
-    private String freeItem5;
 
 
 }

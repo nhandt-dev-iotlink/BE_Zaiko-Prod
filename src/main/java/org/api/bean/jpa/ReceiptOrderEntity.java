@@ -24,14 +24,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReceiptOrder extends CommonEntity {
+public class ReceiptOrderEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
     // ReceiptOrder ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "receipt_order_id")
     @JsonProperty("id")
     private Integer id;
 

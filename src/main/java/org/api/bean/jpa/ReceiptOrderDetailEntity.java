@@ -10,28 +10,28 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
-@Table(name = "t_daily_process")
+@Table(name = "t_receipt_order_detail")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
 @Setter
-public class DailyProcess extends CommonEntity {
+public class ReceiptOrderDetailEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
-    // DailyProcess ID
+    // ReceiptOrderDetail ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "detail_id")
     @JsonProperty("id")
     private Integer id;
 
@@ -40,15 +40,25 @@ public class DailyProcess extends CommonEntity {
     @JsonProperty("companyId")
     private Integer companyId;
 
-    // ProcessDate
-    @Column(name = "process_date", nullable = false)
-    @JsonProperty("processDate")
-    private String processDate;
+    // ReceiptOrderId
+    @Column(name = "receipt_order_id", nullable = false)
+    @JsonProperty("receiptOrderId")
+    private Integer receiptOrderId;
 
-    // BusinessDate
-    @Column(name = "business_date", nullable = false)
-    @JsonProperty("businessDate")
-    private String businessDate;
+    // ProductId
+    @Column(name = "product_id", nullable = false)
+    @JsonProperty("productId")
+    private Integer productId;
+
+    // Quantity
+    @Column(name = "quantity", nullable = false)
+    @JsonProperty("quantity")
+    private Integer quantity;
+
+    // PackUnitCode
+    @Column(name = "pack_unit_code", nullable = false)
+    @JsonProperty("packUnitCode")
+    private String packUnitCode;
 
     // FreeItem1
     @Column(name = "free_item1")

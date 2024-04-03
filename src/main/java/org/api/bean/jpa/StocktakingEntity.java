@@ -24,14 +24,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Stocktaking extends CommonEntity {
+public class StocktakingEntity extends CommonEntity {
 
     private static final long serialVersionUID = 1L;
 
     // Stocktaking ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "stocktaking_id")
     @JsonProperty("id")
     private Integer id;
 
