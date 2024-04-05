@@ -13,38 +13,51 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class SetProductEntity extends CommonEntity{
-    // Set Product ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "set_product_id")
+    @JsonProperty("setProductId")
+    private Integer setProductId;
 
     // Company Id
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer companyId;
 
     // Product Id
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer productId;
 
+    // ProductCode
+    @Column(name = "product_code")
+    @JsonProperty("productCode")
+    private String productCode;
+
     // Child Product Id
-    @Column(name = "child_product_id", nullable = false)
+    @Column(name = "child_product_id")
     @JsonProperty("childProductId")
     private Integer childProductId;
 
+    // product_code_child
+    @Column(name = "product_code_child")
+    @JsonProperty("productCodeChild")
+    private Integer productCodeChild;
+
     // Quantity
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     @JsonProperty("quantity")
     private Integer quantity;
 
     // Product Owner Id
-    @Column(name = "product_owner_id", nullable = false)
+    @Column(name = "product_owner_id")
     @JsonProperty("productOwnerId")
     private Integer productOwnerId;
 
+    //customer_code
+    @Column(name = "customer_code")
+    @JsonProperty("customerCode")
+    private String customer_code;
 
     // FreeItem1
     @Column(name = "free_item1")

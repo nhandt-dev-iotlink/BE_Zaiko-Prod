@@ -54,9 +54,9 @@ public class ExpenseDetailEntity extends CommonEntity implements Serializable {
     @Column(name = "amount_total", precision = 19, scale = 2, nullable = false)
     private Double amountTotal;
 
-    @JsonProperty("tax")
-    @Column(name = "tax", precision = 2, scale = 2)
-    private Double tax;
+//    @JsonProperty("tax")
+//    @Column(name = "tax", precision = 2, scale = 2)
+//    private Double tax;
 
     @JsonProperty("freeItem1")
     @Column(name = "free_item1", length = 100)

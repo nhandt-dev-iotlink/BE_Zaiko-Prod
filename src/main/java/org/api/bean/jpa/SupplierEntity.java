@@ -2,7 +2,6 @@ package org.api.bean.jpa;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
 
@@ -17,9 +16,9 @@ public class SupplierEntity extends CommonEntity{
     // Supplier ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "supplier_id")
+    @JsonProperty("supplierId")
+    private Integer supplierId;
 
     // Company ID
     @Getter
@@ -28,27 +27,27 @@ public class SupplierEntity extends CommonEntity{
     private Integer companyId;
 
     //Supplier Code
-    @Column(name = "supplier_code", nullable = false)
+    @Column(name = "supplier_code")
     @JsonProperty("supplierCode")
     private String supplierCode;
 
     //Supplier Name
-    @Column(name = "supplier_name", nullable = false)
+    @Column(name = "supplier_name")
     @JsonProperty("supplierName")
     private String supplierName;
 
-    //Deparment Name
-    @Column(name = "deparment_name")
-    @JsonProperty("deparmentName")
-    private String deparmentName;
+    //Department Name
+    @Column(name = "department_name")
+    @JsonProperty("departmentName")
+    private String departmentName;
 
     //Pic Name
     @Column(name = "pic_name")
     @JsonProperty("picName")
-    private Integer picName;
+    private String picName;
 
     //Phone Number
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
@@ -58,12 +57,12 @@ public class SupplierEntity extends CommonEntity{
     private String faxNumber;
 
     //Post Code
-    @Column(name = "post_code", nullable = false)
+    @Column(name = "post_code")
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
-    @Column(name = "address1", nullable = false)
+    @Column(name = "address1")
     @JsonProperty("address1")
     private String address1;
 

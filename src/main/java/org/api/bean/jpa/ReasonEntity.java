@@ -20,18 +20,18 @@ public class ReasonEntity extends CommonEntity{
 
     //reason
     @Id
-    @Column(name = "reason", nullable = false)
+    @Column(name = "reason")
     @JsonProperty("reason")
     private String reason;
 
     //reasonCode
     @Id
-    @Column(name = "reason_code", nullable = false)
+    @Column(name = "reason_code")
     @JsonProperty("reasonCode")
     private String reason_code;
 
     //reasonContent
-    @Column(name = "reason_content", nullable = false)
+    @Column(name = "reason_content")
     @JsonProperty("reasonContent")
     private String reason_content;
 

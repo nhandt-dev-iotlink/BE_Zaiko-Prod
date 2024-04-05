@@ -16,9 +16,9 @@ public class CustomerEntity extends CommonEntity{
     // Customer ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "customer_id")
+    @JsonProperty("customerId")
+    private Integer customerId;
 
     // CompanyId
     @Column(name = "company_id")
@@ -36,9 +36,9 @@ public class CustomerEntity extends CommonEntity{
     private String customerName;
 
     //Deparment Name
-    @Column(name = "deparment_name", nullable = false)
-    @JsonProperty("deparmentName")
-    private String deparmentName;
+    @Column(name = "department_name")
+    @JsonProperty("departmentName")
+    private String departmentName;
 
     //Pic Name
     @Column(name = "pic_name")
@@ -46,7 +46,7 @@ public class CustomerEntity extends CommonEntity{
     private Integer picName;
 
     //Phone Number
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
@@ -58,7 +58,7 @@ public class CustomerEntity extends CommonEntity{
     //Post Code
     @Column(name = "post_code", nullable = false)
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
     @Column(name = "address1", nullable = false)

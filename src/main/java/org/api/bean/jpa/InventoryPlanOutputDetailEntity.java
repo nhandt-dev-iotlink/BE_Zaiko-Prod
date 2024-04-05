@@ -45,7 +45,7 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
     private Integer repository_id;
 
     //locationId
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer location_id;
 

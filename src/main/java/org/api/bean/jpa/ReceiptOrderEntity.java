@@ -1,20 +1,9 @@
 package org.api.bean.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 
 @Entity
@@ -32,8 +21,8 @@ public class ReceiptOrderEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "receipt_order_id")
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("receiptOrder_id")
+    private Integer receiptOrder_id;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
@@ -41,37 +30,37 @@ public class ReceiptOrderEntity extends CommonEntity {
     private Integer companyId;
 
     // OrderDate
-    @Column(name = "order_date", nullable = false)
+    @Column(name = "order_date")
     @JsonProperty("orderDate")
     private String orderDate;
 
     // PlanDeliveryDate
-    @Column(name = "plan_delivery_date", nullable = false)
+    @Column(name = "plan_delivery_date")
     @JsonProperty("planDeliveryDate")
     private String planDeliveryDate;
 
     // RepositoryId
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repositoryId;
 
     // SupplierSlipNo
-    @Column(name = "supplier_slip_no", nullable = false)
+    @Column(name = "supplier_slip_no")
     @JsonProperty("supplierSlipNo")
     private String supplierSlipNo;
 
     // DestinationId
-    @Column(name = "destination_id", nullable = false)
+    @Column(name = "destination_id")
     @JsonProperty("destinationId")
     private Integer destinationId;
 
     // CustomerId
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customer_id")
     @JsonProperty("customerId")
     private Integer customerId;
 
     // OrderStatus
-    @Column(name = "order_status", nullable = false)
+    @Column(name = "order_status")
     @JsonProperty("orderStatus")
     private String orderStatus = "0";
 
@@ -86,7 +75,7 @@ public class ReceiptOrderEntity extends CommonEntity {
     private String planOuputSlipNo = "Null";
 
     // FileName
-    @Column(name = "file_name", nullable = false)
+    @Column(name = "file_name")
     @JsonProperty("fileName")
     private String fileName;
 

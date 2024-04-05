@@ -26,20 +26,17 @@ public class RepositoryEntity extends CommonEntity{
     private Integer company_id;
 
     //repository_code
-    @Column(name = "repository_code",
-            nullable = false)
+    @Column(name = "repository_code")
     @JsonProperty("repositoryCode")
     private String repository_code;
 
     //repository_name
-    @Column(name = "repository_name",
-            nullable = false)
+    @Column(name = "repository_name")
     @JsonProperty("repositoryName")
     private String repository_name;
 
     //phone_number1
-    @Column(name = "phone_number1",
-            nullable = false)
+    @Column(name = "phone_number1")
     @JsonProperty("phoneNumber1")
     private String phone_number1;
 
@@ -49,26 +46,22 @@ public class RepositoryEntity extends CommonEntity{
     private String fax_number1;
 
     //post_code1
-    @Column(name = "post_code1",
-            nullable = false)
+    @Column(name = "post_code1")
     @JsonProperty("postCode1")
     private String post_code1;
 
     //address1_1
-    @Column(name = "address1_1",
-            nullable = false)
+    @Column(name = "address1_1")
     @JsonProperty("address1_1")
     private String address1_1;
 
     //address1_2
-    @Column(name = "address1_2",
-            nullable = false)
+    @Column(name = "address1_2")
     @JsonProperty("address1_2")
     private String address1_2;
 
     //address1_3
-    @Column(name = "address1_3",
-            nullable = false)
+    @Column(name = "address1_3")
     @JsonProperty("address1_3")
     private String address1_3;
 

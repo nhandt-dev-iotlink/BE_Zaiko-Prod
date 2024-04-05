@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class BatchAllocated extends CommonEntity implements Serializable {
+public class BatchAllocatedEntity extends CommonEntity implements Serializable {
 
 
     @Serial
@@ -104,6 +104,11 @@ public class BatchAllocated extends CommonEntity implements Serializable {
     @Column(name = "free_item3", length = 100)
     @JsonProperty("freeItem3")
     private String freeItem3;
+
+    // billing_pack_type
+    @Column(name = "billing_pack_type")
+    @JsonProperty("billingPackType")
+    private String billing_pack_type;
 
 
 
