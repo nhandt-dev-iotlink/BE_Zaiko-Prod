@@ -1,19 +1,9 @@
 package org.api.bean.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -31,8 +21,8 @@ public class InventoryInputBkEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_input_bk_id")
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("inventoryInput_bk_id")
+    private Integer inventoryInput_bk_id;
 
     // InventoryInputId
     @Column(name = "inventory_input_id", nullable = false)

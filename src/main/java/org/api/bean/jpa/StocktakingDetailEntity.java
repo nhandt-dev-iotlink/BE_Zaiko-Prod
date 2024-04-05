@@ -1,21 +1,10 @@
 package org.api.bean.jpa;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 
 @Entity
@@ -27,52 +16,50 @@ import lombok.Setter;
 @Setter
 public class StocktakingDetailEntity extends CommonEntity {
 
-    private static final long serialVersionUID = 1L;
-
     // StocktakingDetail ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stocktaking_detail_id")
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("stocktakingDetail_id")
+    private Integer stocktakingDetail_id;
 
     // CompanyId
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer companyId;
-
-    // StocktakingId
-    @Column(name = "stocktaking_id", nullable = false)
-    @JsonProperty("stocktakingId")
-    private Integer stocktakingId;
 
     // InventoryId
     @Column(name = "inventory_id")
     @JsonProperty("inventoryId")
     private Integer inventoryId;
 
+    // StocktakingId
+    @Column(name = "stocktaking_id")
+    @JsonProperty("stocktakingId")
+    private Integer stocktakingId;
+
     // ProductOwnerID
-    @Column(name = "product_owner_id", nullable = false)
+    @Column(name = "product_owner_id")
     @JsonProperty("productOwnerID")
     private Integer productOwnerID;
 
-    // SupplierId
-    @Column(name = "supplier_id", nullable = false)
-    @JsonProperty("supplierId")
-    private Integer supplierId;
-
     // ProductID
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer productId;
 
+    // SupplierId
+    @Column(name = "supplier_id")
+    @JsonProperty("supplierId")
+    private Integer supplierId;
+
     // RepositoryId
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repositoryId;
 
     // LocationId
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer locationId;
 
@@ -89,7 +76,7 @@ public class StocktakingDetailEntity extends CommonEntity {
     // InventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private String inventoryProductType;
+    private Integer inventoryProductType;
 
     // CsQuantity
     @Column(name = "cs_quantity")

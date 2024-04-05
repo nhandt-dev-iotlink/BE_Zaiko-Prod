@@ -134,9 +134,9 @@ public class InventoryActualInputDetailEntity extends CommonEntity{
     private String correction_reason;
 
     //tax
-    @Column(name = "tax",precision = 2,scale = 2)
-    @JsonProperty("tax")
-    private Double tax;
+//    @Column(name = "tax",precision = 2,scale = 2)
+//    @JsonProperty("tax")
+//    private Double tax;
 
     //free_item1
     @Column(name = "free_item1")

@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "common_setting")
+@Table(name = "m_common_setting")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -19,20 +19,24 @@ public class CommonSettingEntity extends CommonEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+
     // ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "company_id")
+    @JsonProperty("companyId")
+    private Integer companyId;
+
     // code
     @Column(name = "code")
     @JsonProperty("code")
     private String code;
+
     // idx
     @Column(name = "idx")
     @JsonProperty("idx")
     private Integer idx;
+
     // description
     @Column(name = "description")
     @JsonProperty("description")
@@ -62,5 +66,4 @@ public class CommonSettingEntity extends CommonEntity implements Serializable {
     @Column(name = "value5")
     @JsonProperty("value5")
     private String value5;
-
 }

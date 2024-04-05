@@ -88,31 +88,6 @@ public class InventoryPlanInputDetailEntity extends CommonEntity{
     @JsonProperty("detailNote")
     private String detail_note;
 
-    //plan_cs_price
-    @Column(name = "plan_cs_price",precision = 7,scale = 2)
-    @JsonProperty("plan_cs_price")
-    private Double plan_cs_price;
-
-    //plan_bl_price
-    @Column(name = "plan_bl_price",precision = 7,scale = 2)
-    @JsonProperty("plan_bl_price")
-    private Double plan_bl_price;
-
-    //plan_piece_price
-    @Column(name = "plan_piece_price",precision = 7,scale = 2)
-    @JsonProperty("plan_piece_price")
-    private Double plan_piece_price;
-
-    //planAmountTotal
-    @Column(name = "plan_amount_total",precision = 19,scale = 2)
-    @JsonProperty("planAmountTotal")
-    private Double plan_amount_total;
-
-    //tax
-    @Column(name = "tax",precision = 2,scale = 2)
-    @JsonProperty("tax")
-    private Double tax;
-
     //free_item1
     @Column(name = "free_item1")
     @JsonProperty("freeItem1")

@@ -20,19 +20,29 @@ public class PurchasePriceEntity extends CommonEntity{
     private Integer purchase_price_id;
 
     //companyId
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer company_id;
 
     //supplierId
-    @Column(name = "supplier_id", nullable = false)
+    @Column(name = "supplier_id")
     @JsonProperty("supplierId")
     private Integer supplier_id;
 
+    //supplierCode
+    @Column(name = "supplier_code")
+    @JsonProperty("supplierCode")
+    private String supplier_code;
+
     //productId
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer product_id;
+
+    //productCode
+    @Column(name = "product_code")
+    @JsonProperty("productCode")
+    private String product_code;
 
     //number_mng
     @Column(name = "number_mng")
@@ -50,17 +60,17 @@ public class PurchasePriceEntity extends CommonEntity{
     private String datetime_mng_to;
 
     //pack_cs_price
-    @Column(name = "pack_cs_price", precision = 8, scale = 2)
+    @Column(name = "pack_cs_price")
     @JsonProperty("pack_cs_price")
     private Double pack_cs_price;
 
     //pack_bl_price
-    @Column(name = "pack_bl_price", precision = 8, scale = 2)
+    @Column(name = "pack_bl_price")
     @JsonProperty("pack_bl_price")
     private Double pack_bl_price;
 
     //piecePrice
-    @Column(name = "piece_price", precision = 8, scale = 2)
+    @Column(name = "piece_price")
     @JsonProperty("piecePrice")
     private Double piece_price;
 

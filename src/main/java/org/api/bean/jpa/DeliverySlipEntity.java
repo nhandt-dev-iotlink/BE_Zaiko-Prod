@@ -66,6 +66,16 @@ public class DeliverySlipEntity extends CommonEntity implements Serializable {
     @JsonProperty("outputId")
     private Integer outputId=0;
 
+    // working_date
+    @Column(name = "working_date")
+    @JsonProperty("workingDate")
+    private String workingDate;
+
+    // batchNo
+    @Column(name = "batch_no")
+    @JsonProperty("batchNo")
+    private String batchNo;
+
     // Free Item 1
     @Column(name = "free_item1", length = 100)
     @JsonProperty("freeItem1")

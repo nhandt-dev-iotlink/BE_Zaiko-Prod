@@ -1,21 +1,9 @@
 package org.api.bean.jpa;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 
 @Entity
@@ -33,25 +21,25 @@ public class InventorySetProductDetailEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_set_product_detail_id")
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("inventorySetProductDetail_id")
+    private Integer inventorySetProductDetail_id;
 
-    // InventorySetProductId
-    @Column(name = "inventory_set_product_id", nullable = false)
-    @JsonProperty("inventorySetProductId")
-    private Integer inventorySetProductId;
-
-    // InventoryId
-    @Column(name = "inventory_id", nullable = false)
-    @JsonProperty("inventoryId")
-    private Integer inventoryId;
-
-    // CompanyID
-    @Column(name = "company_id", nullable = false)
+    // ProductID
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer companyId;
 
-    // Quantity
+    // InventoryId
+    @Column(name = "inventory_id")
+    @JsonProperty("inventoryId")
+    private Integer inventoryId;
+
+    // InventorySetProductId
+    @Column(name = "inventory_set_product_id")
+    @JsonProperty("inventorySetProductId")
+    private Integer inventorySetProductId;
+
+    // SubQuantity
     @Column(name = "quantity")
     @JsonProperty("quantity")
     private Integer quantity;

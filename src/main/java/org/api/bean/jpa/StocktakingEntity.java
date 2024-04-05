@@ -1,20 +1,9 @@
 package org.api.bean.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 
 @Entity
@@ -26,27 +15,25 @@ import lombok.Setter;
 @Setter
 public class StocktakingEntity extends CommonEntity {
 
-    private static final long serialVersionUID = 1L;
-
     // Stocktaking ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stocktaking_id")
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("stocktakingId")
+    private Integer stocktakingId;
 
     // CompanyId
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer companyId;
 
     // InstructionNo
-    @Column(name = "instruction_no", nullable = false)
+    @Column(name = "instruction_no")
     @JsonProperty("instructionNo")
     private String instructionNo;
 
     // RepositoryId
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repositoryId;
 
@@ -64,6 +51,11 @@ public class StocktakingEntity extends CommonEntity {
     @Column(name = "product_owner_id")
     @JsonProperty("productOwnerID")
     private Integer productOwnerID;
+
+    // Remarks
+    @Column(name = "remarks")
+    @JsonProperty("remarks")
+    private String remarks;
 
     // ProductId
     @Column(name = "product_id")
@@ -95,13 +87,8 @@ public class StocktakingEntity extends CommonEntity {
     @JsonProperty("categoryCode5")
     private String categoryCode5;
 
-    // Remarks
-    @Column(name = "remarks")
-    @JsonProperty("remarks")
-    private String remarks;
-
     // Status
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     @JsonProperty("status")
     private String status = "1";
 

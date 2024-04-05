@@ -24,14 +24,13 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     @JsonProperty("companyId")
     private Integer company_id;
 
-    //companyOwnerId
-    @Column(name = "company_owner_id",
-            columnDefinition = "integer default 0000000")
-    @JsonProperty("companyOwner_id")
-    private Integer company_owner_id;
+    //productOwner_id
+    @Column(name = "product_owner_id")
+    @JsonProperty("productOwner_id")
+    private Integer productOwner_id;
 
     //productId
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer product_id;
 
@@ -46,12 +45,12 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     private Integer supplier_id;
 
     //repositoryId
-    @Column(name = "repository_id",nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repository_id;
 
     //locationId
-    @Column(name = "location_id",nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer location_id;
 
@@ -66,32 +65,27 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     private String number_mng;
 
     //inventoryProductType
-    @Column(name = "inventory_product_type",nullable = false)
+    @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
     private Integer inventory_product_type;
 
     //inventoryQuantity
-    @Column(name = "inventory_quantity",nullable = false)
+    @Column(name = "inventory_quantity")
     @JsonProperty("inventoryQuantity")
     private Integer inventory_quantity;
 
     //changeQuantity
-    @Column(name = "change_quantity",nullable = false)
+    @Column(name = "change_quantity")
     @JsonProperty("changeQuantity")
     private Integer change_quantity;
 
     //changeDate
-    @Column(name = "change_date",nullable = false)
+    @Column(name = "change_date")
     @JsonProperty("changeDate")
     private String change_date;
 
-    //businessDate
-    @Column(name = "business_date",nullable = false)
-    @JsonProperty("businessDate")
-    private String business_date;
-
     //changeType
-    @Column(name = "change_type",nullable = false)
+    @Column(name = "change_type")
     @JsonProperty("changeType")
     private String change_type;
 
@@ -99,6 +93,26 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     @Column(name = "change_reason")
     @JsonProperty("changeReason")
     private String change_reason;
+
+    //detailId
+    @Column(name = "detail_id")
+    @JsonProperty("detailId")
+    private Integer detail_id;
+
+    //headerId
+    @Column(name = "header_id")
+    @JsonProperty("headerId")
+    private Integer header_id;
+
+    //slipNo
+    @Column(name = "slip_no")
+    @JsonProperty("slipNo")
+    private String slip_no;
+
+    //businessDate
+    @Column(name = "business_date")
+    @JsonProperty("businessDate")
+    private String business_date;
 
     //free_item1
     @Column(name = "free_item1")
@@ -114,19 +128,4 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String free_item3;
-
-    //headerId
-    @Column(name = "header_id")
-    @JsonProperty("headerId")
-    private Integer header_id;
-
-    //detailId
-    @Column(name = "detail_id")
-    @JsonProperty("detail_id")
-    private Integer detail_id;
-
-    //slipNo
-    @Column(name = "slip_no")
-    @JsonProperty("slipNo")
-    private String slip_no;
 }

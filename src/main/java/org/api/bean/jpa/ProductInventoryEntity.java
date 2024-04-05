@@ -20,35 +20,59 @@ public class ProductInventoryEntity extends CommonEntity{
     private Integer inventory_id;
 
     //companyId
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer company_id;
 
-    //companyOwnerId
-    @Column(name = "company_owner_id",
-            columnDefinition = "integer default 0000000")
+    //productOwnerId
+    @Column(name = "product_owner_id")
     @JsonProperty("companyOwner_id")
-    private Integer company_owner_id;
+    private Integer product_owner_id;
+
+    //customerCode
+    @Column(name = "customer_code")
+    @JsonProperty("customerCode")
+    private String customer_code;
 
     //productId
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("productId")
     private Integer product_id;
+
+    //productCode
+    @Column(name = "product_code")
+    @JsonProperty("productCode")
+    private String product_code;
 
     //supplierId
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
     private Integer supplier_id;
 
+    //supplierCode
+    @Column(name = "supplier_code")
+    @JsonProperty("supplierCode")
+    private String supplier_code;
+
     //repositoryId
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repository_id;
 
+    //repositoryCode
+    @Column(name = "repository_code")
+    @JsonProperty("repositoryCode")
+    private String repository_code;
+
     //locationId
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer location_id;
+
+    //locationCode
+    @Column(name = "location_code")
+    @JsonProperty("locationCode")
+    private String location_code;
 
     //datetime_mng
     @Column(name = "datetime_mng")
@@ -63,10 +87,10 @@ public class ProductInventoryEntity extends CommonEntity{
     //inventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private Integer inventory_product_type;
+    private String inventory_product_type;
 
     //quantity
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     @JsonProperty("quantity")
     private Integer quantity;
 
@@ -89,14 +113,4 @@ public class ProductInventoryEntity extends CommonEntity{
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String free_item3;
-
-    //free_item4
-    @Column(name = "free_item4")
-    @JsonProperty("freeItem4")
-    private String free_item4;
-
-    //free_item5
-    @Column(name = "free_item5")
-    @JsonProperty("freeItem5")
-    private String free_item5;
 }

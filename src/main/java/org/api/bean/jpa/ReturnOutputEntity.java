@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 
 
 @Entity
@@ -15,66 +13,56 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReturnOutputEntity extends CommonEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class ReturnOutputEntity extends CommonEntity {
 
     //Id
     @Id
-    @Column(name = "return_output_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
+    @Column(name = "return_output_id")
+    @JsonProperty("returnOutputId")
     private Long returnOutputId;
+
+    @Column(name = "company_id")
     @JsonProperty("company_id")
-    @Column(name = "company_id", nullable = false)
     private Integer companyId;
 
+    @Column(name = "return_output_date")
     @JsonProperty("return_output_date")
-    @Column(name = "return_output_date", length = 10)
     private String returnOutputDate;
 
+    @Column(name = "create_slip_type")
     @JsonProperty("createSlipType")
-    @Column(name = "create_slip_type", length = 1, nullable = false)
     private String createSlipType;
 
+    @Column(name = "slip_no")
     @JsonProperty("slipNo")
-    @Column(name = "slip_no", length = 20, nullable = false)
     private String slipNo;
 
+    @Column(name = "customer_slip_no")
     @JsonProperty("customerSlipNo")
-    @Column(name = "customer_slip_no", length = 20)
     private String customerSlipNo;
 
+    @Column(name = "slip_notes")
     @JsonProperty("slipNotes")
-    @Column(name = "slip_notes", length = 200)
     private String slipNotes;
 
-    @JsonProperty("productOwnerId")
     @Column(name = "product_owner_id")
+    @JsonProperty("productOwnerId")
     private Long productOwnerId;
 
+    @Column(name = "supplier_id")
     @JsonProperty("supplierId")
-    @Column(name = "supplier_id", nullable = false)
     private Long supplierId;
 
+    @Column(name = "supplier_delivery_destination_id")
     @JsonProperty("supplier_delivery_destination_id")
-    @Column(name = "supplier_delivery_destination_id", nullable = false)
     private Long supplierDeliveryDestinationId;
 
+    @Column(name = "repository_id")
     @JsonProperty("repositoryId")
-    @Column(name = "repository_id", nullable = false)
     private Long repositoryId;
 
+    @Column(name = "print_status")
     @JsonProperty("print_status")
-    @Column(name = "print_status", length = 1, columnDefinition = "nvarchar(1) default '0'")
     private String printStatus;
-
-    @JsonProperty("purchase_category")
-    @Column(name = "purchase_category", length = 1, nullable = false)
-    private String purchaseCategory;
-
-
-
-
-
 }
