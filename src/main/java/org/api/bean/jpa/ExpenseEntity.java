@@ -86,9 +86,9 @@ public class ExpenseEntity extends CommonEntity implements Serializable {
     @Column(name = "destination_code", length = 6)
     private String destinationCode;
 
-    @JsonProperty("deliverDestinationName")
-    @Column(name = "deliver_destination_name", length = 50100)
-    private String deliverDestinationName;
+    @JsonProperty("departmentName")
+    @Column(name = "department_name", length = 50100)
+    private String departmentName;
 
     @JsonProperty("postCode")
     @Column(name = "post_code", length = 8)
