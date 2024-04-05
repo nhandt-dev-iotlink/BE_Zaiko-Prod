@@ -45,6 +45,11 @@ public class DailyProcessEntity extends CommonEntity {
     @JsonProperty("processDate")
     private String processDate;
 
+    // ProcessStatus
+    @Column(name = "process_status")
+    @JsonProperty("processStatus")
+    private String processStatus;
+
     // BusinessDate
     @Column(name = "business_date", nullable = false)
     @JsonProperty("businessDate")

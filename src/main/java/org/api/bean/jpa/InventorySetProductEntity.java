@@ -36,6 +36,16 @@ public class InventorySetProductEntity extends CommonEntity {
     @JsonProperty("id")
     private Integer id;
 
+    // CompanyID
+    @Column(name = "company_id", nullable = false)
+    @JsonProperty("companyId")
+    private Integer companyId;
+
+    // CreateDay
+    @Column(name = "create_day", nullable = false)
+    @JsonProperty("createDay")
+    private String createDay;
+
     // WorkingDate
     @Column(name = "working_date", nullable = false)
     @JsonProperty("workingDate")
@@ -72,7 +82,7 @@ public class InventorySetProductEntity extends CommonEntity {
     private String numberMng;
 
     // ProductOwnerID
-    @Column(name = "product_owner_id")
+    @Column(name = "product_owner_id", nullable = false)
     @JsonProperty("productOwnerID")
     private Integer productOwnerID;
 
@@ -87,34 +97,40 @@ public class InventorySetProductEntity extends CommonEntity {
     private Integer locationId;
 
     // InventoryProductType
-    @Column(name = "inventory_product_type")
+    @Column(name = "inventory_product_type", nullable = false)
     @JsonProperty("inventoryProductType")
     private Integer inventoryProductType;
 
+    // CorrectionReason
+    @Column(name = "correction_reason")
+    @JsonProperty("correctionReason")
+    private String correctionReason;
+
+
     // SupplierId
-    @Column(name = "supplier_id")
+    @Column(name = "supplier_id", nullable = false)
     @JsonProperty("supplierId")
     private Integer supplierId;
 
     // CsQuantity
-    @Column(name = "cs_quantity", precision = 7, scale = 2)
+    @Column(name = "cs_quantity")
     @JsonProperty("csQuantity")
-    private BigDecimal csQuantity;
+    private Integer csQuantity;
 
     // BlQuantity
-    @Column(name = "bl_quantity", precision = 7, scale = 2)
+    @Column(name = "bl_quantity")
     @JsonProperty("blQuantity")
-    private BigDecimal blQuantity;
+    private Integer blQuantity;
 
     // PsQuantity
-    @Column(name = "ps_quantity", precision = 7, scale = 2)
+    @Column(name = "ps_quantity")
     @JsonProperty("psQuantity")
-    private BigDecimal psQuantity;
+    private Integer psQuantity;
 
     // Quantity
-    @Column(name = "quantity", precision = 7, scale = 2)
+    @Column(name = "quantity")
     @JsonProperty("quantity")
-    private BigDecimal quantity;
+    private Integer quantity;
 
     // FreeItem1
     @Column(name = "free_item1")

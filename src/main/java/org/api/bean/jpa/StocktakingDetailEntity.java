@@ -89,7 +89,7 @@ public class StocktakingDetailEntity extends CommonEntity {
     // InventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private Integer inventoryProductType;
+    private String inventoryProductType;
 
     // CsQuantity
     @Column(name = "cs_quantity")
