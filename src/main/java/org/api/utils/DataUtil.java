@@ -62,6 +62,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.springframework.stereotype.Component;
 
 /**
  * [OVERVIEW] Data util.
@@ -73,6 +74,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  * --------------------------------------------------------------------------
  * 001       1.0      2022/07/01      (TanDX)    	  Create new
 */
+@Component
 public class DataUtil {
 
     /** The Constant logger. */
@@ -2064,7 +2066,7 @@ public class DataUtil {
      *
      * @param value
      * @param pattern
-     * @param defaultValue
+//     * @param defaultValue
      * @return boolean
      */
     public static boolean checkDecimal(String value, String pattern) {

@@ -12,43 +12,43 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RepositoryEntity extends CommonEntity{
+public class RepositoryEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "repository_id", nullable = false)
     @JsonProperty("repositoryId")
-    private Integer repository_id;
+    private Integer repositoryId;
 
     //company_id
     @Column(name = "company_id",
             nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //repository_code
     @Column(name = "repository_code")
     @JsonProperty("repositoryCode")
-    private String repository_code;
+    private String repositoryCode;
 
     //repository_name
     @Column(name = "repository_name")
     @JsonProperty("repositoryName")
-    private String repository_name;
+    private String repositoryName;
 
     //phone_number1
     @Column(name = "phone_number1")
     @JsonProperty("phoneNumber1")
-    private String phone_number1;
+    private String phoneNumber1;
 
     //fax_number1
     @Column(name = "fax_number1")
-    @JsonProperty("fax_number1")
-    private String fax_number1;
+    @JsonProperty("faxNumber1")
+    private String faxNumber1;
 
     //post_code1
     @Column(name = "post_code1")
     @JsonProperty("postCode1")
-    private String post_code1;
+    private String postCode1;
 
     //address1_1
     @Column(name = "address1_1")
@@ -73,17 +73,17 @@ public class RepositoryEntity extends CommonEntity{
     //phone_number2
     @Column(name = "phone_number2")
     @JsonProperty("phoneNumber2")
-    private String phone_number2;
+    private String phoneNumber2;
 
     //fax_number2
     @Column(name = "fax_number2")
     @JsonProperty("faxNumber2")
-    private String fax_number2;
+    private String faxNumber2;
 
     //post_code2
     @Column(name = "post_code2")
     @JsonProperty("postCode2")
-    private String post_code2;
+    private String postCode2;
 
     //address2_1
     @Column(name = "address2_1")

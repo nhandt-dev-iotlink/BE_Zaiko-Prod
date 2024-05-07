@@ -16,18 +16,18 @@ public class InventoryActualInputDetailEntity extends CommonEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actual_detail_id")
-    @JsonProperty("actualDetail_id")
-    private Integer actual_detail_id;
+    @JsonProperty("actualDetailId")
+    private Integer actualDetailId;
 
     //companyId
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //inventoryInput_id
     @Column(name = "inventory_input_id", nullable = false)
-    @JsonProperty("inventoryInput_id")
-    private Integer inventory_input_id;
+    @JsonProperty("inventoryInputId")
+    private Integer inventoryInputId;
 
     //planDetail_id
     @Column(name = "plan_detail_id")
@@ -43,12 +43,12 @@ public class InventoryActualInputDetailEntity extends CommonEntity{
     //supplierId
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
-    private Integer supplier_id;
+    private Integer supplierId;
 
     //productId
     @Column(name = "product_id", nullable = false)
     @JsonProperty("productId")
-    private Integer product_id;
+    private Integer productId;
 
     //inputActualDate
     @Column(name = "input_actual_date",nullable = false)

@@ -84,6 +84,11 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     @JsonProperty("deliverDate")
     private String deliver_date;
 
+    //batchNo
+    @Column(name = "batch_no")
+    @JsonProperty("batchNo")
+    private String batchNo;
+
     //billingPackType
     @Column(name = "billing_pack_type",nullable = false)
     @JsonProperty("billingPackType")

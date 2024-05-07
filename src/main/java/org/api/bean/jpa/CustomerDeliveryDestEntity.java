@@ -12,13 +12,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDeliveryDestEntity extends CommonEntity{
+public class CustomerDeliveryDestEntity extends CommonEntity {
     // Delivery Destination ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "delivery_destination_id")
-    @JsonProperty("deliveryDestination_id")
-    private Integer deliveryDestination_id;
+    @JsonProperty("deliveryDestinationId")
+    private Integer deliveryDestinationId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
@@ -38,7 +38,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     //Destination Code
     @Column(name = "destination_code", nullable = false)
     @JsonProperty("destinationCode")
-    private String destinatonCode;
+    private String destinationCode;
 
     //Deparment Name
     @Column(name = "department_name", nullable = false)
