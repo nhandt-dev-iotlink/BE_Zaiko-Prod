@@ -137,7 +137,7 @@ public class InventoryOutputEntity extends CommonEntity{
     //create_slip_type
     @Column(name = "create_slip_type",nullable = false)
     @JsonProperty("create_slip_type")
-    private Boolean create_slip_type;
+    private String create_slip_type;
 
     //slipNo
     @Column(name = "slip_no",nullable = false)

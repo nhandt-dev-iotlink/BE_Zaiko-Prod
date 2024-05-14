@@ -25,7 +25,7 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     private Integer company_id;
 
     //inventoryOutput_id
-    @Column(name = "inventory_output_id",nullable = false)
+    @Column(name = "inventory_output_id", nullable = false)
     @JsonProperty("inventoryOutput_id")
     private Integer inventory_output_id;
 
@@ -60,12 +60,12 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     private Integer location_id;
 
     //datetime_mng
-    @Column(name = "datetime_mng",nullable = false)
+    @Column(name = "datetime_mng", nullable = false)
     @JsonProperty("datetime_mng")
     private String datetime_mng;
 
     //number_mng
-    @Column(name = "number_mng",nullable = false)
+    @Column(name = "number_mng", nullable = false)
     @JsonProperty("number_mng")
     private String number_mng;
 
@@ -85,7 +85,7 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     private String deliver_date;
 
     //billingPackType
-    @Column(name = "billing_pack_type",nullable = false)
+    @Column(name = "billing_pack_type", nullable = false)
     @JsonProperty("billingPackType")
     private String billing_pack_type;
 
@@ -115,27 +115,27 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     private Integer inventory_product_type;
 
     //actual_cs_price
-    @Column(name = "actual_cs_price",precision = 7,scale = 2)
+    @Column(name = "actual_cs_price", precision = 7, scale = 2)
     @JsonProperty("actual_cs_price")
     private Double actual_cs_price;
 
     //actual_bl_price
-    @Column(name = "actual_bl_price",precision = 7,scale = 2)
+    @Column(name = "actual_bl_price", precision = 7, scale = 2)
     @JsonProperty("actual_bl_price")
     private Double actual_bl_price;
 
     //actualPiecePrice
-    @Column(name = "actual_piece_price",precision = 7,scale = 2)
+    @Column(name = "actual_piece_price", precision = 7, scale = 2)
     @JsonProperty("actualPiecePrice")
     private Double actual_piece_price;
 
     //amountTotal
-    @Column(name = "amount_total",precision = 19,scale = 2)
+    @Column(name = "amount_total", precision = 19, scale = 2)
     @JsonProperty("amountTotal")
     private Double amount_total;
 
     //tax
-    @Column(name = "tax",precision = 2,scale = 2)
+    @Column(name = "tax", precision = 2, scale = 2)
     @JsonProperty("tax")
     private Double tax;
 
@@ -164,4 +164,16 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String free_item3;
+    //batchNo
+    @Column(name = "batch_no")
+    @JsonProperty("batchNo")
+    private String batch_no;
+//    delivery_slip_id
+    @Column(name = "delivery_slip_id")
+    @JsonProperty("batchNo")
+    private Integer delivery_slip_id;
+//    is_batch
+    @Column(name = "is_batch")
+    @JsonProperty("isBatch")
+    private String is_batch;
 }

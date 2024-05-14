@@ -60,7 +60,7 @@ public class ResultBean implements Serializable {
      * @author (TanDX)
      * @param data 
      * @param code 
-     * @param filed 
+     * @param field
      * @param message 
      */
     public ResultBean(Object data, String code, String field ,String message) {
