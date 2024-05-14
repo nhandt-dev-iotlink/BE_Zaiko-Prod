@@ -17,18 +17,18 @@ import javax.persistence.Table;
 @Setter
 public class UnitNameEntity extends CommonEntity{
     @Id
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer company_id;
 
     //unitCode
     @Id
-    @Column(name = "unit_code", nullable = false)
+    @Column(name = "unit_code")
     @JsonProperty("unitCode")
     private String unit_code;
 
     //unit_name
-    @Column(name = "unitName", nullable = false)
+    @Column(name = "unit_name")
     @JsonProperty("unitName")
     private String unit_name;
 

@@ -38,7 +38,7 @@ public class SupplierDeliveryDestEntity extends CommonEntity{
     //Destination Code
     @Column(name = "destination_code")
     @JsonProperty("destinationCode")
-    private String destinatonCode;
+    private String destinationCode;
 
     //Department Name
     @Column(name = "department_name")

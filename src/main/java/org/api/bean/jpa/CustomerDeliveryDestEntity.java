@@ -18,7 +18,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "delivery_destination_id")
     @JsonProperty("deliveryDestination_id")
-    private Integer deliveryDestination_id;
+    private Integer deliveryDestinationId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
@@ -38,9 +38,9 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     //Destination Code
     @Column(name = "destination_code", nullable = false)
     @JsonProperty("destinationCode")
-    private String destinatonCode;
+    private String destinationCode;
 
-    //Deparment Name
+    //Department Name
     @Column(name = "department_name", nullable = false)
     @JsonProperty("departmentName")
     private String departmentName;

@@ -6,14 +6,14 @@
 
 package org.api.repository.user;
 
-import java.util.Optional;
-
 import org.api.bean.jpa.UserLoginEntity;
 import org.api.repository.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * [OVERVIEW] UserLoginDao.
@@ -35,6 +35,7 @@ public interface UserLoginRepository extends BaseRepository<UserLoginEntity, Int
      * @return the user login entity
      */
     public Optional<UserLoginEntity> findOneById(Integer userId);
+
 
 //    @Query(value = UserLoginQuery.FIND_USER,
 //    countQuery = UserLoginQuery.FIND_USER,

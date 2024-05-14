@@ -56,12 +56,12 @@ public class CustomerEntity extends CommonEntity{
     private String faxNumber;
 
     //Post Code
-    @Column(name = "post_code", nullable = false)
+    @Column(name = "post_code")
     @JsonProperty("postCode")
     private String postCode;
 
     //Address 1
-    @Column(name = "address1", nullable = false)
+    @Column(name = "address1")
     @JsonProperty("address1")
     private String address1;
 
