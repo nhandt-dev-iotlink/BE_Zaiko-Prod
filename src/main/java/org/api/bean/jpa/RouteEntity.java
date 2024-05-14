@@ -29,7 +29,7 @@ public class RouteEntity extends CommonEntity{
     private String routeCode;
 
     //Route Name
-    @Column(name = "route_name", nullable = false)
+    @Column(name = "route_name")
     @JsonProperty("routeName")
     private String routeName;
 

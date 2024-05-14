@@ -32,6 +32,11 @@ public class LocationEntity extends CommonEntity {
     @JsonProperty("repositoryId")
     private Integer repository_id;
 
+    //repositoryCode
+    @Column(name = "repository_code")
+    @JsonProperty("repositoryCode")
+    private String repository_code;
+
     //locationCode
     @Column(name = "location_code",
             nullable = false)
@@ -44,50 +49,44 @@ public class LocationEntity extends CommonEntity {
     private String location_name;
 
     //is_reserve_mcarton
-    @Column(name = "is_reserve_mcarton",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_reserve_mcarton")
     @JsonProperty("is_reserve_mcarton")
-    private Boolean is_reserve_mcarton;
+    private String is_reserve_mcarton;
 
     //is_reserve_icarton
-    @Column(name = "is_reserve_icarton",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_reserve_icarton")
     @JsonProperty("is_reserve_icarton")
-    private Boolean is_reserve_icarton;
+    private String is_reserve_icarton;
 
     //is_reserve_piece
-    @Column(name = "is_reserve_piece",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_reserve_piece")
     @JsonProperty("is_reserve_piece")
-    private Boolean is_reserve_piece;
+    private String is_reserve_piece;
 
     //is_input_ban
-    @Column(name = "is_input_ban",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_input_ban")
     @JsonProperty("is_input_ban")
-    private Boolean is_input_ban;
+    private String is_input_ban;
 
     //is_output_ban
-    @Column(name = "is_output_ban",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_output_ban")
     @JsonProperty("is_output_ban")
-    private Boolean is_output_ban;
+    private String is_output_ban;
 
     //is_reserve_ban
-    @Column(name = "is_reserve_ban",
-            columnDefinition = "boolean default false")
+    @Column(name = "is_reserve_ban")
     @JsonProperty("is_reserve_ban")
-    private Boolean is_reserve_ban;
+    private String is_reserve_ban;
 
     //road_order_inventory
     @Column(name = "road_order_inventory")
     @JsonProperty("road_order_inventory")
-    private Integer road_order_inventory;
+    private String road_order_inventory;
 
     //road_order_pick
     @Column(name = "road_order_pick")
     @JsonProperty("road_order_pick")
-    private Integer road_order_pick;
+    private String road_order_pick;
 
     //notes
     @Column(name = "notes")

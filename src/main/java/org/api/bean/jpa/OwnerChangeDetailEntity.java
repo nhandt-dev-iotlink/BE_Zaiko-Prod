@@ -4,7 +4,6 @@ package org.api.bean.jpa;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -60,7 +59,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "create_slip_type")
     @JsonProperty("createSlipType")
-    private Character createSlipType;
+    private String createSlipType;
 
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
@@ -68,7 +67,7 @@ public class OwnerChangeDetailEntity extends CommonEntity implements Serializabl
 
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
-    private Long supplierId;
+    private Integer supplierId;
 
     @Column(name = "billing_pack_type")
     @JsonProperty("billingPackType")

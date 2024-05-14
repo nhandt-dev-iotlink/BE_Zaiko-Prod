@@ -20,10 +20,15 @@ public class SupplementEntity extends CommonEntity implements Serializable {
 
     //Id
     @Id
-    @Column(name = "supplement_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "supplement_id")
+    @JsonProperty("supplementId")
+    private Integer supplementId;
+
+    // companyId
+    @Column(name = "company_id")
+    @JsonProperty("companyId")
+    private Integer companyId;
 
     // plan_quantity
     @Column(name = "plan_quantity")
@@ -56,22 +61,22 @@ public class SupplementEntity extends CommonEntity implements Serializable {
     private Integer productId;
 
     // status
-    @Column(name = "status",length = 1)
+    @Column(name = "status")
     @JsonProperty("status")
     private String status;
 
     //free_item3
-    @Column(name = "free_item3",columnDefinition = "nvarchar(100)")
+    @Column(name = "free_item3")
     @JsonProperty("freeItem3")
     private String freeItem3;
 
     //free_item4
-    @Column(name = "free_item4",columnDefinition = "nvarchar(100)")
+    @Column(name = "free_item4")
     @JsonProperty("freeItem4")
     private String freeItem4;
 
     //free_item5
-    @Column(name = "free_item5",columnDefinition = "nvarchar(100)")
+    @Column(name = "free_item5")
     @JsonProperty("freeItem5")
     private String freeItem5;
 

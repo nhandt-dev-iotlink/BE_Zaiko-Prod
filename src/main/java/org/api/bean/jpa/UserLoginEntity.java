@@ -29,7 +29,7 @@ import lombok.Setter;
  * 001       1.0       2022/07/0       (TanDX)           Create new
 */
 @Entity
-@Table(name = "user")
+@Table(name = "m_user")
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -41,7 +41,7 @@ public class UserLoginEntity extends CommonEntity implements Serializable {
     // User ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     @JsonProperty("id")
     private Integer id;
 

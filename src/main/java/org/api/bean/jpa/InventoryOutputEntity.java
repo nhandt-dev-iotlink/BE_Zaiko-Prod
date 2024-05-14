@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "t_inventory_output")
@@ -12,7 +14,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class InventoryOutputEntity extends CommonEntity{
+public class InventoryOutputEntity extends CommonEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_output_id")

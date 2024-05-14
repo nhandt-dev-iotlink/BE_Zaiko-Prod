@@ -57,11 +57,6 @@ public class BatchSetAllocatedEntity extends CommonEntity implements Serializabl
     @JsonProperty("psQuantity")
     private Integer psQuantity = 0;
 
-    // Total Allocated Quantity
-    @Column(name = "quantity", nullable = false)
-    @JsonProperty("quantity")
-    private Integer quantity;
-
     // Set Quantity
     @Column(name = "set_quantity")
     @JsonProperty("setQuantity")

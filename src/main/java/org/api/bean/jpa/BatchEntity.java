@@ -31,6 +31,10 @@ public class BatchEntity extends CommonEntity implements Serializable {
     @Column(name = "company_id", length = 4, nullable = false)
     private Integer companyId;
 
+    @JsonProperty("name")
+    @Column(name = "name")
+    private String nameBatch;
+
     @JsonProperty("repositoryId")
     @Column(name = "repository_id", length = 7, nullable = false)
     private Integer repositoryId;

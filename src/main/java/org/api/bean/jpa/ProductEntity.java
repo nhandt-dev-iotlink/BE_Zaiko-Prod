@@ -16,9 +16,9 @@ public class ProductEntity extends CommonEntity {
     // Product ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "product_id")
+    @JsonProperty("productId")
+    private Integer productId;
 
     // Company ID
     @Column(name = "company_id")
@@ -26,7 +26,7 @@ public class ProductEntity extends CommonEntity {
     private Integer companyId;
 
     //Product Code
-    @Column(name = "product_code", nullable = false)
+    @Column(name = "product_code")
     @JsonProperty("productCode")
     private String productCode;
 
@@ -96,9 +96,9 @@ public class ProductEntity extends CommonEntity {
     private String categoryCode5;
 
     //Note
-    @Column(name = "note")
-    @JsonProperty("note")
-    private String note;
+    @Column(name = "notes")
+    @JsonProperty("notes")
+    private String notes;
 
     //Fifo Type
     @Column(name = "fifo_type")
@@ -171,7 +171,7 @@ public class ProductEntity extends CommonEntity {
     private Double pieceVolume;
 
     //Piece Volume Name
-    @Column(name = "piece_volme_name")
+    @Column(name = "piece_volume_name")
     @JsonProperty("pieceVolumeName")
     private String pieceVolumeName;
 
@@ -205,6 +205,11 @@ public class ProductEntity extends CommonEntity {
     @JsonProperty("packCsUnitCode")
     private String packCsUnitCode;
 
+    //Pack Cs Unit name
+    @Column(name = "pack_cs_unit_name")
+    @JsonProperty("packCsUnitName")
+    private String packCsUnitName;
+
     //Pack Cs Amount
     @Column(name = "pack_cs_amount")
     @JsonProperty("packCsAmount")
@@ -224,6 +229,11 @@ public class ProductEntity extends CommonEntity {
     @Column(name = "pack_bl_unit_code")
     @JsonProperty("packBlUnitCode")
     private String packBlUnitCode;
+
+    //Pack Bl Unit Name
+    @Column(name = "pack_bl_unit_name")
+    @JsonProperty("packBlUnitName")
+    private String packBlUnitName;
 
     //Pack Bl Amount
     @Column(name = "pack_bl_amount")
@@ -245,15 +255,30 @@ public class ProductEntity extends CommonEntity {
     @JsonProperty("pieceUnitCode")
     private String pieceUnitCode;
 
+    //Piece Unit Name
+    @Column(name = "piece_unit_name")
+    @JsonProperty("pieceUnitName")
+    private String pieceUnitName;
+
     //Repository Id
     @Column(name = "repository_id")
     @JsonProperty("repositoryId")
     private Integer repositoryId;
 
+    //repositoryCode
+    @Column(name = "repository_code")
+    @JsonProperty("repositoryCode")
+    private String repository_code;
+
     //Location Id
     @Column(name = "location_id")
     @JsonProperty("locationId")
     private Integer locationId;
+
+    //locationCode
+    @Column(name = "location_code")
+    @JsonProperty("locationCode")
+    private String location_code;
 
     //Is Replenish Quantity
     @Column(name = "is_replenish_mng")
@@ -279,6 +304,11 @@ public class ProductEntity extends CommonEntity {
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
     private Integer supplierId;
+
+    //supplierCode
+    @Column(name = "supplier_code")
+    @JsonProperty("supplierCode")
+    private String supplierCode;
 
     //Lead Time
     @Column(name = "lead_time")

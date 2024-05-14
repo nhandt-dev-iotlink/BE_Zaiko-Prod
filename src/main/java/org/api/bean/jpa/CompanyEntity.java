@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "m_company")
@@ -20,9 +18,9 @@ public class CompanyEntity extends CommonEntity {
     // Company ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "company_id")
+    @JsonProperty("companyId")
+    private Integer companyId;
 
     //Company Name
     @Column(name = "company_name", nullable = false)
@@ -120,9 +118,9 @@ public class CompanyEntity extends CommonEntity {
     private String bankAccHolder;
 
     //Note
-    @Column(name = "note")
-    @JsonProperty("note")
-    private String note;
+    @Column(name = "notes")
+    @JsonProperty("notes")
+    private String notes;
 
     // FreeItem1
     @Column(name = "free_item1")

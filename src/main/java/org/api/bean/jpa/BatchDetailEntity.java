@@ -28,6 +28,7 @@ public class BatchDetailEntity extends CommonEntity implements Serializable {
     @Column(name = "batch_detail_id")
     @JsonProperty("batchDetailId")
     private Integer batchDetailId;
+
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
     private Integer companyId;
@@ -52,35 +53,35 @@ public class BatchDetailEntity extends CommonEntity implements Serializable {
     @JsonProperty("remainQuantity")
     private Integer remainQuantity;
 
-    @Column(name = "picking_list", nullable = false)
+    @Column(name = "picking_list", nullable = false, length = 1, columnDefinition = "char default '0'")
     @JsonProperty("pickingList")
     private String pickingList = "0";
 
-    @Column(name = "set_product_list", nullable = false)
+    @Column(name = "set_product_list", nullable = false, length = 1, columnDefinition = "char default '0'")
     @JsonProperty("setProductList")
     private String setProductList = "0";
 
-    @Column(name = "lack_product_list", nullable = false)
+    @Column(name = "lack_product_list", nullable = false, length = 1, columnDefinition = "char default '0'")
     @JsonProperty("lackProductList")
     private String lackProductList = "0";
 
-    @Column(name = "batch_status", nullable = false)
+    @Column(name = "batch_status", nullable = false, length = 1, columnDefinition = "char default '0'")
     @JsonProperty("batchStatus")
     private String batchStatus = "0";
 
-    @Column(name = "lack_of_product_status", length = 1)
+    @Column(name = "lack_of_product_status", length = 1, columnDefinition = "char default '0'")
     @JsonProperty("lackOfProductStatus")
     private String lackOfProductStatus = "0";
 
-    @Column(name = "delivery_instruction_status")
+    @Column(name = "delivery_instruction_status", length = 1, columnDefinition = "char default '0'")
     @JsonProperty("deliveryInstructionStatus")
     private String deliveryInstructionStatus = "0";
 
-    @Column(name = "confirm_status", length = 1)
+    @Column(name = "confirm_status", length = 1, columnDefinition = "char default '0'")
     @JsonProperty("confirmStatus")
     private String confirmStatus = "0";
 
-    @Column(name = "delivery_note_status", length = 1)
+    @Column(name = "delivery_note_status", length = 1, columnDefinition = "char default '0'")
     @JsonProperty("deliveryNoteStatus")
     private String deliveryNoteStatus = "0";
 

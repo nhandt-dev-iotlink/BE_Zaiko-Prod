@@ -1,0 +1,1 @@
+INDEX VERSION 1.132+E:\ThucTap-Vi-Mash\BE_Zaiko-Prod-main\.metadata\.plugins\org.eclipse.jdt.core

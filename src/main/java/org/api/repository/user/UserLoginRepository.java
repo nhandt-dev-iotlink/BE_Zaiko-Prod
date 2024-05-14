@@ -47,7 +47,6 @@ public interface UserLoginRepository extends BaseRepository<UserLoginEntity, Int
     /**
      * Find user login
      * @author (TanDX)
-     * @param userId
      * @return the user login entity
      */
     public UserLoginEntity findOneByUserName(String userName);

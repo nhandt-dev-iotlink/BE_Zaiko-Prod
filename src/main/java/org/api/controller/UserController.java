@@ -3,6 +3,7 @@ package org.api.controller;
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
 import org.api.bean.jpa.UserLoginEntity;
+import org.api.bean.reponse.LoginResponse;
 import org.api.services.UserService;
 import org.api.utils.ApiValidateException;
 import org.api.utils.PageableConstrants;
@@ -60,6 +61,14 @@ public class UserController {
         resultBean = userService.createUser(json);
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.CREATED);
     }
+
+
+//    @PostMapping(value = "/oauth/token", produces = { MediaType.APPLICATION_JSON_VALUE })
+//    public ResponseEntity<ResultBean> Login(@RequestBody LoginResponse loginResponse) throws Exception, ApiValidateException {
+//        ResultBean resultBean = null;
+//        resultBean = userService.createUser(json);
+//        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.CREATED);
+//    }
 
     /**
      * Gets the user info.

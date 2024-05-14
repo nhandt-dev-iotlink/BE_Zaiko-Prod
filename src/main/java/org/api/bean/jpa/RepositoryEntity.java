@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "m_repository")
@@ -12,7 +14,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RepositoryEntity extends CommonEntity{
+public class RepositoryEntity extends CommonEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "repository_id", nullable = false)
@@ -26,20 +32,17 @@ public class RepositoryEntity extends CommonEntity{
     private Integer company_id;
 
     //repository_code
-    @Column(name = "repository_code",
-            nullable = false)
+    @Column(name = "repository_code")
     @JsonProperty("repositoryCode")
-    private String repository_code;
+    private String repositoryCode;
 
     //repository_name
-    @Column(name = "repository_name",
-            nullable = false)
+    @Column(name = "repository_name")
     @JsonProperty("repositoryName")
-    private String repository_name;
+    private String repositoryName;
 
     //phone_number1
-    @Column(name = "phone_number1",
-            nullable = false)
+    @Column(name = "phone_number1")
     @JsonProperty("phoneNumber1")
     private String phone_number1;
 
@@ -49,26 +52,22 @@ public class RepositoryEntity extends CommonEntity{
     private String fax_number1;
 
     //post_code1
-    @Column(name = "post_code1",
-            nullable = false)
+    @Column(name = "post_code1")
     @JsonProperty("postCode1")
     private String post_code1;
 
     //address1_1
-    @Column(name = "address1_1",
-            nullable = false)
+    @Column(name = "address1_1")
     @JsonProperty("address1_1")
     private String address1_1;
 
     //address1_2
-    @Column(name = "address1_2",
-            nullable = false)
+    @Column(name = "address1_2")
     @JsonProperty("address1_2")
     private String address1_2;
 
     //address1_3
-    @Column(name = "address1_3",
-            nullable = false)
+    @Column(name = "address1_3")
     @JsonProperty("address1_3")
     private String address1_3;
 

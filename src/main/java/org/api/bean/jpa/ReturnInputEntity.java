@@ -1,15 +1,12 @@
 package org.api.bean.jpa;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "t_return_input")
@@ -33,86 +30,79 @@ public class ReturnInputEntity extends CommonEntity implements Serializable {
     @JsonProperty("company_id")
     private Integer companyId;
 
-    @Column(name = "return_input_date", length = 10)
+    @Column(name = "return_input_date")
     @JsonProperty("return_input_date")
     private String returnInputDate;
 
-    @Column(name = "create_slip_type", length = 1, nullable = false)
+    @Column(name = "create_slip_type")
     @JsonProperty("create_slip_type")
     private String createSlipType;
 
-    @Column(name = "slip_no", length = 20, nullable = false)
+    @Column(name = "slip_no")
     @JsonProperty("slip_no")
     private String slipNo;
 
-    @Column(name = "supplier_slip_no", length = 20)
+    @Column(name = "supplier_slip_no")
     @JsonProperty("supplier_slip_no")
     private String supplierSlipNo;
 
-    @Column(name = "slip_notes", length = 200)
+    @Column(name = "slip_notes")
     @JsonProperty("slip_notes")
     private String slipNotes;
 
-    @Column(name = "product_owner_id", nullable = false, columnDefinition = "int(7) default 0000000")
+    @Column(name = "product_owner_id")
     @JsonProperty("product_owner_id")
     private Long productOwnerId;
 
-    @Column(name = "customer_id", nullable = false, columnDefinition = "int(7) default 0")
+    @Column(name = "customer_id")
     @JsonProperty("customer_id")
     private Long customerId;
 
-    @Column(name = "customer_delivery_destination_id", nullable = false, columnDefinition = "int(7) default 0")
+    @Column(name = "customer_delivery_destination_id")
     @JsonProperty("customer_delivery_destination_id")
     private Long customerDeliveryDestinationId;
 
-    @Column(name = "new_destination_name", length = 100)
+    @Column(name = "new_destination_name")
     @JsonProperty("new_destination_name")
     private String newDestinationName;
 
-    @Column(name = "post_code", length = 8)
+    @Column(name = "post_code")
     @JsonProperty("post_code")
     private String postCode;
 
-    @Column(name = "phone_number", length = 15)
+    @Column(name = "phone_number")
     @JsonProperty("phone_number")
     private String phoneNumber;
 
-    @Column(name = "fax_number", length = 15)
+    @Column(name = "fax_number")
     @JsonProperty("fax_number")
     private String faxNumber;
 
-    @Column(name = "address1", length = 50)
+    @Column(name = "address1")
     @JsonProperty("address1")
     private String address1;
 
-    @Column(name = "address2", length = 50)
+    @Column(name = "address2")
     @JsonProperty("address2")
     private String address2;
 
-    @Column(name = "address3", length = 50)
+    @Column(name = "address3")
     @JsonProperty("address3")
     private String address3;
 
-    @Column(name = "address4", length = 50)
+    @Column(name = "address4")
     @JsonProperty("address4")
     private String address4;
 
-    @Column(name = "checked", length = 1)
+    @Column(name = "checked")
     @JsonProperty("checked")
     private String checked;
 
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repository_id")
     private Long repositoryId;
 
-    @Column(name = "delivery_slip_print_status", columnDefinition = "int default 0")
+    @Column(name = "delivery_slip_print_status")
     @JsonProperty("delivery_slip_print_status")
     private Integer deliverySlipPrintStatus;
-
-    @Column(name = "sale_category", length = 1, nullable = false)
-    @JsonProperty("sale_category")
-    private String saleCategory;
-
-
-
 }

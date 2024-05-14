@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "m_supplier_delivery_dest")
@@ -12,38 +14,42 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SupplierDeliveryDestEntity extends CommonEntity{
+public class SupplierDeliveryDestEntity extends CommonEntity implements Serializable {
+
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     // Delivery Destination ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "delivery_destination_id")
+    @JsonProperty("deliveryDestinationId")
+    private Integer deliveryDestinationId;
 
     // CompanyId
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
     private Integer companyId;
 
     // Supplier ID
-    @Column(name = "supplier_id", nullable = false)
+    @Column(name = "supplier_id")
     @JsonProperty("supplierId")
     private Integer supplierId;
 
     //Is Supplier
-    @Column(name = "is_supplier", nullable = false)
+    @Column(name = "is_supplier")
     @JsonProperty("isSupplier")
     private String isSupplier;
 
     //Destination Code
-    @Column(name = "destination_code", nullable = false)
+    @Column(name = "destination_code")
     @JsonProperty("destinationCode")
     private String destinatonCode;
 
-    //Deparment Name
-    @Column(name = "deparment_name", nullable = false)
-    @JsonProperty("deparmentName")
-    private String deparmentName;
+    //Department Name
+    @Column(name = "department_name")
+    @JsonProperty("departmentName")
+    private String departmentName;
 
     //Pic Name
     @Column(name = "pic_name")
@@ -51,7 +57,7 @@ public class SupplierDeliveryDestEntity extends CommonEntity{
     private Integer picName;
 
     //Phone Number
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
@@ -61,12 +67,12 @@ public class SupplierDeliveryDestEntity extends CommonEntity{
     private String faxNumber;
 
     //Post Code
-    @Column(name = "post_code", nullable = false)
+    @Column(name = "post_code")
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
-    @Column(name = "address1", nullable = false)
+    @Column(name = "address1")
     @JsonProperty("address1")
     private String address1;
 

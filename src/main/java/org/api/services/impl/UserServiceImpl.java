@@ -328,7 +328,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Send mail to user.
-     * @author (TanDX)
+     *
      * @param mailsTo
      * @param body
      * @throws MessagingException
@@ -346,7 +346,7 @@ public class UserServiceImpl implements UserService {
 
     /**
     *
-    * @author (TanDX)
+    *
     *
     * @param id
     * @param urlRedirect

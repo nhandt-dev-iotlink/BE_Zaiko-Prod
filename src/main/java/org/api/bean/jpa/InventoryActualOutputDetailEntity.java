@@ -148,7 +148,21 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     @Column(name = "delivery_slip_print_status",
             columnDefinition = "boolean default false")
     @JsonProperty("deliverySlipPrintStatus")
-    private Boolean delivery_slip_print_status;
+    private Integer delivery_slip_print_status;
+
+    @Column(name = "batch_no")
+    @JsonProperty("batch_no")
+    private String batch_no;
+
+    @Column(name = "is_batch")
+    @JsonProperty("is_batch")
+    private String is_batch;
+
+    @Column(name = "delivery_slip_id")
+    @JsonProperty("delivery_slip_id")
+    private Integer delivery_slip_id;
+
+
 
     //free_item1
     @Column(name = "free_item1")

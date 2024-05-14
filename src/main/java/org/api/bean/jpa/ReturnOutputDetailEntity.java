@@ -24,95 +24,95 @@ public class ReturnOutputDetailEntity  extends CommonEntity implements Serializa
     @JsonProperty("detail_id")
     private Long detailId;
 
-    @Column(name = "company_id", nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("company_id")
     private Integer companyId;
 
-    @Column(name = "return_output_id", nullable = false)
+    @Column(name = "return_output_id")
     @JsonProperty("return_output_id")
     private Long returnOutputId;
 
-    @Column(name = "return_output_date", length = 10)
+    @Column(name = "return_output_date")
     @JsonProperty("return_output_date")
     private String returnOutputDate;
 
-    @Column(name = "inventory_id", nullable = false)
+    @Column(name = "inventory_id")
     @JsonProperty("inventory_id")
     private Long inventoryId;
 
-    @Column(name = "product_owner_id", nullable = false)
+    @Column(name = "product_owner_id")
     @JsonProperty("product_owner_id")
     private Long productOwnerId;
 
-    @Column(name = "supplier_id", nullable = false)
+    @Column(name = "supplier_id")
     @JsonProperty("supplier_id")
     private Long supplierId;
 
-    @Column(name = "repository_id", nullable = false)
+    @Column(name = "repository_id")
     @JsonProperty("repository_id")
     private Long repositoryId;
 
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("location_id")
     private Long locationId;
 
-    @Column(name = "datetime_mng", length = 10, nullable = false)
+    @Column(name = "datetime_mng")
     @JsonProperty("datetime_mng")
     private String datetimeMng;
 
-    @Column(name = "number_mng", length = 10, nullable = false)
+    @Column(name = "number_mng")
     @JsonProperty("number_mng")
     private String numberMng;
 
-    @Column(name = "product_id", nullable = false)
+    @Column(name = "product_id")
     @JsonProperty("product_id")
     private Long productId;
 
-    @Column(name = "cs_quantity", columnDefinition = "int(6) default 0")
+    @Column(name = "cs_quantity")
     @JsonProperty("cs_quantity")
     private Integer csQuantity;
 
-    @Column(name = "bl_quantity", columnDefinition = "int(9) default 0")
+    @Column(name = "bl_quantity")
     @JsonProperty("bl_quantity")
     private Integer blQuantity;
 
-    @Column(name = "ps_quantity", columnDefinition = "int(9) default 0")
+    @Column(name = "ps_quantity")
     @JsonProperty("ps_quantity")
     private Integer psQuantity;
 
-    @Column(name = "quantity", columnDefinition = "int default 0")
+    @Column(name = "quantity")
     @JsonProperty("quantity")
     private Integer quantity;
 
-    @Column(name = "inventory_product_type", length = 50)
+    @Column(name = "inventory_product_type")
     @JsonProperty("inventory_product_type")
     private String inventoryProductType;
 
-    @Column(name = "actual_cs_price", precision = 19, scale = 2)
-    @JsonProperty("actual_cs_price")
-    private Double actualCsPrice;
+    @Column(name = "cs_price")
+    @JsonProperty("csPrice")
+    private Double csPrice;
 
-    @Column(name = "actual_bl_price", precision = 19, scale = 2)
-    @JsonProperty("actual_bl_price")
-    private Double actualBlPrice;
+    @Column(name = "bl_price")
+    @JsonProperty("bl_price")
+    private Double bl_price;
 
-    @Column(name = "actual_piece_price", precision = 19, scale = 2)
-    @JsonProperty("actual_piece_price")
-    private Double actualPiecePrice;
+    @Column(name = "piece_price")
+    @JsonProperty("piece_price")
+    private Double piece_price;
 
-    @Column(name = "amount_total", precision = 19, scale = 2)
+    @Column(name = "amount_total")
     @JsonProperty("amount_total")
     private Double amountTotal;
 
-    @Column(name = "tax", precision = 2, scale = 2)
+    @Column(name = "tax")
     @JsonProperty("tax")
     private Double tax;
 
-    @Column(name = "correction_reason", length = 50)
+    @Column(name = "correction_reason")
     @JsonProperty("correction_reason")
     private String correctionReason;
 
-    @Column(name = "notes", length = 200)
+    @Column(name = "notes")
     @JsonProperty("notes")
     private String notes;
 

@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 
 @Entity
 @Table(name ="t_expense")
@@ -15,17 +13,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ExpenseEntity extends CommonEntity implements Serializable {
+public class ExpenseEntity extends CommonEntity {
 
-
-
-    @Serial
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "expense_id")
     @JsonProperty("expenseId")
     private Integer expenseId;
+
     @JsonProperty("companyId")
     @Column(name = "company_id", length = 4, nullable = false)
     private Integer companyId;
@@ -86,9 +81,9 @@ public class ExpenseEntity extends CommonEntity implements Serializable {
     @Column(name = "destination_code", length = 6)
     private String destinationCode;
 
-    @JsonProperty("deliverDestinationName")
-    @Column(name = "deliver_destination_name", length = 100)
-    private String deliverDestinationName;
+    @JsonProperty("departmentName")
+    @Column(name = "department_name", length = 100)
+    private String departmentName;
 
     @JsonProperty("postCode")
     @Column(name = "post_code", length = 8)
@@ -127,7 +122,7 @@ public class ExpenseEntity extends CommonEntity implements Serializable {
     private String courseCode;
 
     @JsonProperty("saleCategory")
-    @Column(name = "sale_category", length = 1, nullable = false)
+    @Column(name = "sale_category")
     private String saleCategory;
 
     @JsonProperty("freeItem1")
@@ -141,5 +136,9 @@ public class ExpenseEntity extends CommonEntity implements Serializable {
     @JsonProperty("freeItem3")
     @Column(name = "free_item3", length = 100)
     private String freeItem3;
+
+    @JsonProperty("deliverySlip_id")
+    @Column(name = "delivery_slip_id")
+    private Integer deliverySlip_id;
 
 }

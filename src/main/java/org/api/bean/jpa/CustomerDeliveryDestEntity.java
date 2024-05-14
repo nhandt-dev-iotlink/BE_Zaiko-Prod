@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "m_customer_delivery_dest")
@@ -12,13 +14,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDeliveryDestEntity extends CommonEntity{
+public class CustomerDeliveryDestEntity extends CommonEntity implements Serializable {
+
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     // Delivery Destination ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonProperty("id")
-    private Integer id;
+    @Column(name = "delivery_destination_id")
+    @JsonProperty("deliveryDestinationId")
+    private Integer deliveryDestinationId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
@@ -32,23 +38,23 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
 
     //Is Customer
     @Column(name = "is_customer")
-    @JsonProperty("isCustomer")
-    private String isCustomer;
+    @JsonProperty("isCuomer")
+    private String isCuststomer;
 
     //Destination Code
-    @Column(name = "destination_code", nullable = false)
+    @Column(name = "destination_code")
     @JsonProperty("destinationCode")
-    private String destinatonCode;
+    private String destinationCode;
 
     //Deparment Name
-    @Column(name = "deparment_name", nullable = false)
-    @JsonProperty("deparmentName")
-    private String deparmentName;
+    @Column(name = "department_name", nullable = false)
+    @JsonProperty("departmentName")
+    private String departmentName;
 
     //Pic Name
     @Column(name = "pic_name")
     @JsonProperty("picName")
-    private Integer picName;
+    private String picName;
 
     //Phone Number
     @Column(name = "phone_number", nullable = false)
@@ -63,7 +69,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     //Post Code
     @Column(name = "post_code", nullable = false)
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
     @Column(name = "address1", nullable = false)
