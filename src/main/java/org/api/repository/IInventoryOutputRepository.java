@@ -55,6 +55,127 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
     List<OutputListDto> getAll();
 
 
+    //version before changing using code instead of id
+//    @Query(value = "" +
+//            " SELECT new org.api.bean.dto.SearchOutputListDto( " +
+//            " i.inventoryOutputId, " +
+//            " i.isClosed, " +
+//            " i.outputStatus, " +
+//            " i.slipNo,  " +
+//            " i.planOutputDate ," +
+//            " i.orderDate," +
+//            " i.batchStatus, " +
+//            " i.actualOutputDate, " +
+//            " i.planWorkingDate, " +
+//            " i.planDeliverDate, " +
+//            " i.actualDeliverDate, " +
+//            " cd.destinationCode, " +
+//            " sd.departmentName, " +
+//            " c.customerCode, " +
+//            " c.customerName, " +
+//            " r.repositoryCode, " +
+//            " r.repositoryName, " +
+//            " i.planSupplierSlipNo, " +
+//            " i.actualSupplierSlipNo, " +
+//            " i.sumPlanQuantity, " +
+//            " i.sumActualQuantity) " +
+//            " FROM InventoryOutputEntity i " +
+//            " LEFT JOIN InventoryActualOutputDetailEntity t ON i.inventoryOutputId = t.actual_detail_id " +
+//            " left JOIN SupplierDeliveryDestEntity sd ON i.planCustomerDeliveryDestinationId = sd.deliveryDestinationId " +
+//            " left JOIN CustomerDeliveryDestEntity cd ON i.actualCustomerDeliveryDestinationId = cd.deliveryDestinationId " +
+//            " LEFT JOIN CustomerEntity c ON i.actualCustomerId = c.customerId " +
+//            " LEFT JOIN RepositoryEntity r ON i.actualRepositoryId = r.repositoryId " +
+//            " left JOIN SupplierEntity s ON t.supplier_id = s.supplierId " +
+//            " left JOIN ProductEntity p ON t.product_id = p.productId " +
+//            " WHERE 1=1 " +
+//            " AND (:repositoryIdFrom IS NULL OR r.repositoryId >= :repositoryIdFrom) " +
+//            " AND (:repositoryIdTo IS NULL OR r.repositoryId <= :repositoryIdTo) " +
+//            " AND (:orderDateFrom IS NULL OR i.orderDate >= :orderDateFrom) " +
+//            " AND (:orderDateTo IS NULL OR i.orderDate <= :orderDateTo) " +
+//            " AND (:planOutputDateFrom IS NULL OR i.planOutputDate >= :planOutputDateFrom) " +
+//            " AND (:planOutputDateTo IS NULL OR i.planOutputDate <= :planOutputDateTo) " +
+//            " AND (:planWorkingDayFrom IS NULL OR i.planWorkingDate >= :planWorkingDayFrom) " +
+//            " AND (:planWorkingDayTo IS NULL OR i.planWorkingDate <= :planWorkingDayTo) " +
+//            " AND (:planDeliverDateFrom IS NULL OR i.planDeliverDate >= :planDeliverDateFrom)" +
+//            " AND (:planDeliverDateTo IS NULL OR i.planDeliverDate <= :planDeliverDateTo) " +
+//            " AND (:slipNoFrom IS NULL OR i.slipNo >= :slipNoFrom) " +
+//            " AND (:slipNoTo IS NULL OR i.slipNo <= :slipNoTo) " +
+//            " AND (:destinationIdFrom IS NULL OR cd.deliveryDestinationId >= :destinationIdFrom) " +
+//            " AND (:destinationIdTo IS NULL OR cd.deliveryDestinationId <= :destinationIdTo) " +
+//            " AND (:departmentName IS NULL OR cd.departmentName LIKE CONCAT('%', :departmentName, '%')) " +
+//            " AND (:supplierIdFrom IS NULL OR s.supplierId >= :supplierIdFrom) " +
+//            " AND (:supplierIdTo IS NULL OR s.supplierId <= :supplierIdTo) " +
+//            " AND (:supplierName IS NULL OR s.supplierName LIKE CONCAT('%', :supplierName, '%')) " +
+//            " AND (:customerIdFrom IS NULL OR c.customerId >= :customerIdFrom) " +
+//            " AND (:customerIdTo IS NULL OR c.customerId <= :customerIdTo) " +
+//            " AND (:customerName IS NULL OR c.customerName LIKE CONCAT('%', :customerName, '%')) " +
+//            " AND ((:batchNo is null) or (t.batchNo LIKE CONCAT('%', :batchNo, '%')))" +
+//            " AND (:ownerIdFrom IS NULL OR c.customerId >= :ownerIdFrom) " +
+//            " AND (:ownerIdTo IS NULL OR c.customerId <= :ownerIdTo) " +
+//            " AND (:ownerName IS NULL OR c.customerName LIKE CONCAT('%', :ownerName, '%')) " +
+//            " AND (:productIdFrom is null or p.productId >= :productIdFrom) " +
+//            " AND (:productIdTo is null or p.productId <= :productIdTo) " +
+//            " AND (:productName IS NULL OR p.productId IN " +
+//            " (SELECT p.productId FROM ProductEntity p WHERE " +
+//            " p.name1 LIKE CONCAT('%', :productName, '%') " +
+//            " OR p.name2 LIKE CONCAT('%', :productName, '%') " +
+//            " OR p.name3 LIKE CONCAT('%', :productName, '%') " +
+//            " OR p.name4 LIKE CONCAT('%', :productName, '%') " +
+//            " OR p.name5 LIKE CONCAT('%', :productName, '%') " +
+//            " )) " +
+//            " AND (:deliveryType IS NULL OR " +
+//            " (:deliveryType = '0' OR " +
+//            " (:deliveryType = '1' AND i.planOutputDate IS NOT NULL ) OR " +
+//            " (:deliveryType = '2' AND i.actualOutputDate IS NOT NULL ) " +
+//            " )) " +
+//            " AND (:deliveryStatus IS NULL OR " +
+//            " (:deliveryStatus = '0' OR " +
+//            " (:deliveryStatus = '1' AND i.sumActualQuantity = 0) OR " +
+//            " (:deliveryStatus = '2' AND i.sumActualQuantity < i.sumPlanQuantity AND i.sumActualQuantity > 0) OR " +
+//            " (:deliveryStatus = '3' AND i.sumActualQuantity >= i.sumPlanQuantity ) " +
+//            " ))" +
+//            " AND " +
+//            " (( :isClosed IS NULL )" +
+//            " OR  " +
+//            " (:isClosed ='9') " +
+//            " OR (:isClosed = '0' AND i.isClosed = '0') " +
+//            " OR (:isClosed = '1' AND i.isClosed = '1')) ")
+//    Page<SearchOutputListDto> getSearchList(
+//            @Param("orderDateFrom") String orderDateFrom,
+//            @Param("orderDateTo") String orderDateTo,
+//            @Param("planOutputDateFrom") String planOutputDateFrom,
+//            @Param("planOutputDateTo") String planOutputDateTo,
+//            @Param("planWorkingDayFrom") String planWorkingDayFrom,
+//            @Param("planWorkingDayTo") String planWorkingDayTo,
+//            @Param("planDeliverDateFrom") String planDeliverDateFrom,
+//            @Param("planDeliverDateTo") String planDeliverDateTo,
+//            @Param("slipNoFrom") String slipNoFrom,
+//            @Param("slipNoTo") String slipNoTo,
+//            @Param("customerIdFrom") Integer customerIdFrom,
+//            @Param("customerIdTo") Integer customerIdTo,
+//            @Param("customerName") String customerName,
+//            @Param("destinationIdFrom") Integer destinationIdFrom,
+//            @Param("destinationIdTo") Integer destinationIdTo,
+//            @Param("departmentName") String departmentName,
+//            @Param("supplierIdFrom") Integer supplierIdFrom,
+//            @Param("supplierIdTo") Integer supplierIdTo,
+//            @Param("supplierName") String supplierName,
+//            @Param("productIdFrom") Integer productIdFrom,
+//            @Param("productIdTo") Integer productIdTo,
+//            @Param("productName") String productName,
+//            @Param("repositoryIdFrom") Integer repositoryIdFrom,
+//            @Param("repositoryIdTo") Integer repositoryIdTo,
+//            @Param("batchNo") String batchNo,
+//            @Param("deliveryType") String deliveryType,
+//            @Param("deliveryStatus") String deliveryStatus,
+//            @Param("isClosed") String isClosed,
+//            Pageable pageable,
+//            @Param("ownerIdFrom") Integer ownerIdFrom,
+//            @Param("ownerIdTo") Integer ownerIdTo,
+//            @Param("ownerName") String ownerName
+//    );
+
+
     // N chạy
 //    @Query(value = "SELECT new org.api.bean.dto.SearchOutputListDto(  \n" +
 //            "                a.inventoryOutputId, \n" +
@@ -81,9 +202,9 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
 //            "            FROM  \n" +
 //            "                InventoryOutputEntity a   \n" +
 //            "                    LEFT JOIN  \n" +
-//            "                CustomerDeliveryDestEntity b ON a.planCustomerDeliveryDestinationId = b.deliveryDestination_id  \n" +
+//            "                CustomerDeliveryDestEntity b ON a.planCustomerDeliveryDestinationId = b.deliveryDestinationId  \n" +
 //            "                    LEFT JOIN  \n" +
-//            "                CustomerDeliveryDestEntity c ON a.actualCustomerDeliveryDestinationId = c.deliveryDestination_id  \n" +
+//            "                CustomerDeliveryDestEntity c ON a.actualCustomerDeliveryDestinationId = c.deliveryDestinationId  \n" +
 //            "                    LEFT JOIN  \n" +
 //            "                CustomerEntity d ON a.planCustomerId = d.customerId  \n" +
 //            "                    LEFT JOIN  \n" +
@@ -114,9 +235,9 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
 //            "            AND (:destinationIdTo IS NULL OR (a.planCustomerDeliveryDestinationId <= :destinationIdTo  \n" +
 //            "            OR a.actualCustomerDeliveryDestinationId <= :destinationIdTo )) \n" +
 //            "            AND (:departmentName IS NULL OR (a.planCustomerDeliveryDestinationId IN  \n" +
-//            "            (SELECT a3.deliveryDestination_id FROM CustomerDeliveryDestEntity a3 WHERE a3.departmentName LIKE CONCAT('%', :departmentName, '%'))  \n" +
+//            "            (SELECT a3.deliveryDestinationId FROM CustomerDeliveryDestEntity a3 WHERE a3.departmentName LIKE CONCAT('%', :departmentName, '%'))  \n" +
 //            "            OR a.actualCustomerDeliveryDestinationId IN  \n" +
-//            "            (SELECT a4.deliveryDestination_id FROM CustomerDeliveryDestEntity a4 WHERE a4.departmentName LIKE CONCAT('%', :departmentName, '%')))) \n" +
+//            "            (SELECT a4.deliveryDestinationId FROM CustomerDeliveryDestEntity a4 WHERE a4.departmentName LIKE CONCAT('%', :departmentName, '%')))) \n" +
 //            "            AND (:supplierIdFrom IS NULL OR (a.inventoryOutputId IN  \n" +
 //            "            (SELECT a5.inventoryOutputId FROM InventoryOutputEntity a5  \n" +
 //            "            INNER JOIN InventoryPlanOutputDetailEntity a6 ON a5.inventoryOutputId = a6.inventory_output_id  \n" +
@@ -149,12 +270,12 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
 //            "            INNER JOIN SupplierEntity b ON a8.supplier_id = b.supplierId  \n" +
 //            "            WHERE b.supplierName LIKE CONCAT('%', :supplierName, '%')  \n" +
 //            "            GROUP BY a7.inventoryOutputId)))   \n" +
-////            "            AND (:ownerCodeFrom IS NULL OR (a.planCustomerId >= :ownerCodeFrom OR a.actualCustomerId >= :ownerCodeFrom ))  \n" +
-////            "            AND (:ownerCodeTo IS NULL OR (a.planCustomerId <= :ownerCodeTo OR a.actualCustomerId <= :ownerCodeTo ))  \n" +
-////            "            AND (:ownerName IS NULL OR (a.planCustomerId IN  \n" +
-////            "            (SELECT a1.customerId FROM CustomerEntity a1 WHERE a1.customerName LIKE CONCAT('%', :ownerName, '%'))  \n" +
-////            "            OR a.actualCustomerId IN  \n" +
-////            "            (SELECT a2.customerId FROM CustomerEntity a2 WHERE a2.customerName LIKE CONCAT('%', :ownerName, '%'))))  \n" +
+//            "            AND (:ownerIdFrom IS NULL OR (a.planCustomerId >= :ownerIdFrom OR a.actualCustomerId >= :ownerIdFrom ))  \n" +
+//            "            AND (:ownerIdTo IS NULL OR (a.planCustomerId <= :ownerIdTo OR a.actualCustomerId <= :ownerIdTo ))  \n" +
+//            "            AND (:ownerName IS NULL OR (a.planCustomerId IN  \n" +
+//            "            (SELECT a1.customerId FROM CustomerEntity a1 WHERE a1.customerName LIKE CONCAT('%', :ownerName, '%'))  \n" +
+//            "            OR a.actualCustomerId IN  \n" +
+//            "            (SELECT a2.customerId FROM CustomerEntity a2 WHERE a2.customerName LIKE CONCAT('%', :ownerName, '%'))))  \n" +
 //            "            AND (:productIdFrom IS NULL OR (a.inventoryOutputId IN  \n" +
 //            "            (SELECT a.inventoryOutputId FROM InventoryOutputEntity a  \n" +
 //            "            INNER JOIN InventoryPlanOutputDetailEntity b ON a.inventoryOutputId = b.inventory_output_id  \n" +
@@ -206,7 +327,7 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
 //            "            AND ((:deliveryType = 1 AND a.planOutputDate IS NOT NULL) OR (:deliveryType = 2 AND a.planOutputDate IS NULL) OR :deliveryType = 0)  \n" +
 //            "            AND (:deliveryStatus = '' OR a.outputStatus = :deliveryStatus)  \n" +
 //            "            AND (:isClosed = '' OR a.isClosed = :isClosed) ")
-//    Page<SearchOutputListDto> getSearchList(
+//    Page<SearchOutputListDto> getNewSearchList(
 //            @Param("orderDateFrom") String orderDateFrom,
 //            @Param("orderDateTo") String orderDateTo,
 //            @Param("planOutputDateFrom") String planOutputDateFrom,
@@ -235,95 +356,94 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
 //            @Param("deliveryType") String deliveryType,
 //            @Param("deliveryStatus") String deliveryStatus,
 //            @Param("isClosed") String isClosed,
-//            Pageable pageable
+//            Pageable pageable,
+//            @Param("ownerIdFrom") Integer ownerIdFrom,
+//            @Param("ownerIdTo") Integer ownerIdTo,
+//            @Param("ownerName") String ownerName
+//
 //    );
 
-//    //H ver
+    //Ver dùng code
+
     @Query(value = "" +
             " SELECT new org.api.bean.dto.SearchOutputListDto( " +
-            " i.inventoryOutputId, " +
-            " i.isClosed, " +
-            " i.outputStatus, " +
-            " i.slipNo,  " +
-            " i.planOutputDate ," +
-            " i.orderDate," +
-            " i.batchStatus, " +
-            " i.actualOutputDate, " +
-            " i.planWorkingDate, " +
-            " i.planDeliverDate, " +
-            " i.actualDeliverDate, " +
-            " cd.destinationCode, " +
-            " sd.departmentName, " +
-            " c.customerCode, " +
-            " c.customerName, " +
-            " r.repositoryCode, " +
-            " r.repositoryName, " +
-            " i.planSupplierSlipNo, " +
-            " i.actualSupplierSlipNo, " +
-            " i.sumPlanQuantity, " +
-            " i.sumActualQuantity) " +
-            " FROM InventoryOutputEntity i " +
-            " LEFT JOIN InventoryActualOutputDetailEntity t ON i.inventoryOutputId = t.actual_detail_id " +
-            " left JOIN SupplierDeliveryDestEntity sd ON i.planCustomerDeliveryDestinationId = sd.deliveryDestinationId " +
-            " left JOIN CustomerDeliveryDestEntity cd ON i.actualCustomerDeliveryDestinationId = cd.deliveryDestinationId " +
-            " LEFT JOIN CustomerEntity c ON i.actualCustomerId = c.customerId " +
-            " LEFT JOIN RepositoryEntity r ON i.actualRepositoryId = r.repositoryId " +
-            " left JOIN SupplierEntity s ON t.supplier_id = s.supplierId " +
-            " left JOIN ProductEntity p ON t.product_id = p.productId " +
-            " WHERE 1=1 " +
-            " AND (:repositoryIdFrom IS NULL OR r.repositoryId >= :repositoryIdFrom) " +
-            " AND (:repositoryIdTo IS NULL OR r.repositoryId <= :repositoryIdTo) " +
-            " AND (:orderDateFrom IS NULL OR i.orderDate >= :orderDateFrom) " +
-            " AND (:orderDateTo IS NULL OR i.orderDate <= :orderDateTo) " +
-            " AND (:planOutputDateFrom IS NULL OR i.planOutputDate >= :planOutputDateFrom) " +
-            " AND (:planOutputDateTo IS NULL OR i.planOutputDate <= :planOutputDateTo) " +
-            " AND (:planWorkingDayFrom IS NULL OR i.planWorkingDate >= :planWorkingDayFrom) " +
-            " AND (:planWorkingDayTo IS NULL OR i.planWorkingDate <= :planWorkingDayTo) " +
-            " AND (:planDeliverDateFrom IS NULL OR i.planDeliverDate >= :planDeliverDateFrom)" +
-            " AND (:planDeliverDateTo IS NULL OR i.planDeliverDate <= :planDeliverDateTo) " +
-            " AND (:slipNoFrom IS NULL OR i.slipNo >= :slipNoFrom) " +
-            " AND (:slipNoTo IS NULL OR i.slipNo <= :slipNoTo) " +
-            " AND (:destinationIdFrom IS NULL OR cd.deliveryDestinationId >= :destinationIdFrom) " +
-            " AND (:destinationIdTo IS NULL OR cd.deliveryDestinationId <= :destinationIdTo) " +
-            " AND (:departmentName IS NULL OR cd.departmentName LIKE CONCAT('%', :departmentName, '%')) " +
-            " AND (:supplierIdFrom IS NULL OR s.supplierId >= :supplierIdFrom) " +
-            " AND (:supplierIdTo IS NULL OR s.supplierId <= :supplierIdTo) " +
-            " AND (:supplierName IS NULL OR s.supplierName LIKE CONCAT('%', :supplierName, '%')) " +
-            " AND (:customerIdFrom IS NULL OR c.customerId >= :customerIdFrom) " +
-            " AND (:customerIdTo IS NULL OR c.customerId <= :customerIdTo) " +
-            " AND (:customerName IS NULL OR c.customerName LIKE CONCAT('%', :customerName, '%')) " +
-            " AND ((:batchNo is null) or (t.batchNo LIKE CONCAT('%', :batchNo, '%')))" +
-            " AND (:ownerIdFrom IS NULL OR c.customerId >= :ownerIdFrom) " +
-            " AND (:ownerIdTo IS NULL OR c.customerId <= :ownerIdTo) " +
-            " AND (:ownerName IS NULL OR c.customerName LIKE CONCAT('%', :ownerName, '%')) " +
-            " AND (:productIdFrom is null or p.productId >= :productIdFrom) " +
-            " AND (:productIdTo is null or p.productId <= :productIdTo) " +
-            " AND (:productName IS NULL OR p.productId IN " +
-            " (SELECT p.productId FROM ProductEntity p WHERE " +
-            " p.name1 LIKE CONCAT('%', :productName, '%') " +
-            " OR p.name2 LIKE CONCAT('%', :productName, '%') " +
-            " OR p.name3 LIKE CONCAT('%', :productName, '%') " +
-            " OR p.name4 LIKE CONCAT('%', :productName, '%') " +
-            " OR p.name5 LIKE CONCAT('%', :productName, '%') " +
-            " )) " +
-            " AND (:deliveryType IS NULL OR " +
-            " (:deliveryType = '0' OR " +
-            " (:deliveryType = '1' AND i.planOutputDate IS NOT NULL ) OR " +
-            " (:deliveryType = '2' AND i.actualOutputDate IS NOT NULL ) " +
-            " )) " +
-            " AND (:deliveryStatus IS NULL OR " +
-            " (:deliveryStatus = '0' OR " +
-            " (:deliveryStatus = '1' AND i.sumActualQuantity = 0) OR " +
-            " (:deliveryStatus = '2' AND i.sumActualQuantity < i.sumPlanQuantity AND i.sumActualQuantity > 0) OR " +
-            " (:deliveryStatus = '3' AND i.sumActualQuantity >= i.sumPlanQuantity ) " +
-            " ))" +
-            " AND " +
-            " (( :isClosed IS NULL )" +
-            " OR  " +
-            " (:isClosed ='9') " +
-            " OR (:isClosed = '0' AND i.isClosed = '0') " +
-            " OR (:isClosed = '1' AND i.isClosed = '1')) ")
-    Page<SearchOutputListDto> getSearchList(
+            "i.inventoryOutputId,  " +
+            "i.isClosed,  " +
+            "i.outputStatus,  " +
+            "i.slipNo,  " +
+            "i.planOutputDate , " +
+            "i.orderDate,  " +
+            "i.batchStatus,  " +
+            "i.actualOutputDate, " +
+            "i.planWorkingDate,  " +
+            "i.planDeliverDate,  " +
+            "i.actualDeliverDate,  " +
+            "cd.destinationCode,  " +
+            "sd.departmentName,  " +
+            "c.customerCode,  " +
+            "c.customerName,  " +
+            "r.repositoryCode,  " +
+            "r.repositoryName,  " +
+            "i.planSupplierSlipNo,  " +
+            "i.actualSupplierSlipNo,  " +
+            "i.sumPlanQuantity,  " +
+            "i.sumActualQuantity  " +
+            ")  " +
+            "FROM InventoryOutputEntity i  " +
+            "LEFT JOIN SupplierDeliveryDestEntity sd ON i.planCustomerDeliveryDestinationId = sd.deliveryDestinationId  " +
+            "LEFT JOIN CustomerDeliveryDestEntity cd ON i.actualCustomerDeliveryDestinationId = cd.deliveryDestinationId " +
+            "LEFT JOIN SupplierEntity s ON sd.supplierId = s.supplierId " +
+            "LEFT JOIN InventoryActualOutputDetailEntity t ON i.inventoryOutputId = t.actualDetailId " +
+            "LEFT JOIN CustomerEntity c ON i.planCustomerId = c.customerId " +
+            "LEFT JOIN ProductEntity p ON t.productId = p.productId " +
+            "LEFT JOIN RepositoryEntity r ON i.planRepositoryId = r.repositoryId " +
+            "WHERE i.delFlg='0'  " +
+            "AND (:repositoryCodeFrom IS NULL OR r.repositoryId >= :repositoryCodeFrom ) " +
+            "AND (:repositoryCodeTo IS NULL OR r.repositoryId  <= :repositoryCodeTo ) " +
+            "AND (:orderDateFrom IS NULL OR i.orderDate >= :orderDateFrom)  " +
+            "AND (:orderDateTo IS NULL OR i.orderDate <= :orderDateTo)  " +
+            "AND (:planOutputDateFrom IS NULL OR i.planOutputDate >= :planOutputDateFrom)  " +
+            "AND (:planOutputDateTo IS NULL OR i.planOutputDate <= :planOutputDateTo)  " +
+            "AND (:planWorkingDayFrom IS NULL OR i.planWorkingDate >= :planWorkingDayFrom)  " +
+            "AND (:planWorkingDayTo IS NULL OR i.planWorkingDate <= :planWorkingDayTo)  " +
+            "AND (:planDeliverDateFrom IS NULL OR i.planDeliverDate >= :planDeliverDateFrom)  " +
+            "AND (:planDeliverDateTo IS NULL OR i.planDeliverDate <= :planDeliverDateTo)  " +
+            "AND (:slipNoFrom IS NULL OR i.slipNo >= :slipNoFrom)  " +
+            "AND (:slipNoTo IS NULL OR i.slipNo <= :slipNoTo)  " +
+            "AND (:destinationCodeFrom IS NULL OR cd.destinationCode >= :destinationCodeFrom)  " +
+            "AND (:destinationCodeTo IS NULL OR cd.destinationCode <= :destinationCodeTo)" +
+            "AND (:departmentName IS NULL OR cd.departmentName LIKE CONCAT('%', :departmentName, '%'))  " +
+            "AND (:supplierCodeFrom IS NULL OR s.supplierCode >= :supplierCodeFrom) " +
+            "AND (:supplierCodeTo IS NULL OR s.supplierCode <= :supplierCodeTo) " +
+            "AND (:supplierName IS NULL OR s.supplierName LIKE CONCAT('%', :supplierName, '%'))  " +
+            "AND (:customerCodeFrom IS NULL OR c.customerCode >= :customerCodeFrom) " +
+            "AND (:customerCodeTo IS NULL OR c.customerCode <=:customerCodeTo)" +
+            "AND (c.customerName IS NULL OR c.customerName LIKE CONCAT('%', :customerName, '%'))  " +
+            "AND (:ownerCodeFrom IS NULL OR c.customerCode >=:ownerCodeFrom) " +
+            "AND (:ownerCodeTo IS NULL OR c.customerCode <=:ownerCodeTo)" +
+            "AND (:ownerName IS NULL OR c.customerName LIKE CONCAT('%', :ownerName, '%'))  " +
+            "AND (:batchNo IS NULL OR t.batchNo LIKE CONCAT('%', :batchNo, '%'))  " +
+            "AND (:productCodeFrom IS NULL OR p.productCode >= :productCodeFrom)  " +
+            "AND (:productCodeTo IS NULL OR p.productCode <= :productCodeTo)" +
+            "AND (:productName IS NULL OR p.productId IN  " +
+            "(SELECT p.productId FROM ProductEntity p WHERE  " +
+            "p.name1 LIKE CONCAT('%', :productName, '%')  " +
+            "                OR p.name2 LIKE CONCAT('%', :productName, '%')  " +
+            "                OR p.name3 LIKE CONCAT('%', :productName, '%')  " +
+            "                OR p.name4 LIKE CONCAT('%', :productName, '%')  " +
+            "                OR p.name5 LIKE CONCAT('%', :productName, '%') )) " +
+            "AND ( (:deliveryType = '0') " +
+            "                OR (:deliveryType = '1' AND i.planOutputDate IS NOT NULL ) " +
+            "                OR (:deliveryType = '2' AND i.actualOutputDate IS NOT NULL ))  " +
+
+
+            "AND ( (:deliveryStatus = '0') " +
+            "                OR (:deliveryStatus = '1' AND i.sumActualQuantity = 0)  " +
+            "                OR (:deliveryStatus = '2' AND i.sumActualQuantity < i.sumPlanQuantity AND i.sumActualQuantity > 0) " +
+            "                OR (:deliveryStatus = '3' AND i.sumActualQuantity >= i.sumPlanQuantity ))  "+
+            "AND ((:isClosed = '9') OR (:isClosed = '0' AND i.isClosed = '0') OR (:isClosed = '1' AND i.isClosed = '1'))"
+    )
+    Page<SearchOutputListDto> getNewSearchList(
             @Param("orderDateFrom") String orderDateFrom,
             @Param("orderDateTo") String orderDateTo,
             @Param("planOutputDateFrom") String planOutputDateFrom,
@@ -334,28 +454,28 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
             @Param("planDeliverDateTo") String planDeliverDateTo,
             @Param("slipNoFrom") String slipNoFrom,
             @Param("slipNoTo") String slipNoTo,
-            @Param("customerIdFrom") Integer customerIdFrom,
-            @Param("customerIdTo") Integer customerIdTo,
+            @Param("customerCodeFrom") String customerCodeFrom,
+            @Param("customerCodeTo") String customerCodeTo,
             @Param("customerName") String customerName,
-            @Param("destinationIdFrom") Integer destinationIdFrom,
-            @Param("destinationIdTo") Integer destinationIdTo,
+            @Param("destinationCodeFrom") String destinationCodeFrom,
+            @Param("destinationCodeTo") String destinationCodeTo,
             @Param("departmentName") String departmentName,
-            @Param("supplierIdFrom") Integer supplierIdFrom,
-            @Param("supplierIdTo") Integer supplierIdTo,
+            @Param("supplierCodeFrom") String supplierCodeFrom,
+            @Param("supplierCodeTo") String supplierCodeTo,
             @Param("supplierName") String supplierName,
-            @Param("productIdFrom") Integer productIdFrom,
-            @Param("productIdTo") Integer productIdTo,
+            @Param("productCodeFrom") String productCodeFrom,
+            @Param("productCodeTo") String productCodeTo,
             @Param("productName") String productName,
-            @Param("repositoryIdFrom") Integer repositoryIdFrom,
-            @Param("repositoryIdTo") Integer repositoryIdTo,
+            @Param("repositoryCodeFrom") Integer repositoryCodeFrom,
+            @Param("repositoryCodeTo") Integer repositoryCodeTo,
             @Param("batchNo") String batchNo,
             @Param("deliveryType") String deliveryType,
             @Param("deliveryStatus") String deliveryStatus,
             @Param("isClosed") String isClosed,
-            Pageable pageable,
-            @Param("ownerIdFrom") Integer ownerIdFrom,
-            @Param("ownerIdTo") Integer ownerIdTo,
-            @Param("ownerName") String ownerName
+            @Param("ownerCodeFrom") String ownerCodeFrom,
+            @Param("ownerCodeTo") String ownerCodeTo,
+            @Param("ownerName") String ownerName,
+            Pageable pageable
     );
 
 

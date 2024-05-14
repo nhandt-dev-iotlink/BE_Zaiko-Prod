@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface ICustomerRepository extends BaseRepository<CustomerEntity, Integer> {
     @Query(value = " SELECT \n " +
-            "   customer_id as customerId,\n " +
+            "   customer_code as customerCode,\n " +
             "   customer_name as customerName \n " +
             "FROM m_customer " +
             "WHERE (customer_name like CONCAT('%', :keyword, '%')) " +
             "OR (customer_code like CONCAT('%', :keyword, '%')) " +
-            "order by customerId asc ", nativeQuery = true)
+            "order by customerCode asc ", nativeQuery = true)
     List<CustomerDto> getAll( @Param("keyword") String keyword);
 }

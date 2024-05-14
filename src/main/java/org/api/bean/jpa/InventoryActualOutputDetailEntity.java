@@ -17,7 +17,7 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actual_detail_id")
     @JsonProperty("actualDetail_id")
-    private Integer actual_detail_id;
+    private Integer actualDetailId;
 
     //companyId
     @Column(name = "company_id", nullable = false)
@@ -26,8 +26,8 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
 
     //inventoryOutput_id
     @Column(name = "inventory_output_id",nullable = false)
-    @JsonProperty("inventoryOutput_id")
-    private Integer inventory_output_id;
+    @JsonProperty("inventoryOutputId")
+    private Integer inventoryOutputId;
 
     //planDetail_id
     @Column(name = "plan_detail_id")
@@ -47,12 +47,12 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     //supplierId
     @Column(name = "supplier_id", nullable = false)
     @JsonProperty("supplierId")
-    private Integer supplier_id;
+    private Integer supplierId;
 
     //repositoryId
     @Column(name = "repository_id", nullable = false)
     @JsonProperty("repositoryId")
-    private Integer repository_id;
+    private Integer repositoryId;
 
     //locationId
     @Column(name = "location_id", nullable = false)
@@ -72,17 +72,17 @@ public class InventoryActualOutputDetailEntity extends CommonEntity {
     //productId
     @Column(name = "product_id", nullable = false)
     @JsonProperty("productId")
-    private Integer product_id;
+    private Integer productId;
 
     //actualOutputDate
     @Column(name = "actual_output_date")
     @JsonProperty("actualOutputDate")
-    private String actual_output_date;
+    private String actualOutputDate;
 
     //deliverDate
     @Column(name = "deliver_date")
     @JsonProperty("deliverDate")
-    private String deliver_date;
+    private String deliverDate;
 
     //batchNo
     @Column(name = "batch_no")

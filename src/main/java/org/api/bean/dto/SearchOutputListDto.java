@@ -1,7 +1,5 @@
 package org.api.bean.dto;
 
-import lombok.*;
-
 
 public class SearchOutputListDto {
     private Integer inventoryOutputId;

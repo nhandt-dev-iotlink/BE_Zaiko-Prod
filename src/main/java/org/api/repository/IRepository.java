@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IRepository extends BaseRepository<RepositoryEntity, Integer> {
-    @Query(value = " SELECT \n " +
-            "   repository_id as repositoryId,\n " +
-            "   repository_name as repositoryName \n " +
-            "FROM m_repository order by repositoryId asc ", nativeQuery = true)
+    @Query(value = " SELECT " +
+            "   repository_id as repositoryId, " +
+            "   repository_code as repositoryCode, " +
+            "   repository_name as repositoryName  " +
+            " FROM m_repository order by repositoryCode asc ", nativeQuery = true)
     List<RepositoryDto> getAll();
 }
