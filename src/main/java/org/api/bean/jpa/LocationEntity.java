@@ -15,78 +15,77 @@ import javax.persistence.*;
 public class LocationEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "location_id", nullable = false)
+    @Column(name = "location_id")
     @JsonProperty("locationId")
-    private Integer location_id;
+    private Integer locationId;
 
     //companyId
     @Column(name = "company_id",
             nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //repositoryId
-    @Id
     @Column(name = "repository_id",
             nullable = false)
     @JsonProperty("repositoryId")
-    private Integer repository_id;
+    private Integer repositoryId;
 
     //repositoryCode
     @Column(name = "repository_code")
     @JsonProperty("repositoryCode")
-    private String repository_code;
+    private String repositoryCode;
 
     //locationCode
     @Column(name = "location_code",
             nullable = false)
     @JsonProperty("locationCode")
-    private String location_code;
+    private String locationCode;
 
     //locationName
     @Column(name = "location_name")
     @JsonProperty("locationName")
-    private String location_name;
+    private String locationName;
 
     //is_reserve_mcarton
     @Column(name = "is_reserve_mcarton")
-    @JsonProperty("is_reserve_mcarton")
-    private String is_reserve_mcarton;
+    @JsonProperty("isReserveMcarton")
+    private String isReserveMcarton;
 
     //is_reserve_icarton
     @Column(name = "is_reserve_icarton")
-    @JsonProperty("is_reserve_icarton")
-    private String is_reserve_icarton;
+    @JsonProperty("isReserveIcarton")
+    private String isReserveIcarton;
 
     //is_reserve_piece
     @Column(name = "is_reserve_piece")
-    @JsonProperty("is_reserve_piece")
-    private String is_reserve_piece;
+    @JsonProperty("isReservePiece")
+    private String isReservePiece;
 
     //is_input_ban
     @Column(name = "is_input_ban")
-    @JsonProperty("is_input_ban")
-    private String is_input_ban;
+    @JsonProperty("isInputBan")
+    private String isInputBan;
 
     //is_output_ban
     @Column(name = "is_output_ban")
-    @JsonProperty("is_output_ban")
-    private String is_output_ban;
+    @JsonProperty("isOutputBan")
+    private String isOutputBan;
 
     //is_reserve_ban
     @Column(name = "is_reserve_ban")
-    @JsonProperty("is_reserve_ban")
-    private String is_reserve_ban;
+    @JsonProperty("isReserveBan")
+    private String isReserveBan;
 
     //road_order_inventory
     @Column(name = "road_order_inventory")
-    @JsonProperty("road_order_inventory")
-    private String road_order_inventory;
+    @JsonProperty("roadOrderInventory")
+    private String roadOrderInventory;
 
     //road_order_pick
     @Column(name = "road_order_pick")
-    @JsonProperty("road_order_pick")
-    private String road_order_pick;
+    @JsonProperty("roadOrderPick")
+    private String roadOrderPick;
 
     //notes
     @Column(name = "notes")
@@ -95,16 +94,16 @@ public class LocationEntity extends CommonEntity {
 
     //free_item1
     @Column(name = "free_item1")
-    @JsonProperty("free_item1")
-    private String free_item1;
+    @JsonProperty("freeItem1")
+    private String freeItem1;
 
     //free_item2
     @Column(name = "free_item2")
-    @JsonProperty("free_item2")
-    private String free_item2;
+    @JsonProperty("freeItem2")
+    private String freeItem2;
 
     //free_item3
     @Column(name = "free_item3")
-    @JsonProperty("free_item3")
-    private String free_item3;
+    @JsonProperty("freeItem3")
+    private String freeItem3;
 }

@@ -12,4 +12,6 @@ import java.util.List;
 public interface RepositoryRepo extends BaseRepository<RepositoryEntity, Integer> {
     @Query(value = "SELECT new org.api.dto.RepositoryDto(a.repositoryId, a.repositoryCode, a.repositoryName) FROM RepositoryEntity a WHERE a.delFlg = '0'")
     List<RepositoryDto> getAll();
+//    @Query(nativeQuery = true, value = "SELECT * FROM m_repository WHERE del_flg = '0' AND repository_code = :id")
+//    RepositoryEntity
 }

@@ -23,11 +23,11 @@ public class ReturnOutputEntity extends CommonEntity {
     private Long returnOutputId;
 
     @Column(name = "company_id")
-    @JsonProperty("company_id")
+    @JsonProperty("companyId")
     private Integer companyId;
 
     @Column(name = "return_output_date")
-    @JsonProperty("return_output_date")
+    @JsonProperty("returnOutputDate")
     private String returnOutputDate;
 
     @Column(name = "create_slip_type")
@@ -55,7 +55,7 @@ public class ReturnOutputEntity extends CommonEntity {
     private Long supplierId;
 
     @Column(name = "supplier_delivery_destination_id")
-    @JsonProperty("supplier_delivery_destination_id")
+    @JsonProperty("supplierDeliveryDestinationId")
     private Long supplierDeliveryDestinationId;
 
     @Column(name = "repository_id")
@@ -63,6 +63,6 @@ public class ReturnOutputEntity extends CommonEntity {
     private Long repositoryId;
 
     @Column(name = "print_status")
-    @JsonProperty("print_status")
+    @JsonProperty("printStatus")
     private String printStatus;
 }

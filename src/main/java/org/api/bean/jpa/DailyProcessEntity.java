@@ -20,8 +20,8 @@ public class DailyProcessEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "daily_process_id")
-    @JsonProperty("dailyProcess_id")
-    private Integer dailyProcess_id;
+    @JsonProperty("dailyProcessId")
+    private Integer dailyProcessId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)

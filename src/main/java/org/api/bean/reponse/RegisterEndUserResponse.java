@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.api.bean.jpa.UserLoginEntity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -82,7 +84,7 @@ public class RegisterEndUserResponse implements Serializable {
      */
     public RegisterEndUserResponse(UserLoginEntity entity, Integer userId) {
         super();
-        //this.userId = entity.getUserId();
+//        this.userId = entity.getUserId();
         this.password = entity.getPassword();
         this.mail = entity.getMail();
     }

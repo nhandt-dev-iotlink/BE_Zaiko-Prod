@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+//import java.io.Serial;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -108,7 +109,7 @@ public class BatchAllocatedEntity extends CommonEntity implements Serializable {
     // billing_pack_type
     @Column(name = "billing_pack_type")
     @JsonProperty("billingPackType")
-    private String billing_pack_type;
+    private String billingPackType;
 
 
 

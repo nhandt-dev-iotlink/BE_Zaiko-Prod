@@ -69,7 +69,7 @@ public class UserController {
      * @param id
      * @return the user info
      */
-    @GetMapping(value = "/api/user/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+        @GetMapping(value = "/api/user/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> getUserById(@PathVariable Integer id) throws Exception {
         ResultBean resultBean = null;
         resultBean = userService.getUserById(id);

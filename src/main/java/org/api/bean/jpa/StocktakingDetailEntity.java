@@ -20,8 +20,8 @@ public class StocktakingDetailEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stocktaking_detail_id")
-    @JsonProperty("stocktakingDetail_id")
-    private Integer stocktakingDetail_id;
+    @JsonProperty("stocktakingDetailId")
+    private Integer stocktakingDetailId;
 
     // CompanyId
     @Column(name = "company_id")

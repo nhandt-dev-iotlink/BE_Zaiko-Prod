@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "m_customer")
 @AllArgsConstructor
-@EqualsAndHashCode
 @NoArgsConstructor
 @Getter
 @Setter
@@ -43,7 +42,7 @@ public class CustomerEntity extends CommonEntity{
     //Pic Name
     @Column(name = "pic_name")
     @JsonProperty("picName")
-    private Integer picName;
+    private String picName;
 
     //Phone Number
     @Column(name = "phone_number")

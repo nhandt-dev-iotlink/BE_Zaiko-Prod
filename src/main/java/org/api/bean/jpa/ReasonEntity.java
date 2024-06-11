@@ -16,7 +16,7 @@ public class ReasonEntity extends CommonEntity{
     @Id
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //reason
     @Id
@@ -28,12 +28,12 @@ public class ReasonEntity extends CommonEntity{
     @Id
     @Column(name = "reason_code")
     @JsonProperty("reasonCode")
-    private String reason_code;
+    private String reasonCode;
 
     //reasonContent
     @Column(name = "reason_content")
     @JsonProperty("reasonContent")
-    private String reason_content;
+    private String reasonContent;
 
     //notes
     @Column(name = "notes")

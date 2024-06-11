@@ -11,11 +11,11 @@ import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/customer-dest")
+@RequestMapping("/api")
 public class CustomerDeliveryDestController {
     @Autowired
     private CustomerDeliveryDestService customerDeliveryDestService;
-    @GetMapping("")
+    @GetMapping("/customer-dest")
     public ResponseEntity<ResultBean> getAll(@RequestParam Map<String, String> deliveryName) throws Exception {
         ResultBean resultBean = null;
         if(deliveryName.isEmpty()){
@@ -25,5 +25,11 @@ public class CustomerDeliveryDestController {
             resultBean = customerDeliveryDestService.getAll(deliveryName.get("keyWord"));
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
         }
+    }
+    @GetMapping("/customer-destination-by-code")
+    public ResponseEntity<ResultBean> findByCode(@RequestParam("code") String code) throws Exception {
+        ResultBean resultBean = null;
+        resultBean = customerDeliveryDestService.findDtoByCode(code);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 }

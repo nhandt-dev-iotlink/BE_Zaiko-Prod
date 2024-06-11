@@ -48,7 +48,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     //Pic Name
     @Column(name = "pic_name")
     @JsonProperty("picName")
-    private Integer picName;
+    private String picName;
 
     //Phone Number
     @Column(name = "phone_number", nullable = false)
@@ -63,7 +63,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity{
     //Post Code
     @Column(name = "post_code", nullable = false)
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
     @Column(name = "address1", nullable = false)

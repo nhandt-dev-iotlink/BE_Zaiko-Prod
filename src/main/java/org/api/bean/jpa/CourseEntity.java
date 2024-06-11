@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "m_course")
@@ -12,32 +13,30 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@IdClass(CourseEntityId.class)
 public class CourseEntity extends CommonEntity{
     @Id
-    @Column(name = "company_id",
-            nullable = false)
+    @Column(name = "company_id")
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //routeCode
     @Id
-    @Column(name = "route_code",
-            nullable = false)
+    @Column(name = "route_code")
     @JsonProperty("routeCode")
-    private String route_code;
+    private String routeCode;
 
     //courseCode
     @Id
-    @Column(name = "course_code",
-            nullable = false)
+    @Column(name = "course_code")
     @JsonProperty("courseCode")
-    private String course_code;
+    private String courseCode;
 
     //courseName
     @Column(name = "course_name",
             nullable = false)
     @JsonProperty("courseName")
-    private String course_name;
+    private String courseName;
 
     //notes
     @Column(name = "notes")

@@ -21,67 +21,67 @@ public class ReturnInputDetailEntity extends CommonEntity implements Serializabl
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "detail_id")
-    @JsonProperty("detail_id")
+    @JsonProperty("detailId")
     private Long detailId;
 
     @Column(name = "company_id", nullable = false)
-    @JsonProperty("company_id")
+    @JsonProperty("companyId")
     private Integer companyId;
 
     @Column(name = "return_input_id", nullable = false)
-    @JsonProperty("return_input_id")
+    @JsonProperty("returnInputId")
     private Long returnInputId;
 
     @Column(name = "return_input_date")
-    @JsonProperty("return_input_date")
+    @JsonProperty("returnInputDate")
     private String returnInputDate;
 
     @Column(name = "product_owner_id")
-    @JsonProperty("product_owner_id")
+    @JsonProperty("productOwnerId")
     private Long productOwnerId;
 
     @Column(name = "supplier_id")
-    @JsonProperty("supplier_id")
+    @JsonProperty("supplierId")
     private Long supplierId;
 
     @Column(name = "product_id")
-    @JsonProperty("product_id")
+    @JsonProperty("productId")
     private Long productId;
 
     @Column(name = "repository_id")
-    @JsonProperty("repository_id")
+    @JsonProperty("repositoryId")
     private Long repositoryId;
 
     @Column(name = "location_id")
-    @JsonProperty("location_id")
+    @JsonProperty("locationId")
     private Long locationId;
 
     @Column(name = "datetime_mng")
-    @JsonProperty("datetime_mng")
+    @JsonProperty("datetimeMng")
     private String datetimeMng;
 
     @Column(name = "number_mng")
-    @JsonProperty("number_mng")
+    @JsonProperty("numberMng")
     private String numberMng;
 
     @Column(name = "inventory_product_type")
-    @JsonProperty("inventory_product_type")
+    @JsonProperty("inventoryProductType")
     private String inventoryProductType;
 
     @Column(name = "billing_pack_type")
-    @JsonProperty("billing_pack_type")
+    @JsonProperty("billingPackType")
     private String billingPackType;
 
     @Column(name = "cs_quantity")
-    @JsonProperty("cs_quantity")
+    @JsonProperty("csQuantity")
     private Integer csQuantity;
 
     @Column(name = "bl_quantity")
-    @JsonProperty("bl_quantity")
+    @JsonProperty("blQuantity")
     private Integer blQuantity;
 
     @Column(name = "ps_quantity")
-    @JsonProperty("ps_quantity")
+    @JsonProperty("psQuantity")
     private Integer psQuantity;
 
     @Column(name = "quantity")
@@ -89,19 +89,19 @@ public class ReturnInputDetailEntity extends CommonEntity implements Serializabl
     private Integer quantity;
 
     @Column(name = "cs_price")
-    @JsonProperty("cs_price")
+    @JsonProperty("csPrice")
     private Double csPrice;
 
     @Column(name = "bl_price")
-    @JsonProperty("bl_price")
+    @JsonProperty("blPrice")
     private Double blPrice;
 
     @Column(name = "piece_price")
-    @JsonProperty("piece_price")
+    @JsonProperty("piecePrice")
     private Double piecePrice;
 
     @Column(name = "amount_total")
-    @JsonProperty("amount_total")
+    @JsonProperty("amountTotal")
     private Double amountTotal;
 
     @Column(name = "tax")
@@ -109,7 +109,7 @@ public class ReturnInputDetailEntity extends CommonEntity implements Serializabl
     private Double tax;
 
     @Column(name = "correction_reason")
-    @JsonProperty("correction_reason")
+    @JsonProperty("correctionReason")
     private String correctionReason;
 
     @Column(name = "notes")

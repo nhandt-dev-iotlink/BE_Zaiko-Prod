@@ -21,63 +21,63 @@ public class ReturnOutputDetailEntity  extends CommonEntity implements Serializa
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "detail_id")
-    @JsonProperty("detail_id")
+    @JsonProperty("detailId")
     private Long detailId;
 
     @Column(name = "company_id")
-    @JsonProperty("company_id")
+    @JsonProperty("companyId")
     private Integer companyId;
 
     @Column(name = "return_output_id")
-    @JsonProperty("return_output_id")
+    @JsonProperty("returnOutputId")
     private Long returnOutputId;
 
     @Column(name = "return_output_date")
-    @JsonProperty("return_output_date")
+    @JsonProperty("returnOutputDate")
     private String returnOutputDate;
 
     @Column(name = "inventory_id")
-    @JsonProperty("inventory_id")
+    @JsonProperty("inventoryId")
     private Long inventoryId;
 
     @Column(name = "product_owner_id")
-    @JsonProperty("product_owner_id")
+    @JsonProperty("productOwnerId")
     private Long productOwnerId;
 
     @Column(name = "supplier_id")
-    @JsonProperty("supplier_id")
+    @JsonProperty("supplierId")
     private Long supplierId;
 
     @Column(name = "repository_id")
-    @JsonProperty("repository_id")
+    @JsonProperty("repositoryId")
     private Long repositoryId;
 
     @Column(name = "location_id")
-    @JsonProperty("location_id")
+    @JsonProperty("locationId")
     private Long locationId;
 
     @Column(name = "datetime_mng")
-    @JsonProperty("datetime_mng")
+    @JsonProperty("datetimeMng")
     private String datetimeMng;
 
     @Column(name = "number_mng")
-    @JsonProperty("number_mng")
+    @JsonProperty("numberMng")
     private String numberMng;
 
     @Column(name = "product_id")
-    @JsonProperty("product_id")
+    @JsonProperty("productId")
     private Long productId;
 
     @Column(name = "cs_quantity")
-    @JsonProperty("cs_quantity")
+    @JsonProperty("csQuantity")
     private Integer csQuantity;
 
     @Column(name = "bl_quantity")
-    @JsonProperty("bl_quantity")
+    @JsonProperty("blQuantity")
     private Integer blQuantity;
 
     @Column(name = "ps_quantity")
-    @JsonProperty("ps_quantity")
+    @JsonProperty("psQuantity")
     private Integer psQuantity;
 
     @Column(name = "quantity")
@@ -85,7 +85,7 @@ public class ReturnOutputDetailEntity  extends CommonEntity implements Serializa
     private Integer quantity;
 
     @Column(name = "inventory_product_type")
-    @JsonProperty("inventory_product_type")
+    @JsonProperty("inventoryProductType")
     private String inventoryProductType;
 
     @Column(name = "cs_price")
@@ -93,15 +93,15 @@ public class ReturnOutputDetailEntity  extends CommonEntity implements Serializa
     private Double csPrice;
 
     @Column(name = "bl_price")
-    @JsonProperty("bl_price")
-    private Double bl_price;
+    @JsonProperty("blPrice")
+    private Double blPrice;
 
     @Column(name = "piece_price")
-    @JsonProperty("piece_price")
-    private Double piece_price;
+    @JsonProperty("piecePrice")
+    private Double piecePrice;
 
     @Column(name = "amount_total")
-    @JsonProperty("amount_total")
+    @JsonProperty("amountTotal")
     private Double amountTotal;
 
     @Column(name = "tax")
@@ -109,7 +109,7 @@ public class ReturnOutputDetailEntity  extends CommonEntity implements Serializa
     private Double tax;
 
     @Column(name = "correction_reason")
-    @JsonProperty("correction_reason")
+    @JsonProperty("correctionReason")
     private String correctionReason;
 
     @Column(name = "notes")

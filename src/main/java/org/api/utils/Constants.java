@@ -119,6 +119,7 @@ public class Constants {
     public static final String BATCH_STATUS_1 = "1";
     public static final String BATCH_STATUS_2 = "2";
     public static final String BATCH_STATUS_3 = "3";
+    public static final String BATCH_STATUS_9 = "9";
     public static final String TIME_MILISECOND_PATTEN = "HH:mm:ss.SSS";
 
     public static final String ID_BKI00001 = "BKI00001";

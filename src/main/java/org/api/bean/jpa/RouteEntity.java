@@ -3,10 +3,8 @@ package org.api.bean.jpa;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "m_route")
@@ -15,6 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Getter
 @Setter
+@IdClass(RouteEntityId.class)
 public class RouteEntity extends CommonEntity{
     // Company ID
     @Id

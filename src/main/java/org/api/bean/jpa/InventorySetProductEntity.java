@@ -21,8 +21,8 @@ public class InventorySetProductEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_set_product_id")
-    @JsonProperty("inventorySetProduct_id")
-    private Integer inventorySetProduct_id;
+    @JsonProperty("inventorySetProductId")
+    private Integer inventorySetProductId;
 
     // companyId
     @Column(name = "company_id", nullable = false)

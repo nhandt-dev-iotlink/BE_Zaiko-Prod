@@ -13,4 +13,13 @@ public class CustomerDeliveryDestDto {
     private Integer deliveryDestinationId;
     private String destinationCode;
     private String departmentName;
+    private String phoneNumber;
+    private String faxNumber;
+    private String postCode;
+    private String routeCode;
+    private String courseCode;
+    private String address1;
+    private String address2;
+    private String address3;
+    private String address4;
 }

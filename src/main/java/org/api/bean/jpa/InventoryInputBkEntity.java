@@ -21,8 +21,8 @@ public class InventoryInputBkEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_input_bk_id")
-    @JsonProperty("inventoryInput_bk_id")
-    private Integer inventoryInput_bk_id;
+    @JsonProperty("inventoryInputBkId")
+    private Integer inventoryInputBkId;
 
     // InventoryInputId
     @Column(name = "inventory_input_id", nullable = false)

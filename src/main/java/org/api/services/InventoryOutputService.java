@@ -1,6 +1,9 @@
 package org.api.services;
 
+import org.api.bean.ResultBean;
 import org.api.dto.InventoryOutputDto;
+import org.api.dto.InventoryOutputPlanDto;
+import org.api.dto.PlanFormDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,4 +22,11 @@ public interface InventoryOutputService {
                                         String deliveryStatus, String isClose)
             throws Exception;
 
+    ResultBean getInfoOutputPlanById(Integer id) throws Exception;
+
+    ResultBean saveOutputPlan(PlanFormDto planFormDto) throws Exception;
+
+    ResultBean deleteOutputPlanById(Integer id) throws Exception;
+
+    ResultBean checkSlipNo(String slipNo) throws Exception;
 }

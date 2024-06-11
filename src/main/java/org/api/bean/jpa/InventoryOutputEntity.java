@@ -16,43 +16,43 @@ public class InventoryOutputEntity extends CommonEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_output_id")
-    @JsonProperty("inventoryOutput_id")
-    private Integer inventory_output_id;
+    @JsonProperty("inventoryOutputId")
+    private Integer inventoryOutputId;
 
     //companyId
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //planCustomerDeliveryDestination_id
     @Column(name = "plan_customer_delivery_destination_id")
-    @JsonProperty("planCustomerDeliveryDestination_id")
-    private Integer plan_customer_delivery_destination_id;
+    @JsonProperty("planCustomerDeliveryDestinationId")
+    private Integer planCustomerDeliveryDestinationId;
 
     //actualCustomerDeliveryDestination_id
     @Column(name = "actual_customer_delivery_destination_id")
-    @JsonProperty("actualCustomerDeliveryDestination_id")
-    private Integer actual_customer_delivery_destination_id;
+    @JsonProperty("actualCustomerDeliveryDestinationId")
+    private Integer actualCustomerDeliveryDestinationId;
 
     //deliverDestinationName
     @Column(name = "deliver_destination_name")
     @JsonProperty("deliverDestinationName")
-    private String deliver_destination_name;
+    private String deliverDestinationName;
 
     //postCode
     @Column(name = "post_code")
     @JsonProperty("postCode")
-    private String post_code;
+    private String postCode;
 
     //phoneNumber
     @Column(name = "phone_number")
     @JsonProperty("phoneNumber")
-    private String phone_number;
+    private String phoneNumber;
 
     //faxNumber
     @Column(name = "fax_number")
     @JsonProperty("faxNumber")
-    private String fax_number;
+    private String faxNumber;
 
     //address1
     @Column(name = "address1")
@@ -77,142 +77,142 @@ public class InventoryOutputEntity extends CommonEntity{
     //routeCode
     @Column(name = "route_code")
     @JsonProperty("routeCode")
-    private String route_code;
+    private String routeCode;
 
     //courseCode
     @Column(name = "course_code")
     @JsonProperty("courseCode")
-    private String course_code;
+    private String courseCode;
 
     //planCustomer_id
     @Column(name = "plan_customer_id")
-    @JsonProperty("planCustomer_id")
-    private Integer plan_customer_id;
+    @JsonProperty("planCustomerId")
+    private Integer planCustomerId;
 
     //actualCustomer_id
     @Column(name = "actual_customer_id")
-    @JsonProperty("actualCustomer_id")
-    private Integer actual_customer_id;
+    @JsonProperty("actualCustomerId")
+    private Integer actualCustomerId;
 
     //orderDate
     @Column(name = "order_date")
     @JsonProperty("orderDate")
-    private String order_date;
+    private String orderDate;
 
     //planOutputDate
     @Column(name = "plan_output_date")
     @JsonProperty("planOutputDate")
-    private String plan_output_date;
+    private String planOutputDate;
 
     //planWorkingDate
     @Column(name = "plan_working_date")
     @JsonProperty("planWorkingDate")
-    private String plan_working_date;
+    private String planWorkingDate;
 
     //planDeliverDate
     @Column(name = "plan_deliver_date")
     @JsonProperty("planDeliverDate")
-    private String plan_deliver_date;
+    private String planDeliverDate;
 
     //actualOutputDate
     @Column(name = "actual_output_date")
     @JsonProperty("actualOutputDate")
-    private String actual_output_date;
+    private String actualOutputDate;
 
     //actualDeliverDate
     @Column(name = "actual_deliver_date")
     @JsonProperty("actualDeliverDate")
-    private String actual_deliver_date;
+    private String actualDeliverDate;
 
     //planSupplierSlipNo
     @Column(name = "plan_supplier_slip_no")
     @JsonProperty("planSupplierSlipNo")
-    private String plan_supplier_slip_no;
+    private String planSupplierSlipNo;
 
     //actualSupplierSlipNo
     @Column(name = "actual_supplier_slip_no")
     @JsonProperty("actualSupplierSlipNo")
-    private String actual_supplier_slip_no;
+    private String actualSupplierSlipNo;
 
     //create_slip_type
     @Column(name = "create_slip_type",nullable = false)
-    @JsonProperty("create_slip_type")
-    private String create_slip_type;
+    @JsonProperty("createSlipType")
+    private String createSlipType;
 
     //slipNo
     @Column(name = "slip_no",nullable = false)
     @JsonProperty("slipNo")
-    private String slip_no;
+    private String slipNo;
 
     //slipNote
     @Column(name = "slip_note")
     @JsonProperty("slipNote")
-    private String slip_note;
+    private String slipNote;
 
     //planRepository_id
     @Column(name = "plan_repository_id")
-    @JsonProperty("planRepository_id")
-    private Integer plan_repository_id;
+    @JsonProperty("planRepositoryId")
+    private Integer planRepositoryId;
 
     //actualRepository_id
     @Column(name = "actual_repository_id")
-    @JsonProperty("actualRepository_id")
-    private Integer actual_repository_id;
+    @JsonProperty("actualRepositoryId")
+    private Integer actualRepositoryId;
 
     //batchStatus
     @Column(name = "batch_status")
     @JsonProperty("batchStatus")
-    private String batch_status;
+    private String batchStatus;
 
     //outputStatus
     @Column(name = "output_status")
     @JsonProperty("outputStatus")
-    private String output_status;
+    private String outputStatus;
 
     //isClosed
     @Column(name = "is_closed",
-            columnDefinition = "varchar(50) default '未クローズ'")
+            columnDefinition = "varchar(1) default '0'")
     @JsonProperty("isClosed")
-    private String is_closed;
+    private String isClosed;
 
     //sumPlanQuantity
     @Column(name = "sum_plan_quantity")
     @JsonProperty("sumPlanQuantity")
-    private Integer sum_plan_quantity;
+    private Integer sumPlanQuantity;
 
     //sumActualQuantity
     @Column(name = "sum_actual_quantity")
     @JsonProperty("sumActualQuantity")
-    private Integer sum_actual_quantity;
+    private Integer sumActualQuantity;
 
     //newDestinationName
     @Column(name = "new_destination_name")
     @JsonProperty("newDestinationName")
-    private String new_destination_name;
+    private String newDestinationName;
 
     //checked
     @Column(name = "checked")
     @JsonProperty("checked")
-    private Boolean checked;
+    private String checked;
 
     //saleCategory
     @Column(name = "sale_category",
             columnDefinition = "varchar(50) default '掛売上'")
     @JsonProperty("saleCategory")
-    private String sale_category;
+    private String saleCategory;
 
     //free_item1
     @Column(name = "free_item1")
     @JsonProperty("freeItem1")
-    private String free_item1;
+    private String freeItem1;
 
     //free_item2
     @Column(name = "free_item2")
     @JsonProperty("freeItem2")
-    private String free_item2;
+    private String freeItem2;
 
     //free_item3
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
-    private String free_item3;
+    private String freeItem3;
 }

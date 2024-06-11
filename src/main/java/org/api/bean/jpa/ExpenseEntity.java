@@ -137,8 +137,8 @@ public class ExpenseEntity extends CommonEntity {
     @Column(name = "free_item3", length = 100)
     private String freeItem3;
 
-    @JsonProperty("deliverySlip_id")
+    @JsonProperty("deliverySlipId")
     @Column(name = "delivery_slip_id")
-    private Integer deliverySlip_id;
+    private Integer deliverySlipId;
 
 }

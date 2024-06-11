@@ -16,116 +16,116 @@ public class ProductInventoryChangeEntity extends CommonEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_change_id")
-    @JsonProperty("inventoryChange_id")
-    private Integer inventory_change_id;
+    @JsonProperty("inventoryChangeId")
+    private Integer inventoryChangeId;
 
     //companyId
     @Column(name = "company_id", nullable = false)
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //productOwner_id
     @Column(name = "product_owner_id")
-    @JsonProperty("productOwner_id")
-    private Integer productOwner_id;
+    @JsonProperty("productOwnerId")
+    private Integer productOwnerId;
 
     //productId
     @Column(name = "product_id")
     @JsonProperty("productId")
-    private Integer product_id;
+    private Integer productId;
 
     //setProductId
     @Column(name = "set_product_id")
     @JsonProperty("setProductId")
-    private Integer set_product_id;
+    private Integer setProductId;
 
     //supplierId
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
-    private Integer supplier_id;
+    private Integer supplierId;
 
     //repositoryId
     @Column(name = "repository_id")
     @JsonProperty("repositoryId")
-    private Integer repository_id;
+    private Integer repositoryId;
 
     //locationId
     @Column(name = "location_id")
     @JsonProperty("locationId")
-    private Integer location_id;
+    private Integer locationId;
 
     //datetime_mng
     @Column(name = "datetime_mng")
-    @JsonProperty("datetime_mng")
-    private String datetime_mng;
+    @JsonProperty("datetimeMng")
+    private String datetimeMng;
 
     //number_mng
     @Column(name = "number_mng")
-    @JsonProperty("number_mng")
-    private String number_mng;
+    @JsonProperty("numberMng")
+    private String numberMng;
 
     //inventoryProductType
     @Column(name = "inventory_product_type")
     @JsonProperty("inventoryProductType")
-    private Integer inventory_product_type;
+    private Integer inventoryProductType;
 
     //inventoryQuantity
     @Column(name = "inventory_quantity")
     @JsonProperty("inventoryQuantity")
-    private Integer inventory_quantity;
+    private Integer inventoryQuantity;
 
     //changeQuantity
     @Column(name = "change_quantity")
     @JsonProperty("changeQuantity")
-    private Integer change_quantity;
+    private Integer changeQuantity;
 
     //changeDate
     @Column(name = "change_date")
     @JsonProperty("changeDate")
-    private String change_date;
+    private String changeDate;
 
     //changeType
     @Column(name = "change_type")
     @JsonProperty("changeType")
-    private String change_type;
+    private String changeType;
 
     //changeReason
     @Column(name = "change_reason")
     @JsonProperty("changeReason")
-    private String change_reason;
+    private String changeReason;
 
     //detailId
     @Column(name = "detail_id")
     @JsonProperty("detailId")
-    private Integer detail_id;
+    private Integer detailId;
 
     //headerId
     @Column(name = "header_id")
     @JsonProperty("headerId")
-    private Integer header_id;
+    private Integer headerId;
 
     //slipNo
     @Column(name = "slip_no")
     @JsonProperty("slipNo")
-    private String slip_no;
+    private String slipNo;
 
     //businessDate
     @Column(name = "business_date")
     @JsonProperty("businessDate")
-    private String business_date;
+    private String businessDate;
 
-    //free_item1
+    //Free Item 1
     @Column(name = "free_item1")
     @JsonProperty("freeItem1")
-    private String free_item1;
+    private String freeItem1;
 
-    //free_item2
+    //Free Item 2
     @Column(name = "free_item2")
     @JsonProperty("freeItem2")
-    private String free_item2;
+    private String freeItem2;
 
-    //free_item3
+    //Free Item 3
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
-    private String free_item3;
+    private String freeItem3;
 }

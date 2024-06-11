@@ -268,7 +268,7 @@ public class ProductEntity extends CommonEntity {
     //repositoryCode
     @Column(name = "repository_code")
     @JsonProperty("repositoryCode")
-    private String repository_code;
+    private String repositoryCode;
 
     //Location Id
     @Column(name = "location_id")
@@ -278,7 +278,7 @@ public class ProductEntity extends CommonEntity {
     //locationCode
     @Column(name = "location_code")
     @JsonProperty("locationCode")
-    private String location_code;
+    private String locationCode;
 
     //Is Replenish Quantity
     @Column(name = "is_replenish_mng")

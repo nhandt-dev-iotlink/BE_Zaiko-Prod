@@ -16,76 +16,76 @@ public class PurchasePriceEntity extends CommonEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_price_id")
-    @JsonProperty("purchasePrice_id")
-    private Integer purchase_price_id;
+    @JsonProperty("purchasePriceId")
+    private Integer purchasePriceId;
 
     //companyId
     @Column(name = "company_id")
     @JsonProperty("companyId")
-    private Integer company_id;
+    private Integer companyId;
 
     //supplierId
     @Column(name = "supplier_id")
     @JsonProperty("supplierId")
-    private Integer supplier_id;
+    private Integer supplierId;
 
     //supplierCode
     @Column(name = "supplier_code")
     @JsonProperty("supplierCode")
-    private String supplier_code;
+    private String supplierCode;
 
     //productId
     @Column(name = "product_id")
     @JsonProperty("productId")
-    private Integer product_id;
+    private Integer productId;
 
     //productCode
     @Column(name = "product_code")
     @JsonProperty("productCode")
-    private String product_code;
+    private String productCode;
 
     //number_mng
     @Column(name = "number_mng")
-    @JsonProperty("number_mng")
-    private String number_mng;
+    @JsonProperty("numberMng")
+    private String numberMng;
 
     //datetime_mng_from
     @Column(name = "datetime_mng_from")
-    @JsonProperty("datetime_mng_from")
-    private String datetime_mng_from;
+    @JsonProperty("datetimeMngFrom")
+    private String datetimeMngFrom;
 
     //datetime_mng_to
     @Column(name = "datetime_mng_to")
-    @JsonProperty("datetime_mng_to")
-    private String datetime_mng_to;
+    @JsonProperty("datetimeMngTo")
+    private String datetimeMngTo;
 
     //pack_cs_price
     @Column(name = "pack_cs_price")
-    @JsonProperty("pack_cs_price")
-    private Double pack_cs_price;
+    @JsonProperty("packCsPrice")
+    private Double packCsPrice;
 
     //pack_bl_price
     @Column(name = "pack_bl_price")
-    @JsonProperty("pack_bl_price")
-    private Double pack_bl_price;
+    @JsonProperty("packBlPrice")
+    private Double packBlPrice;
 
     //piecePrice
     @Column(name = "piece_price")
     @JsonProperty("piecePrice")
-    private Double piece_price;
+    private Double piecePrice;
 
     //free_item1
     @Column(name = "free_item1")
     @JsonProperty("freeItem1")
-    private String free_item1;
+    private String freeItem1;
 
     //free_item2
     @Column(name = "free_item2")
     @JsonProperty("freeItem2")
-    private String free_item2;
+    private String freeItem2;
 
     //free_item3
     @Column(name = "free_item3")
     @JsonProperty("freeItem3")
-    private String free_item3;
+    private String freeItem3;
 }

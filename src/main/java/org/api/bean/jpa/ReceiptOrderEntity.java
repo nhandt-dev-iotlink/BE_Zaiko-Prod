@@ -21,8 +21,8 @@ public class ReceiptOrderEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "receipt_order_id")
-    @JsonProperty("receiptOrder_id")
-    private Integer receiptOrder_id;
+    @JsonProperty("receiptOrderId")
+    private Integer receiptOrderId;
 
     // CompanyId
     @Column(name = "company_id", nullable = false)
@@ -71,8 +71,8 @@ public class ReceiptOrderEntity extends CommonEntity {
 
     // PlanOuputSlipNo
     @Column(name = "plan_ouput_slip_no")
-    @JsonProperty("planOuputSlipNo")
-    private String planOuputSlipNo = "Null";
+    @JsonProperty("planOutputSlipNo")
+    private String planOutputSlipNo = "Null";
 
     // FileName
     @Column(name = "file_name")

@@ -23,59 +23,59 @@ public class ReturnInputEntity extends CommonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "return_input_id")
-    @JsonProperty("return_input_id")
+    @JsonProperty("returnInputId")
     private Long returnInputId;
 
     @Column(name = "company_id", nullable = false)
-    @JsonProperty("company_id")
+    @JsonProperty("companyId")
     private Integer companyId;
 
     @Column(name = "return_input_date")
-    @JsonProperty("return_input_date")
+    @JsonProperty("returnInputDate")
     private String returnInputDate;
 
     @Column(name = "create_slip_type")
-    @JsonProperty("create_slip_type")
+    @JsonProperty("createSlipType")
     private String createSlipType;
 
     @Column(name = "slip_no")
-    @JsonProperty("slip_no")
+    @JsonProperty("slipNo")
     private String slipNo;
 
     @Column(name = "supplier_slip_no")
-    @JsonProperty("supplier_slip_no")
+    @JsonProperty("supplierSlipNo")
     private String supplierSlipNo;
 
     @Column(name = "slip_notes")
-    @JsonProperty("slip_notes")
+    @JsonProperty("slipNotes")
     private String slipNotes;
 
     @Column(name = "product_owner_id")
-    @JsonProperty("product_owner_id")
+    @JsonProperty("productOwnerId")
     private Long productOwnerId;
 
     @Column(name = "customer_id")
-    @JsonProperty("customer_id")
+    @JsonProperty("customerId")
     private Long customerId;
 
     @Column(name = "customer_delivery_destination_id")
-    @JsonProperty("customer_delivery_destination_id")
+    @JsonProperty("customerDeliveryDestinationId")
     private Long customerDeliveryDestinationId;
 
     @Column(name = "new_destination_name")
-    @JsonProperty("new_destination_name")
+    @JsonProperty("newDestinationName")
     private String newDestinationName;
 
     @Column(name = "post_code")
-    @JsonProperty("post_code")
+    @JsonProperty("postCode")
     private String postCode;
 
     @Column(name = "phone_number")
-    @JsonProperty("phone_number")
+    @JsonProperty("phoneNumber")
     private String phoneNumber;
 
     @Column(name = "fax_number")
-    @JsonProperty("fax_number")
+    @JsonProperty("faxNumber")
     private String faxNumber;
 
     @Column(name = "address1")
@@ -99,10 +99,10 @@ public class ReturnInputEntity extends CommonEntity implements Serializable {
     private String checked;
 
     @Column(name = "repository_id")
-    @JsonProperty("repository_id")
+    @JsonProperty("repositoryId")
     private Long repositoryId;
 
     @Column(name = "delivery_slip_print_status")
-    @JsonProperty("delivery_slip_print_status")
+    @JsonProperty("deliverySlipPrintStatus")
     private Integer deliverySlipPrintStatus;
 }

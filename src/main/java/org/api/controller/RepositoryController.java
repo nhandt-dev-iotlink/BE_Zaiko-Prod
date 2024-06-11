@@ -7,10 +7,7 @@ import org.api.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +31,11 @@ public class RepositoryController {
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
 
         }
+    }
+    @GetMapping("/find-one-by-id")
+    public ResponseEntity<ResultBean> findById(@RequestParam("id") Integer id) throws Exception {
+        ResultBean resultBean = null;
+        resultBean = repositoryService.findById(id);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 }

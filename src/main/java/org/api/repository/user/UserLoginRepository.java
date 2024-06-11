@@ -37,7 +37,7 @@ public interface UserLoginRepository extends BaseRepository<UserLoginEntity, Int
      * @param userId
      * @return the user login entity
      */
-//    @Query(value = "SELECT * FROM m_user WHERE user_id like :userId", nativeQuery = true)
+    @Query(value = "SELECT * FROM m_user WHERE user_id like :userId", nativeQuery = true)
     public Optional<UserLoginEntity> findOneById(Integer userId);
 
 //    @Query(value = UserLoginQuery.FIND_USER,
