@@ -1,0 +1,144 @@
+package org.api.bean.jpa;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "m_supplier")
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@Getter
+@Setter
+public class SupplierEntity extends CommonEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+    // Supplier ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "supplier_id")
+    @JsonProperty("supplierId")
+    private Integer supplierId;
+
+    // Company ID
+    @Getter
+    @Column(name = "company_id")
+    @JsonProperty("companyId")
+    private Integer companyId;
+
+    //Supplier Code
+    @Column(name = "supplier_code")
+    @JsonProperty("supplierCode")
+    private String supplierCode;
+
+    //Supplier Name
+    @Column(name = "supplier_name")
+    @JsonProperty("supplierName")
+    private String supplierName;
+
+    //Department Name
+    @Column(name = "department_name")
+    @JsonProperty("departmentName")
+    private String departmentName;
+
+    //Pic Name
+    @Column(name = "pic_name")
+    @JsonProperty("picName")
+    private String picName;
+
+    //Phone Number
+    @Column(name = "phone_number")
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
+
+    //Fax Number
+    @Column(name = "fax_number")
+    @JsonProperty("faxNumber")
+    private String faxNumber;
+
+    //Post Code
+    @Column(name = "post_code")
+    @JsonProperty("postCode")
+    private String postCode;
+
+    //Address 1
+    @Column(name = "address1")
+    @JsonProperty("address1")
+    private String address1;
+
+    //Address 2
+    @Column(name = "address2")
+    @JsonProperty("address2")
+    private String address2;
+
+    //Address 3
+    @Column(name = "address3")
+    @JsonProperty("address3")
+    private String address3;
+
+    //Address 4
+    @Column(name = "address4")
+    @JsonProperty("address4")
+    private String address4;
+
+    //Bank Name
+    @Column(name = "bank_name")
+    @JsonProperty("bankName")
+    private String bankName;
+
+    //Bank Branch Name
+    @Column(name = "bank_branch_name")
+    @JsonProperty("bankBranchName")
+    private String bankBranchName;
+
+    //Bank Acc Number
+    @Column(name = "bank_acc_number")
+    @JsonProperty("bankAccNumber")
+    private String bankAccNumber;
+
+    //Bank Acc Holder
+    @Column(name = "bank_acc_holder")
+    @JsonProperty("bankAccHolder")
+    private String bankAccHolder;
+
+    //Lead Time
+    @Column(name = "lead_time")
+    @JsonProperty("leadTime")
+    private Integer leadTime;
+
+    //Route Code
+    @Column(name = "route_code")
+    @JsonProperty("routeCode")
+    private String routeCode;
+
+    //Course Code
+    @Column(name = "course_code")
+    @JsonProperty("courseCode")
+    private String courseCode;
+
+    // FreeItem1
+    @Column(name = "free_item1")
+    @JsonProperty("freeItem1")
+    private String freeItem1;
+
+    // FreeItem2
+    @Column(name = "free_item2")
+    @JsonProperty("freeItem2")
+    private String freeItem2;
+
+    // FreeItem3
+    @Column(name = "free_item3")
+    @JsonProperty("freeItem3")
+    private String freeItem3;
+
+    //Notes
+    @Column(name = "notes")
+    @JsonProperty("notes")
+    private String notes;
+
+}
