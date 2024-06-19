@@ -46,10 +46,9 @@ public class InventoryPlanOutputDetailController {
     }
 
     @PostMapping(value = "/detail", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResultBean> addDetail(@RequestBody PlanFormDto planFormDto) throws Exception {
-        InventoryOutputPlanDto planDto = planFormDto.getInfoForm();
-        ResultBean resultBean1 = inventoryOutputService.saveOutputPlan(planFormDto);
-        return new ResponseEntity<ResultBean>(resultBean1, HttpStatus.OK);
+    public ResponseEntity<ResultBean> save(@RequestBody PlanFormDto planFormDto) throws Exception {
+        ResultBean resultBean = inventoryOutputService.saveOutputPlan(planFormDto);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 
 }

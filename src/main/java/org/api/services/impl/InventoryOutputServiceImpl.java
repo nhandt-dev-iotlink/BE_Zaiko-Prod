@@ -44,7 +44,6 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     private CustomerDeliveryDestService customerDeliveryDestService;
 
 
-
 //    public static void removeNullProperties(Object object) throws Exception {
 //        java.lang.reflect.Field[] fields = object.getClass().getDeclaredFields();
 //        for (java.lang.reflect.Field field : fields) {
@@ -105,69 +104,114 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean saveOutputPlan(PlanFormDto planFormDto) throws Exception {
         InventoryOutputPlanDto outputPlanDto = planFormDto.getInfoForm();
-        List<InventoryPlanOutputDetailDto> listDetail = planFormDto.getDetailForm();
-        InventoryOutputEntity entity = new InventoryOutputEntity();
-        entity = outputPlanMapper.toEntity(outputPlanDto);
-        entity.setCompanyId(Constants.ONE_IN);
-        entity.setOrderDate(formatDate(entity.getOrderDate()));
-        entity.setPlanDeliverDate(formatDate(outputPlanDto.getPlanDeliveryDate()));
-        entity.setPlanOutputDate(formatDate(entity.getPlanOutputDate()));
-        entity.setPlanWorkingDate(formatDate(entity.getPlanWorkingDate()));
-        entity.setBatchStatus(Constants.BATCH_STATUS_9);
-        entity.setOutputStatus(Constants.FLG_ZERO);
-        entity.setIsClosed(Constants.FLG_ZERO);
-        entity.setSaleCategory(Constants.FLG_ZERO);
-        entity.setDelFlg(Constants.DEL_FLG_0);
-        int slipNo = 0;
-        if (entity.getCreateSlipType().equals("0")) {
-            InventoryOutputEntity getSlipNoBefore = inventoryOutputRepo.getSlipNoBefore(createSlipNo(0).substring(0, 6));
-
-            if (getSlipNoBefore != null) {
-                String slipNoBefore = getSlipNoBefore.getSlipNo();
-                slipNo = Integer.parseInt(slipNoBefore.substring(slipNoBefore.length() - 4));
-            }
-            entity.setSlipNo(createSlipNo(slipNo + 1));
+        if (outputPlanDto.getOrderDate() != null) {
+            outputPlanDto.setOrderDate(formatDate(outputPlanDto.getOrderDate()));
         }
+        if (outputPlanDto.getPlanDeliveryDate() != null) {
+            outputPlanDto.setPlanDeliveryDate(formatDate(outputPlanDto.getPlanDeliveryDate()));
+        }
+        if (outputPlanDto.getPlanOutputDate() != null) {
+            outputPlanDto.setPlanOutputDate(formatDate(outputPlanDto.getPlanOutputDate()));
+        }
+        if (outputPlanDto.getPlanWorkingDate() != null) {
+            outputPlanDto.setPlanWorkingDate(formatDate(outputPlanDto.getPlanWorkingDate()));
+        }
+        List<InventoryPlanOutputDetailDto> listDetail = planFormDto.getDetailForm();
+        InventoryOutputEntity outputEntityToSave = new InventoryOutputEntity();
+//        InventoryOutputEntity outputEntityToSave = null;
+        if (outputPlanDto.getInventoryOutputId() != null || outputPlanDto.getSlipNo() != null) {
+            outputEntityToSave = inventoryOutputRepo.getOneById(outputPlanDto.getInventoryOutputId());
+            outputPlanMapper.update(outputEntityToSave, outputPlanDto);
+//            outputEntityToSave.setUpdateDate(null);
+//            outputEntityReturn = inventoryOutputRepo.save(outputEntityToSave);
+//            return new ResultBean(outputEntityReturn, Constants.STATUS_201, Constants.MESSAGE_OK);
+        }else {
+            outputEntityToSave = outputPlanMapper.toEntity(outputPlanDto);
+            outputEntityToSave.setCompanyId(Constants.ONE_IN);
+            outputEntityToSave.setBatchStatus(Constants.BATCH_STATUS_9);
+            outputEntityToSave.setOutputStatus(Constants.FLG_ZERO);
+            outputEntityToSave.setIsClosed(Constants.FLG_ZERO);
+            outputEntityToSave.setSaleCategory(Constants.FLG_ZERO);
+            outputEntityToSave.setDelFlg(Constants.DEL_FLG_0);
+            int slipNo = 0;
+            if (outputEntityToSave.getCreateSlipType().equals("0")) {
+                InventoryOutputEntity getSlipNoBefore = inventoryOutputRepo.getSlipNo(createSlipNo(0).substring(0, 6));
+                if (getSlipNoBefore != null) {
+                    String slipNoBefore = getSlipNoBefore.getSlipNo();
+                    slipNo = Integer.parseInt(slipNoBefore.substring(slipNoBefore.length() - 4));
+                }
+                outputEntityToSave.setSlipNo(createSlipNo(slipNo + 1));
+            }
+        }
+        outputEntityToSave.setPlanDeliverDate(outputPlanDto.getPlanDeliveryDate());
+
 
         CustomerEntity customerEntity = new CustomerEntity();
         CustomerDeliveryDestEntity customerDeliveryDestEntity = new CustomerDeliveryDestEntity();
-//        CustomerDeliveryDestDto customerDeliveryDestDto = new CustomerDeliveryDestDto();
-
-        if (entity.getChecked().equals("1")) {
-            entity.setNewDestinationName(outputPlanDto.getDepartmentName());
-            CustomerDto customerDtoToSave = new CustomerDto(null, outputPlanDto.getCustomerCode(), outputPlanDto.getCustomerName(), null, entity.getCompanyId(), outputPlanDto.getPhoneNumber(), outputPlanDto.getPostCode(), outputPlanDto.getAddress1());
+        if (outputEntityToSave.getChecked().equals("1")) {
+            outputEntityToSave.setNewDestinationName(outputPlanDto.getDepartmentName());
+            CustomerDto customerDtoToSave = new CustomerDto(null, outputPlanDto.getCustomerCode(),
+                    outputPlanDto.getCustomerName(), outputPlanDto.getDepartmentName(), null, 0,
+                    outputEntityToSave.getCompanyId(), outputPlanDto.getPhoneNumber(), outputPlanDto.getFaxNumber(), outputPlanDto.getPostCode(),
+                    outputPlanDto.getAddress1(), outputPlanDto.getAddress2(), outputPlanDto.getAddress3(), outputPlanDto.getAddress4(),
+                    outputPlanDto.getRouteCode(), outputPlanDto.getCourseCode());
             ResultBean resultBeanCustomer = customerService.saveCustomer(customerDtoToSave);
+            if (resultBeanCustomer.getData() != null) {
+                customerEntity = (CustomerEntity) resultBeanCustomer.getData();
+                CustomerDeliveryDestDto customerDeliveryDestDtoToSave = new CustomerDeliveryDestDto(null,
+                        outputPlanDto.getDestinationCode(), outputPlanDto.getDepartmentName(),
+                        outputPlanDto.getPhoneNumber(), outputPlanDto.getFaxNumber(), outputPlanDto.getPostCode(),
+                        outputPlanDto.getRouteCode(), outputPlanDto.getCourseCode(), outputPlanDto.getAddress1(),
+                        outputPlanDto.getAddress2(), outputPlanDto.getAddress3(), outputPlanDto.getAddress4(),
+                        outputEntityToSave.getCompanyId(), customerEntity.getCustomerId(), "0", 0);
+                ResultBean resultBeanCustomerDest = customerDeliveryDestService.saveEntity(customerDeliveryDestDtoToSave);
+                if (resultBeanCustomerDest.getData() != null) {
+                    customerDeliveryDestEntity = (CustomerDeliveryDestEntity) resultBeanCustomerDest.getData();
+                } else {
+                    return new ResultBean(customerDeliveryDestDtoToSave, Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
+                }
+            } else {
+                return new ResultBean(customerDtoToSave, Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
+            }
         } else {
             customerEntity = customerService.findOneCustomerByCode(outputPlanDto.getCustomerCode());
             customerDeliveryDestEntity = customerDeliveryDestService.findOneByCode(outputPlanDto.getDestinationCode());
-//            customerDeliveryDestDto = customerDeliveryDestRepository.findByCode(outputPlanDto.getDestinationCode());
         }
-        entity.setPlanCustomerId(customerEntity.getCustomerId());
-        entity.setDeliverDestinationName(outputPlanDto.getCustomerName().concat(outputPlanDto.getDepartmentName()));
-        entity.setPlanCustomerDeliveryDestinationId(customerDeliveryDestEntity.getDeliveryDestinationId());
+        outputEntityToSave.setPlanCustomerId(customerEntity.getCustomerId());
+        outputEntityToSave.setDeliverDestinationName(outputPlanDto.getCustomerName().concat(outputPlanDto.getDepartmentName()));
+        outputEntityToSave.setPlanCustomerDeliveryDestinationId(customerDeliveryDestEntity.getDeliveryDestinationId());
         Integer sumPlanQuantity = 0;
         for (InventoryPlanOutputDetailDto dto : listDetail) {
             sumPlanQuantity += dto.getTotalPlanQuantity();
         }
-        entity.setSumPlanQuantity(sumPlanQuantity);
-        inventoryOutputRepo.save(entity);
-        Optional<InventoryOutputEntity> optional = inventoryOutputRepo.findBySlipNo(createSlipNo(slipNo + 1));
-//        Optional<InventoryOutputEntity> optional = inventoryOutputRepo.findBySlipNo("2406070002");
-        InventoryOutputEntity outputEntity = optional.get();
+        outputEntityToSave.setSumPlanQuantity(sumPlanQuantity);
 
+        InventoryOutputEntity outputEntityReturn = new InventoryOutputEntity();
+        outputEntityReturn = inventoryOutputRepo.save(outputEntityToSave);
+        PlanFormDto newPlanFormDto = new PlanFormDto();
         List<InventoryPlanOutputDetailDto> dtoDetailList = new ArrayList<>();
-        for (InventoryPlanOutputDetailDto dto : listDetail) {
-            ResultBean resultBean = planOutputDetailService.savePlanOutputDetail(dto, outputEntity);
-            InventoryPlanOutputDetailEntity detailEntity = (InventoryPlanOutputDetailEntity) resultBean.getData();
-            dtoDetailList.add(planOutputDetailMapper.toDto(detailEntity));
-        }
-        PlanFormDto newPlanFormDto = new PlanFormDto(outputPlanMapper.toDto(entity), dtoDetailList);
 
+        if (outputEntityReturn.getInventoryOutputId() != null) {
+            newPlanFormDto.setInfoForm(outputPlanMapper.toDto(outputEntityReturn));
+            for (InventoryPlanOutputDetailDto dto : listDetail) {
+                ResultBean resultBeanDetail = planOutputDetailService.savePlanOutputDetail(dto, outputEntityReturn);
+                if (resultBeanDetail.getData() != null) {
+                    InventoryPlanOutputDetailEntity detailEntity = (InventoryPlanOutputDetailEntity) resultBeanDetail.getData();
+                    dtoDetailList.add(planOutputDetailMapper.toDto(detailEntity));
+                } else {
+                    return new ResultBean(dto, Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
+                }
+            }
+            newPlanFormDto.setDetailForm(dtoDetailList);
+        } else {
+            return new ResultBean(outputEntityToSave, Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
+        }
         return new ResultBean(newPlanFormDto, Constants.STATUS_201, Constants.MESSAGE_OK);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public ResultBean deleteOutputPlanById(Integer id) throws Exception {
         Optional<InventoryOutputEntity> inventoryOutputEntity = inventoryOutputRepo.findById(id);
         if (inventoryOutputEntity.isPresent()) {
@@ -183,8 +227,8 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
 
     @Override
     public ResultBean checkSlipNo(String slipNo) throws Exception {
-        Optional<InventoryOutputEntity> entity = inventoryOutputRepo.findBySlipNo(slipNo);
-        if (entity.isPresent()) {
+        Optional<InventoryOutputEntity> outputEntityToSave = inventoryOutputRepo.findBySlipNo(slipNo);
+        if (outputEntityToSave.isPresent()) {
             return new ResultBean(Constants.STATUS_OK, Constants.MESSAGE_OK);
         }
         return new ResultBean(Constants.STATUS_NOT_FOUND, Constants.MESSAGE_OK);

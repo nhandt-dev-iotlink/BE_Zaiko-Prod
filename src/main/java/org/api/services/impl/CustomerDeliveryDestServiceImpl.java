@@ -4,6 +4,7 @@ import org.api.bean.ResultBean;
 import org.api.bean.jpa.CustomerDeliveryDestEntity;
 import org.api.dto.CustomerDeliveryDestDto;
 import org.api.dto.CustomerDto;
+import org.api.mapper.CustomerDeliveryDestMapper;
 import org.api.repository.customerDeliveryDest.CustomerDeliveryDestRepository;
 import org.api.services.CustomerDeliveryDestService;
 import org.api.utils.ApiValidateException;
@@ -18,6 +19,8 @@ import java.util.List;
 public class CustomerDeliveryDestServiceImpl implements CustomerDeliveryDestService {
     @Autowired
     private CustomerDeliveryDestRepository customerDeliveryDestRepository;
+    @Autowired
+    private CustomerDeliveryDestMapper customerDeliveryDestMapper;
 
     @Override
     public ResultBean getAll(String deliveryName) throws ApiValidateException {
@@ -42,5 +45,12 @@ public class CustomerDeliveryDestServiceImpl implements CustomerDeliveryDestServ
     @Override
     public CustomerDeliveryDestEntity findOneByCode(String code) throws Exception {
         return customerDeliveryDestRepository.findEntityByDestinationCode(code);
+    }
+
+    @Override
+    public ResultBean saveEntity(CustomerDeliveryDestDto dto) throws Exception {
+        CustomerDeliveryDestEntity entityToSave = customerDeliveryDestMapper.toEntity(dto);
+        CustomerDeliveryDestEntity entityReturn = customerDeliveryDestRepository.save(entityToSave);
+        return new ResultBean(entityReturn, Constants.STATUS_201, Constants.MESSAGE_OK);
     }
 }

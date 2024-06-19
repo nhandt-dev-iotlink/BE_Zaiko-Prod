@@ -226,8 +226,8 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "co.courseCode, co.courseName, rp.repositoryCode, rp.repositoryName, io.slipNote) FROM InventoryOutputEntity io " +
             "LEFT JOIN CustomerDeliveryDestEntity cdd ON io.planCustomerDeliveryDestinationId = cdd.deliveryDestinationId AND cdd.delFlg = '0' " +
             "LEFT JOIN CustomerEntity c ON io.planCustomerId = c.customerId AND c.delFlg = '0' " +
-            "LEFT JOIN RouteEntity r ON c.routeCode = r.routeCode AND r.delFlg = '0' " +
-            "LEFT JOIN CourseEntity co ON r.routeCode = co.routeCode AND c.courseCode = co.courseCode AND co.delFlg = '0' " +
+            "LEFT JOIN RouteEntity r ON (io.routeCode = r.routeCode OR c.routeCode = r.routeCode) AND r.delFlg = '0' " +
+            "LEFT JOIN CourseEntity co ON r.routeCode = co.routeCode AND (io.courseCode = co.courseCode OR c.courseCode = co.courseCode) AND co.delFlg = '0' " +
             "LEFT JOIN RepositoryEntity rp ON io.planRepositoryId = rp.repositoryId AND rp.delFlg = '0'" +
             "WHERE io.delFlg = '0' AND io.inventoryOutputId = :id AND io.planOutputDate IS NOT NULL ")
     Optional<InventoryOutputPlanDto> getInfoOutputPlanById(@Param("id") Integer id);
@@ -235,6 +235,8 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
     @Query(nativeQuery = true, value = "SELECT * FROM t_inventory_output ioe WHERE ioe.del_flg = '0' AND ioe.slip_no = :slipNo")
     Optional<InventoryOutputEntity> findBySlipNo(@Param("slipNo") String slipNo);
 
-    @Query(nativeQuery = true, value = "select * from t_inventory_output where slip_no like CONCAT(:slipNo, '%') order by slip_no desc limit 1")
-    InventoryOutputEntity getSlipNoBefore(@Param("slipNo") String slipNo);
+    @Query(nativeQuery = true, value = "select * from t_inventory_output where slip_no like CONCAT(:slipNo, '%') AND del_flg = '0' order by slip_no desc limit 1")
+    InventoryOutputEntity getSlipNo(@Param("slipNo") String slipNo);
+    @Query(nativeQuery = true, value = "SELECT * FROM t_inventory_output WHERE inventory_output_id = :id AND del_flg = '0' LIMIT 1")
+    InventoryOutputEntity getOneById(@Param("id") Integer id);
 }

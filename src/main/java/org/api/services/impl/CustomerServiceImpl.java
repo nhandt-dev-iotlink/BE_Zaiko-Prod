@@ -9,6 +9,8 @@ import org.api.services.CustomerService;
 import org.api.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -45,6 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean saveCustomer(CustomerDto dto) throws Exception {
         CustomerEntity entityToSave = customerMapper.toEntity(dto);
         CustomerEntity customerReturn = customerRepository.save(entityToSave);

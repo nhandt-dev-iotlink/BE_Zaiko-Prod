@@ -1,20 +1,14 @@
 package org.api.services.impl;
 
 import org.api.bean.ResultBean;
-import org.api.bean.jpa.InventoryOutputEntity;
-import org.api.bean.jpa.InventoryPlanOutputDetailEntity;
-import org.api.bean.jpa.ProductEntity;
-import org.api.bean.jpa.SalePriceEntity;
+import org.api.bean.jpa.*;
 import org.api.dto.InventoryOutputPlanDto;
 import org.api.dto.InventoryPlanOutputDetailDto;
 import org.api.dto.PlanFormDto;
 import org.api.mapper.InventoryPlanOutputDetailMapper;
 import org.api.repository.inventoryPlanOutputDetail.InventoryPlanOutputDetailRepository;
 import org.api.repository.salePrice.SalePriceRepository;
-import org.api.services.InventoryOutputService;
-import org.api.services.InventoryPlanOutputDetailService;
-import org.api.services.ProductService;
-import org.api.services.SalePriceService;
+import org.api.services.*;
 import org.api.utils.Constants;
 import org.api.utils.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +35,8 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
     private ProductService productService;
     @Autowired
     private SalePriceService salePriceService;
+    @Autowired
+    private CustomerService customerService;
 
 
     @Override
@@ -51,28 +47,28 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
 
     @Override
     public ResultBean addNewDetailByInventoryOutputId(List<InventoryPlanOutputDetailDto> listDto) throws Exception {
-        InventoryPlanOutputDetailEntity detailEntity = new InventoryPlanOutputDetailEntity();
-        List<InventoryPlanOutputDetailEntity> detailEntityList = new ArrayList<>();
+        InventoryPlanOutputDetailEntity detailEntityToSave = new InventoryPlanOutputDetailEntity();
+        List<InventoryPlanOutputDetailEntity> detailEntityToSaveList = new ArrayList<>();
         for (InventoryPlanOutputDetailDto dto : listDto) {
-            detailEntity = mapper.toEntity(dto);
-            inventoryPlanOutputDetailRepository.save(detailEntity);
+            detailEntityToSave = mapper.toEntity(dto);
+            inventoryPlanOutputDetailRepository.save(detailEntityToSave);
 
-            detailEntityList.add(detailEntity);
+            detailEntityToSaveList.add(detailEntityToSave);
         }
-        return new ResultBean(detailEntityList, Constants.STATUS_201, Constants.MESSAGE_OK);
+        return new ResultBean(detailEntityToSaveList, Constants.STATUS_201, Constants.MESSAGE_OK);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean deletePlanOutputDetailByOutputId(Integer id) throws Exception {
-        List<InventoryPlanOutputDetailEntity> detailEntityList = inventoryPlanOutputDetailRepository.getAllByOutputId(id);
-        if (detailEntityList.isEmpty()) {
+        List<InventoryPlanOutputDetailEntity> detailEntityToSaveList = inventoryPlanOutputDetailRepository.getAllByOutputId(id);
+        if (detailEntityToSaveList.isEmpty()) {
             return new ResultBean(Constants.FLG_ZERO, Constants.STATUS_SYSTEM_ERROR);
         }
-        for (InventoryPlanOutputDetailEntity detailEntity : detailEntityList) {
-            if (detailEntity.getDelFlg().equals("0")) {
-                detailEntity.setDelFlg("1");
-                inventoryPlanOutputDetailRepository.save(detailEntity);
+        for (InventoryPlanOutputDetailEntity detailEntityToSave : detailEntityToSaveList) {
+            if (detailEntityToSave.getDelFlg().equals("0")) {
+                detailEntityToSave.setDelFlg("1");
+                inventoryPlanOutputDetailRepository.save(detailEntityToSave);
             }
         }
         return new ResultBean(Constants.FLG_ONE, Constants.MESSAGE_OK);
@@ -81,41 +77,50 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean savePlanOutputDetail(InventoryPlanOutputDetailDto dto, InventoryOutputEntity outputEntity) throws Exception {
-        InventoryPlanOutputDetailEntity detailEntity = mapper.toEntity(dto);
-        detailEntity.setCompanyId(outputEntity.getCompanyId());
-        detailEntity.setInventoryOutputId(outputEntity.getInventoryOutputId());
-        detailEntity.setIsBatchInprogress(Constants.ZERO_IN);
-        detailEntity.setBatchStatus(Constants.BATCH_STATUS_0);
-        detailEntity.setDelFlg(Constants.DEL_FLG_0);
-        detailEntity.setBatchNo(outputEntity.getSlipNo());
+        InventoryPlanOutputDetailEntity detailEntityToSave = new InventoryPlanOutputDetailEntity();
+        if(dto.getPlanDetailId() != null){
+            Optional<InventoryPlanOutputDetailEntity> optional = inventoryPlanOutputDetailRepository.findById(dto.getPlanDetailId());
+            detailEntityToSave = optional.get();
+            mapper.update(detailEntityToSave, dto);
+        }else {
+            detailEntityToSave = mapper.toEntity(dto);
+            detailEntityToSave.setCompanyId(outputEntity.getCompanyId());
+            detailEntityToSave.setInventoryOutputId(outputEntity.getInventoryOutputId());
+            detailEntityToSave.setIsBatchInprogress(Constants.ZERO_IN);
+            detailEntityToSave.setBatchStatus(Constants.BATCH_STATUS_0);
+            detailEntityToSave.setDelFlg(Constants.DEL_FLG_0);
+            detailEntityToSave.setBatchNo(outputEntity.getSlipNo());
+        }
 
-        if(detailEntity.getDatetimeMngFrom() != null){
-            detailEntity.setDatetimeMngFrom(formatDate(detailEntity.getDatetimeMngFrom()));
+        if(detailEntityToSave.getDatetimeMngFrom() != null){
+            detailEntityToSave.setDatetimeMngFrom(formatDate(detailEntityToSave.getDatetimeMngFrom()));
         }
-        if(detailEntity.getDatetimeMngTo() != null){
-            detailEntity.setDatetimeMngTo(formatDate(detailEntity.getDatetimeMngTo()));
+        if(detailEntityToSave.getDatetimeMngTo() != null){
+            detailEntityToSave.setDatetimeMngTo(formatDate(detailEntityToSave.getDatetimeMngTo()));
         }
+        CustomerEntity customerEntity = customerService.findOneCustomerByCode(dto.getCustomerCode());
+        detailEntityToSave.setProductOwnerId(customerEntity.getCustomerId());
 
         ProductEntity productEntity = productService.findOneByCodeReturnEntity(dto.getProductCode());
-        detailEntity.setProductId(productEntity.getProductId());
-        detailEntity.setSupplierId(productEntity.getSupplierId());
+        detailEntityToSave.setProductId(productEntity.getProductId());
+        detailEntityToSave.setSupplierId(productEntity.getSupplierId());
 
         SalePriceEntity salePrice = salePriceService.findOneByProductId(productEntity.getProductId());
-        detailEntity.setPlanCsPrice(salePrice.getPackCsPrice());
-        detailEntity.setPlanBlPrice(salePrice.getPackBlPrice());
-        detailEntity.setPlanPiecePrice(salePrice.getPiecePrice());
+        detailEntityToSave.setPlanCsPrice(salePrice.getPackCsPrice());
+        detailEntityToSave.setPlanBlPrice(salePrice.getPackBlPrice());
+        detailEntityToSave.setPlanPiecePrice(salePrice.getPiecePrice());
 
-        if(detailEntity.getPlanPiecePrice() > 0) {
-            detailEntity.setAmountTotal(detailEntity.getTotalPlanQuantity() * detailEntity.getPlanPiecePrice());
-        }else if(detailEntity.getPlanBlPrice() > 0){
-            detailEntity.setAmountTotal((detailEntity.getTotalPlanQuantity() / productEntity.getPackBlAmount()) * detailEntity.getPlanBlPrice());
-        }else if(detailEntity.getPlanCsPrice() > 0){
-            detailEntity.setAmountTotal(((detailEntity.getTotalPlanQuantity()/ productEntity.getPackBlAmount()) / productEntity.getPackCsAmount()) * detailEntity.getPlanCsPrice());
+        if(detailEntityToSave.getPlanPiecePrice() > 0) {
+            detailEntityToSave.setAmountTotal(detailEntityToSave.getTotalPlanQuantity() * detailEntityToSave.getPlanPiecePrice());
+        }else if(detailEntityToSave.getPlanBlPrice() > 0){
+            detailEntityToSave.setAmountTotal((detailEntityToSave.getTotalPlanQuantity() / productEntity.getPackBlAmount()) * detailEntityToSave.getPlanBlPrice());
+        }else if(detailEntityToSave.getPlanCsPrice() > 0){
+            detailEntityToSave.setAmountTotal(((detailEntityToSave.getTotalPlanQuantity()/ productEntity.getPackBlAmount()) / productEntity.getPackCsAmount()) * detailEntityToSave.getPlanCsPrice());
         }
 
-        inventoryPlanOutputDetailRepository.save(detailEntity);
+        InventoryPlanOutputDetailEntity detailEntityReturn = inventoryPlanOutputDetailRepository.save(detailEntityToSave);
 
-        return new ResultBean(detailEntity, Constants.STATUS_201, Constants.MESSAGE_OK);
+        return new ResultBean(detailEntityReturn, Constants.STATUS_201, Constants.MESSAGE_OK);
     }
 
     public static String formatDate(String date) throws Exception {

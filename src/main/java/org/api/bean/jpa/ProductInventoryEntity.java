@@ -26,8 +26,8 @@ public class ProductInventoryEntity extends CommonEntity{
 
     //productOwnerId
     @Column(name = "product_owner_id")
-    @JsonProperty("companyOwnerId")
-    private Integer companyOwnerId;
+    @JsonProperty("productOwnerId")
+    private Integer productOwnerId;
 
     //customerCode
     @Column(name = "customer_code")

@@ -87,6 +87,11 @@ public class InventoryOutputController {
         ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
         return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
     }
+    @DeleteMapping(value = "/inventory-output/plan")
+    public ResponseEntity<ResultBean> deleteOutputPlan2(@RequestParam(value = "id") Integer id) throws Exception{
+        ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
+        return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
+    }
 
 //    @PostMapping("/plan/detail")
 //    public ResponseEntity<Paging<InventoryPlanOutputDetailDto>> getAllInventoryPlanOutputDetailByInventoryOutputId (@PageableDefault(size = PageableConstrants.DEFAULT_SIZE, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable,

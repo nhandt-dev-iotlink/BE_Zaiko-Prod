@@ -22,4 +22,8 @@ public class CustomerDeliveryDestDto {
     private String address2;
     private String address3;
     private String address4;
+    private Integer companyId;
+    private Integer customerId;
+    private String isCustomer = "0";
+    private Integer leadTime;
 }
