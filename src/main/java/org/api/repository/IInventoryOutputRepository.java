@@ -1,5 +1,6 @@
 package org.api.repository;
 
+import org.api.bean.dto.CustomerDestAddress;
 import org.api.bean.dto.OutputListDto;
 import org.api.bean.dto.SearchOutputListDto;
 import org.api.bean.jpa.InventoryOutputEntity;
@@ -169,6 +170,27 @@ public interface IInventoryOutputRepository extends JpaRepository<InventoryOutpu
             @Param("ownerName") String ownerName,
             Pageable pageable
     );
+
+
+    @Query(value = "SELECT \n" +
+            "    MAX(slip_no)\n" +
+            "FROM\n" +
+            "    t_inventory_output\n" +
+            "WHERE\n" +
+            "    slip_no LIKE CONCAT(:formattedDate, '%') AND del_flg = 0;"
+            ,nativeQuery = true)
+    String generateSlipNo(@Param("formattedDate") String formattedDate);
+    @Query(value = "SELECT " +
+            "    cdd.post_code AS postCode, " +
+            "    cdd.address1 AS address1, " +
+            "    cdd.address2 AS address2, " +
+            "    cdd.address3 AS address3, " +
+            "    cdd.address4 AS address4 " +
+            "FROM\n" +
+            "    m_customer_delivery_dest cdd " +
+            "WHERE\n" +
+            "    cdd.post_code = :postCode AND cdd.del_flg = 0;", nativeQuery = true)
+    CustomerDestAddress getCustomerDestAddress(@Param("postCode") String postCode);
 
 
     //version using id

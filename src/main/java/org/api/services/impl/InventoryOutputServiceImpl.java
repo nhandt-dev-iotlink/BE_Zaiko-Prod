@@ -1,7 +1,10 @@
 package org.api.services.impl;
 
+import org.api.bean.dto.CustomerDestAddress;
 import org.api.bean.dto.OutputListDto;
 import org.api.bean.dto.SearchOutputListDto;
+import org.api.bean.jpa.InventoryOutputEntity;
+import org.api.bean.jpa.InventoryPlanOutputDetailEntity;
 import org.api.repository.IInventoryOutputRepository;
 import org.api.services.IInventoryOutputService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +98,35 @@ public class InventoryOutputServiceImpl implements IInventoryOutputService {
                 ownerName,
                 pageable);
     }
+
+    @Override
+    public String generateSlipNo(String formattedDate) {
+        String slipNo = inventoryOutputRepository.generateSlipNo(formattedDate);
+        System.out.println(slipNo);
+        if(slipNo == null) {
+            return formattedDate + "0001";
+        } else {
+
+            Long nextSlipNo = Long.parseLong(slipNo) + 1;
+            return String.valueOf(nextSlipNo);
+        }
+    }
+
+    @Override
+    public InventoryOutputEntity saveInventoryOutput(InventoryOutputEntity inventoryOutput) {
+        return inventoryOutputRepository.save(inventoryOutput);
+    }
+
+    @Override
+    public CustomerDestAddress getCustomerDestAddress(String postCode) {
+        return inventoryOutputRepository.getCustomerDestAddress(postCode);
+    }
+
+    @Override
+    public InventoryOutputEntity getOutputById(Integer inventoryOutputId) {
+        return inventoryOutputRepository.findById(inventoryOutputId).get();
+    }
+
 
 
 }

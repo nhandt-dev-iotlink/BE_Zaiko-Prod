@@ -63,7 +63,7 @@ public class CustomerDeliveryDestEntity extends CommonEntity {
     //Post Code
     @Column(name = "post_code", nullable = false)
     @JsonProperty("postCode")
-    private String postCode1;
+    private String postCode;
 
     //Address 1
     @Column(name = "address1", nullable = false)
@@ -125,4 +125,179 @@ public class CustomerDeliveryDestEntity extends CommonEntity {
     @JsonProperty("notes")
     private String notes;
 
+    public Integer getDeliveryDestinationId() {
+        return deliveryDestinationId;
+    }
+
+    public void setDeliveryDestinationId(Integer deliveryDestinationId) {
+        this.deliveryDestinationId = deliveryDestinationId;
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getIsCustomer() {
+        return isCustomer;
+    }
+
+    public void setIsCustomer(String isCustomer) {
+        this.isCustomer = isCustomer;
+    }
+
+    public String getDestinationCode() {
+        return destinationCode;
+    }
+
+    public void setDestinationCode(String destinationCode) {
+        this.destinationCode = destinationCode;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Integer getPicName() {
+        return picName;
+    }
+
+    public void setPicName(Integer picName) {
+        this.picName = picName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
+    }
+
+    public String getAddress4() {
+        return address4;
+    }
+
+    public void setAddress4(String address4) {
+        this.address4 = address4;
+    }
+
+    public Integer getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(Integer leadTime) {
+        this.leadTime = leadTime;
+    }
+
+    public String getRouteCode() {
+        return routeCode;
+    }
+
+    public void setRouteCode(String routeCode) {
+        this.routeCode = routeCode;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public Integer getOutputPriorityRank() {
+        return outputPriorityRank;
+    }
+
+    public void setOutputPriorityRank(Integer outputPriorityRank) {
+        this.outputPriorityRank = outputPriorityRank;
+    }
+
+    public String getFreeItem1() {
+        return freeItem1;
+    }
+
+    public void setFreeItem1(String freeItem1) {
+        this.freeItem1 = freeItem1;
+    }
+
+    public String getFreeItem2() {
+        return freeItem2;
+    }
+
+    public void setFreeItem2(String freeItem2) {
+        this.freeItem2 = freeItem2;
+    }
+
+    public String getFreeItem3() {
+        return freeItem3;
+    }
+
+    public void setFreeItem3(String freeItem3) {
+        this.freeItem3 = freeItem3;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

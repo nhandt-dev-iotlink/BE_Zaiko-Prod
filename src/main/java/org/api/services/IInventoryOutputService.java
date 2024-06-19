@@ -1,8 +1,12 @@
 package org.api.services;
 
 
+import org.api.bean.dto.CustomerDestAddress;
+import org.api.bean.dto.CustomerDestDto;
 import org.api.bean.dto.OutputListDto;
 import org.api.bean.dto.SearchOutputListDto;
+import org.api.bean.jpa.InventoryOutputEntity;
+import org.api.bean.jpa.InventoryPlanOutputDetailEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -54,6 +58,15 @@ public interface IInventoryOutputService {
                                                           String ownerCodeTo,
                                                           String ownerName,
                                                           Pageable pageable);
+
+
+    String generateSlipNo(String formattedDate);
+
+    InventoryOutputEntity saveInventoryOutput(InventoryOutputEntity inventoryOutput);
+
+    CustomerDestAddress getCustomerDestAddress(String postCode);
+
+    InventoryOutputEntity getOutputById(Integer inventoryOutputId);
 
 
 }

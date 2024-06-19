@@ -12,6 +12,7 @@ public interface IRepository extends BaseRepository<RepositoryEntity, Integer> {
             "   repository_id as repositoryId, " +
             "   repository_code as repositoryCode, " +
             "   repository_name as repositoryName  " +
-            " FROM m_repository order by repositoryCode asc ", nativeQuery = true)
+            " FROM m_repository WHERE del_flg = 0 " +
+            " order by repositoryCode asc ", nativeQuery = true)
     List<RepositoryDto> getAll();
 }

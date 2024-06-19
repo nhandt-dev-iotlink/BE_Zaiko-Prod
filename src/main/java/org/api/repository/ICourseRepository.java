@@ -11,6 +11,7 @@ public interface ICourseRepository extends BaseRepository<CustomerEntity,Integer
             "course_code as courseCode, " +
             "course_name as courseName " +
             "FROM m_course  " +
+            "WHERE del_flg = 0 " +
             "order by courseCode ASC  ", nativeQuery = true)
     List<CourseDto> getAll();
 }

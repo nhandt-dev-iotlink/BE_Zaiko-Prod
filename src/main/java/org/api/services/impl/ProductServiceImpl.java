@@ -18,4 +18,9 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductDto> getAll(String keyword) {
         return productRepository.getAll(keyword);
     }
+
+    @Override
+    public ProductDto getByCode(String productCode) {
+        return productRepository.findByCode(productCode);
+    }
 }

@@ -16,6 +16,7 @@ public interface ISupplierRepository extends BaseRepository<SupplierEntity, Inte
             "FROM m_supplier " +
             "WHERE (supplier_name like CONCAT('%', :keyword, '%')) " +
             "OR (supplier_code like CONCAT('%', :keyword, '%')) " +
+            "AND del_flg = 0 " +
             "order by supplierCode asc ", nativeQuery = true)
     List<SupplierDto> getAll(@Param("keyword") String keyword);
 }

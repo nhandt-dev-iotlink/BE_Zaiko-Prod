@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IProductService {
     List<ProductDto> getAll(String keyword);
+
+    ProductDto getByCode(String productCode);
 }

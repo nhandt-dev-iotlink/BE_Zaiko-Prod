@@ -16,6 +16,16 @@ public interface ICustomerDestRepository extends BaseRepository<CustomerDelivery
             "FROM m_customer_delivery_dest " +
             "WHERE (department_name like CONCAT('%', :keyword, '%')) " +
             "OR (destination_code like CONCAT('%', :keyword, '%')) " +
+            "AND del_flg = 0 " +
             "order by destinationCode asc ", nativeQuery = true)
     List<CustomerDestDto> getAll(@Param("keyword") String keyword);
+    @Query(value = " SELECT \n " +
+            "  delivery_destination_id as deliveryDestinationId, " +
+            "  customer_id as customerId, " +
+            "  destination_code  as destinationCode,\n " +
+            "  department_name as departmentName \n " +
+            "FROM m_customer_delivery_dest " +
+            "WHERE destination_code = :destinationCode " +
+            "AND del_flg = 0 ", nativeQuery = true)
+    CustomerDestDto findByCode(@Param("destinationCode") String destinationCode);
 }
