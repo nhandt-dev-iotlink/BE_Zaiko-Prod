@@ -36,7 +36,7 @@ public class InventoryPlanOutputDetailController {
     private InventoryOutputService inventoryOutputService;
 
     @GetMapping("/detail")
-    public ResponseEntity<Paging<InventoryPlanOutputDetailDto>> getAllInventoryPlanOutputDetailByInventoryOutputId(@PageableDefault(size = PageableConstrants.DEFAULT_SIZE, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable,
+    public ResponseEntity<Paging<InventoryPlanOutputDetailDto>> getAllInventoryPlanOutputDetailByInventoryOutputId(@PageableDefault(size = 1000, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable,
                                                                                                                    Integer page, Integer size,
                                                                                                                    @RequestParam(value = "id") Integer id) throws Exception {
         Page<InventoryPlanOutputDetailDto> pages = inventoryPlanOutputDetailService.getAllInventoryPlanOutputDetailByInventoryOutputId(pageable, id);

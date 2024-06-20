@@ -82,13 +82,13 @@ public class InventoryOutputController {
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/inventory-output/plan")
-    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception{
-        ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
-        return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
-    }
+//    @PutMapping(value = "/inventory-output/plan")
+//    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception{
+//        ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
+//        return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
+//    }
     @DeleteMapping(value = "/inventory-output/plan")
-    public ResponseEntity<ResultBean> deleteOutputPlan2(@RequestParam(value = "id") Integer id) throws Exception{
+    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception{
         ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
         return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
     }

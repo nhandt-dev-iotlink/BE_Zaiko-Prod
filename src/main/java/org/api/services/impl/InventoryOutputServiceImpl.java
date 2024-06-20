@@ -118,13 +118,9 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
         }
         List<InventoryPlanOutputDetailDto> listDetail = planFormDto.getDetailForm();
         InventoryOutputEntity outputEntityToSave = new InventoryOutputEntity();
-//        InventoryOutputEntity outputEntityToSave = null;
-        if (outputPlanDto.getInventoryOutputId() != null || outputPlanDto.getSlipNo() != null) {
+        if (outputPlanDto.getInventoryOutputId() != null) {
             outputEntityToSave = inventoryOutputRepo.getOneById(outputPlanDto.getInventoryOutputId());
             outputPlanMapper.update(outputEntityToSave, outputPlanDto);
-//            outputEntityToSave.setUpdateDate(null);
-//            outputEntityReturn = inventoryOutputRepo.save(outputEntityToSave);
-//            return new ResultBean(outputEntityReturn, Constants.STATUS_201, Constants.MESSAGE_OK);
         }else {
             outputEntityToSave = outputPlanMapper.toEntity(outputPlanDto);
             outputEntityToSave.setCompanyId(Constants.ONE_IN);
@@ -144,7 +140,6 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
             }
         }
         outputEntityToSave.setPlanDeliverDate(outputPlanDto.getPlanDeliveryDate());
-
 
         CustomerEntity customerEntity = new CustomerEntity();
         CustomerDeliveryDestEntity customerDeliveryDestEntity = new CustomerDeliveryDestEntity();
