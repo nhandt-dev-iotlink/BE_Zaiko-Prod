@@ -11,7 +11,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InventoryOutputListDTO extends CommonResponse implements Serializable {
-
     private Integer inventoryOutputId;
     private String closed;
     private String outputStatus;

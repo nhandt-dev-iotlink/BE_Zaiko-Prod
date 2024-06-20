@@ -177,7 +177,7 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
 
     //isClosed
     @Column(name = "is_closed",
-            columnDefinition = "varchar(50) default '未クローズ'")
+            columnDefinition = "varchar(50) default '0'")
     @JsonProperty("isClosed")
     private String is_closed;
 
@@ -199,7 +199,7 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
     //checked
     @Column(name = "checked")
     @JsonProperty("checked")
-    private Boolean checked;
+    private String checked;
 
     //saleCategory
     @Column(name = "sale_category",

@@ -1,12 +1,14 @@
 package org.api.services.impl;
 
 import org.api.annotation.LogExecutionTime;
+import org.api.bean.ResultBean;
 import org.api.bean.jpa.CustomerEntity;
 import org.api.bean.mapper.CustomerMapper;
 import org.api.bean.reponse.dto.CustomerDTO;
 import org.api.repository.customer.CustomerRepository;
 import org.api.services.CustomerService;
 import org.api.utils.ApiValidateException;
+import org.api.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
             return Collections.emptyList();
         }
         return entities.stream()
-                .map(customerMapper)
+                .map(entity -> customerMapper.customerToCustomerDto(entity))
                 .collect(Collectors.toList());
     }
 
@@ -43,8 +45,31 @@ public class CustomerServiceImpl implements CustomerService {
             return Collections.emptyList();
         }
         return entities.stream()
-                .map(customerMapper)
+                .map(entity -> customerMapper.customerToCustomerDto(entity))
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CustomerDTO getCustomerByCode(String customerCode) {
+        CustomerEntity entity = customerRepository.getCustomerEntityByCode(customerCode);
+        return customerMapper.customerToCustomerDto(entity);
+    }
+
+    @Override
+    public CustomerDTO getCustomerById(Integer id) {
+        CustomerEntity entity = customerRepository.getCustomerEntityById(id);
+        return customerMapper.customerToCustomerDto(entity);
+    }
+
+    @Override
+    @Transactional
+    public ResultBean createCustomer(CustomerEntity customer) throws ApiValidateException, Exception {
+
+        if (customerRepository.existsById(customer.getCustomerId())) {
+            throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "Customer with code " + customer.getCustomerCode() + " already exists.");
+        }
+        CustomerEntity savedCustomer = customerRepository.save(customer);
+        return new ResultBean(savedCustomer, Constants.STATUS_201, Constants.MESSAGE_OK);
+
+    }
 }

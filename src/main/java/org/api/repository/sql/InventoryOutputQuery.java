@@ -5,6 +5,9 @@ import org.api.services.impl.InventoryOutputServiceImpl;
 public class InventoryOutputQuery {
 
 
+    public  static final String CHECK_SLIP_NO="SELECT COUNT(io) > 0 FROM InventoryOutputEntity io WHERE io.slip_no = :slipNo";
+
+
     public static final String FIND_WITH_FILTERS = " SELECT new org.api.bean.reponse.dto.InventoryOutputListDTO(  " +
             "    i.inventory_output_id, " +
             "    i.is_closed, " +

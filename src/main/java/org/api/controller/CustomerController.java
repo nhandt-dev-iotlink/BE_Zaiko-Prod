@@ -4,6 +4,7 @@ package org.api.controller;
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
 
+import org.api.bean.jpa.CustomerEntity;
 import org.api.bean.reponse.dto.CustomerDTO;
 
 import org.api.services.CustomerService;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,5 +57,39 @@ public class CustomerController {
         }
 
     }
+
+    @GetMapping(value = "/api/customer-by-code/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> getCustomerByCode(@PathVariable String code){
+        try {
+            CustomerDTO entity =customerService.getCustomerByCode(code);
+            if(entity==null){
+                ResultBean eResultBean = new ResultBean(entity , Constants.RESULTS,"No Content");
+                return new ResponseEntity<>(eResultBean,HttpStatus.OK);
+            }
+            ResultBean eResultBean = new ResultBean(entity,Constants.STATUS_OK,Constants.MESSAGE_OK);
+            return new ResponseEntity<>(eResultBean,HttpStatus.OK);
+
+        } catch(Exception e) {
+            ResultBean errorResult = new ResultBean("500", "Error", "An error occurred: " + e.getMessage());
+            return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping(value = "/api/customer-by-id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> getCustomerById(@PathVariable Integer id){
+        try {
+            CustomerDTO entity =customerService.getCustomerById(id);
+            if(entity==null){
+                ResultBean eResultBean = new ResultBean(entity , Constants.RESULTS,"No Content");
+                return new ResponseEntity<>(eResultBean,HttpStatus.OK);
+            }
+            ResultBean eResultBean = new ResultBean(entity,Constants.STATUS_OK,Constants.MESSAGE_OK);
+            return new ResponseEntity<>(eResultBean,HttpStatus.OK);
+
+        } catch(Exception e) {
+            ResultBean errorResult = new ResultBean("500", "Error", "An error occurred: " + e.getMessage());
+            return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

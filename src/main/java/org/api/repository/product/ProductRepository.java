@@ -24,4 +24,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity ,Integer>
             nativeQuery = true)
     List<ProductEntity> findProductByKeyword(@Param("keyWord") String keyWord);
 
+
+    @Query(value = "SELECT * FROM m_product WHERE del_flg = '0' AND product_code = :productCode",nativeQuery = true)
+    ProductEntity getProductByCode( @Param("productCode") String productCode );
+
+    @Query(value = "SELECT * FROM m_product WHERE del_flg = '0' AND product_id = :productId",nativeQuery = true)
+    ProductEntity getProductById( @Param("productId") Integer productId );
+
 }

@@ -5,7 +5,6 @@ import org.api.bean.jpa.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 
@@ -19,4 +18,11 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
             nativeQuery = true)
     List<CustomerEntity> findCustomerKeyword(@Param("keyWord") String keyWord);
 
+    @Query(value = "SELECT c FROM CustomerEntity c WHERE c.delFlg = '0' AND c.customerCode = :customerCode")
+    CustomerEntity getCustomerEntityByCode(@Param("customerCode") String customerCode);
+
+
+
+    @Query(value = "SELECT c FROM CustomerEntity c WHERE c.delFlg = '0' AND c.customerId = :customerId")
+    CustomerEntity getCustomerEntityById(@Param("customerId") Integer customerId);
 }

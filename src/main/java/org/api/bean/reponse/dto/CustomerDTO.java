@@ -6,13 +6,114 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Getter
 @Setter
 @Builder
 public class CustomerDTO {
+
+    @JsonProperty("customerId")
     private Integer customerId;
+
+    // CompanyId
+    @JsonProperty("companyId")
+    private Integer companyId;
+
+    //Customer Code
+    @JsonProperty("customerCode")
     private String customerCode;
+
+    //Customer Name
+    @JsonProperty("customerName")
     private String customerName;
+
+    //Deparment Name
+    @JsonProperty("departmentName")
+    private String departmentName;
+
+    //Pic Name
+    @JsonProperty("picName")
+    private String picName;
+
+    //Phone Number
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
+
+    //Fax Number
+    @JsonProperty("faxNumber")
+    private String faxNumber;
+
+    //Post Code
+    @JsonProperty("postCode")
+    private String postCode;
+
+    //Address 1
+    @JsonProperty("address1")
+    private String address1;
+
+    //Address 2
+    @JsonProperty("address2")
+    private String address2;
+
+    //Address 3
+    @JsonProperty("address3")
+    private String address3;
+
+    //Address 4
+    @JsonProperty("address4")
+    private String address4;
+
+    //Bank Name
+    @JsonProperty("bankName")
+    private String bankName;
+
+    //Bank Branch Name
+    @JsonProperty("bankBranchName")
+    private String bankBranchName;
+
+    //Bank Acc Number
+    @JsonProperty("bankAccNumber")
+    private String bankAccNumber;
+
+    //Bank Acc Holder
+    @JsonProperty("bankAccHolder")
+    private String bankAccHolder;
+
+    //Lead Time
+    @JsonProperty("leadTime")
+    private Integer leadTime;
+
+    //Route Code
+    @JsonProperty("routeCode")
+    private String routeCode;
+
+    //Course Code
+    @JsonProperty("courseCode")
+    private String courseCode;
+
+    //Output Priority Rank
+    @JsonProperty("outputPriorityRank")
+    private Integer outputPriorityRank = 1;
+
+    // FreeItem1
+    @JsonProperty("freeItem1")
+    private String freeItem1;
+
+    // FreeItem2
+    @JsonProperty("freeItem2")
+    private String freeItem2;
+
+    // FreeItem3
+    @JsonProperty("freeItem3")
+    private String freeItem3;
+
+    //Notes
+    @JsonProperty("notes")
+    private String notes;
 
 
 

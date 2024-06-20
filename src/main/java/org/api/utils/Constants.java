@@ -33,6 +33,9 @@ public class Constants {
     public static final String STATUS_X_CYBOZU_AUTHORIZATION = "520";
     public static final String STATUS_DUPLICATE = "409";
 
+    public  static final Double TAX= 0.10;
+    public static final Integer DEFAULT_COMPANY_ID = 0001;
+
     // Message response
     public static final String MESSAGE_OK = "処理に成功しました";
     public static final String MESSAGE_SYSTEM_ERROR = "サーバーでエラーが発生しました。管理者に問い合わせてください。";

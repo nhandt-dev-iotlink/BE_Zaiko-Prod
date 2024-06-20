@@ -1,7 +1,9 @@
 package org.api.controller;
 
+import com.google.api.Http;
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
+import org.api.bean.jpa.ProductEntity;
 import org.api.bean.reponse.dto.CustomerDeliveryDestDTO;
 import org.api.bean.reponse.dto.ProductDTO;
 import org.api.services.ProductService;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,4 +57,42 @@ public class ProductController {
 
 
     }
+
+    @GetMapping(value = "/api/product-by-product-code/{productCode}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> getProductByCode(@PathVariable String productCode){
+        try {
+            ProductDTO product = productService.getProductByCode(productCode);
+            if(product==null){
+                ResultBean notData = new ResultBean(product,Constants.STATUS_OK,Constants.MESSAGE_OK);
+                return new ResponseEntity<>(notData,HttpStatus.OK);
+            }
+            ResultBean resultBean = new ResultBean(product , Constants.STATUS_OK,Constants.MESSAGE_OK);
+            return new ResponseEntity<>(resultBean,HttpStatus.OK);
+        }catch (Exception e){
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR,"Error","An error occurred: " +e.getMessage());
+            return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
+    }
+    @GetMapping(value = "/api/product-by-product-id/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> getProductById(@PathVariable Integer productId) {
+        try {
+            ProductDTO product = productService.getProductById(productId);
+
+            if (product == null) {
+                ResultBean notData = new ResultBean(product, Constants.STATUS_OK, Constants.MESSAGE_OK);
+                return new ResponseEntity<>(notData, HttpStatus.OK);
+            }
+
+            ResultBean resultBean = new ResultBean(product, Constants.STATUS_OK, Constants.MESSAGE_OK);
+            return new ResponseEntity<>(resultBean, HttpStatus.OK);
+
+        } catch (Exception e) {
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, "Error", "An error occurred: " + e.getMessage());
+            return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

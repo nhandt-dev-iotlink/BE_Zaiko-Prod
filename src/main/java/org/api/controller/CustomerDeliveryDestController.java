@@ -3,6 +3,7 @@ package org.api.controller;
 
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
+import org.api.bean.jpa.CustomerDeliveryDestEntity;
 import org.api.bean.reponse.dto.CustomerDeliveryDestDTO;
 import org.api.services.CustomerDeliveryDestService;
 import org.api.utils.Constants;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,4 +54,23 @@ public class CustomerDeliveryDestController {
 
 
     }
+
+   @GetMapping(value = "/api/customer-destination-by-code/{destinationCode}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> getCustomerDeliveryDest(@PathVariable String destinationCode){
+        try {
+            CustomerDeliveryDestDTO deliveryDestEntity = customerDeliveryDestService.getCustomerDeliveryDestByCode(destinationCode);
+            if(deliveryDestEntity==null){
+                ResultBean notBean = new ResultBean(deliveryDestEntity,Constants.STATUS_OK,"No Content ");
+                return new ResponseEntity<>(notBean,HttpStatus.OK);
+            }
+            ResultBean resultBean = new ResultBean(deliveryDestEntity,Constants.STATUS_OK,Constants.MESSAGE_OK );
+            return new ResponseEntity<>(resultBean,HttpStatus.OK);
+
+        } catch ( Exception e){
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, "Error", "An error occurred: " + e.getMessage());
+            return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+   }
+
 }

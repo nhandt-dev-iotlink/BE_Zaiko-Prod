@@ -1,12 +1,15 @@
 package org.api.controller;
 
 
+import com.google.api.Http;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.api.annotation.LogExecutionTime;
 
+import org.api.bean.ResultBean;
 import org.api.bean.reponse.dto.InventoryOutputListDTO;
 
 import org.api.services.InventoryOutputService;
+import org.api.utils.Constants;
 import org.api.utils.PageableConstrants;
 import org.api.utils.PaginationUtils;
 import org.api.utils.Paging;
@@ -21,10 +24,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.util.List;
 
 @LogExecutionTime
@@ -41,6 +43,33 @@ public class InventoryOutputController {
 
     @Autowired
     private InventoryOutputService outputService;
+
+
+    @GetMapping(value = "/api/check-slip-no/{slipNo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> checkSlipNo(@PathVariable String slipNo) {
+        try {
+            Boolean exists = outputService.existsBySlipNo(slipNo);
+            ResultBean successResult = new ResultBean(exists, Constants.STATUS_OK, Constants.MESSAGE_OK);
+            return new ResponseEntity<>(successResult,HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @GetMapping("/api/get-automatic-slip-no")
+    public ResponseEntity<String> getNextAutomaticSlipNumber() {
+        try {
+            String nextSlipNumber = outputService.getNextAutomaticSlipNo();
+            if (nextSlipNumber != null) {
+                return ResponseEntity.ok(nextSlipNumber);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            String errorMessage = "An error occurred while retrieving the next automatic slip number: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
+    }
+
 
     @GetMapping(value = "/api/inventory-output", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Paging<InventoryOutputListDTO>> getInventorySearch(@PageableDefault(size = PageableConstrants.DEFAULT_SIZE, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable, String keyWord,Integer page, Integer size,

@@ -28,22 +28,26 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     private InventoryOutputListRepository outputListRepository;
 
     private static final Logger log = LoggerFactory.getLogger(InventoryOutputServiceImpl.class);
-
-
-    // Method để kiểm tra và chuyển đổi tham số ngày tháng
-    private LocalDate convertToDate(String dateStr) {
-        if (dateStr == null) {
-            return null;
+    @Override
+    public String getNextAutomaticSlipNo() {
+        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd"));
+        String lastSlipNo = outputListRepository.findLastSlipNoByDate(currentDate);
+        String nextSlipNo;
+        if (lastSlipNo == null) {
+            nextSlipNo = currentDate + "0001";
+        } else {
+            int sequence = Integer.parseInt(lastSlipNo.substring(6)) + 1;
+            nextSlipNo = currentDate + String.format("%04d", sequence);
         }
-        try {
-            // Định dạng chuẩn của ngày tháng
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            return LocalDate.parse(dateStr, formatter);
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Định dạng ngày tháng không hợp lệ: " + dateStr);
-        }
+        return nextSlipNo;
     }
 
+
+    @Override
+    public boolean existsBySlipNo(String slipNo) {
+        Boolean exists = outputListRepository.existsBySlipNo(slipNo);
+        return exists != null && exists;
+    }
 
 
 

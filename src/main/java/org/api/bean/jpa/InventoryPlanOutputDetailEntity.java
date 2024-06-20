@@ -16,7 +16,7 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plan_detail_id")
-    @JsonProperty("planDetail_id")
+    @JsonProperty("planDetailId")
     private Integer plan_detail_id;
 
     //companyId
@@ -26,12 +26,12 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
 
     //inventoryOutput_id
     @Column(name = "inventory_output_id",nullable = false)
-    @JsonProperty("inventoryOutput_id")
+    @JsonProperty("inventoryOutputId")
     private Integer inventory_output_id;
 
     //productInventory_id
     @Column(name = "product_inventory_id")
-    @JsonProperty("productInventory_id")
+    @JsonProperty("productInventoryId")
     private Integer product_inventory_id;
 
     //productId
@@ -51,27 +51,27 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
 
     //datetime_mng_from
     @Column(name = "datetime_mng_from")
-    @JsonProperty("datetime_mng_from")
+    @JsonProperty("datetimeMngFrom")
     private String datetime_mng_from;
 
     //datetime_mng_to
     @Column(name = "datetime_mng_to")
-    @JsonProperty("datetime_mng_to")
+    @JsonProperty("datetimeMngTo")
     private String datetime_mng_to;
 
     //number_mng_from
     @Column(name = "number_mng_from")
-    @JsonProperty("number_mng_from")
+    @JsonProperty("numberMngFrom")
     private String number_mng_from;
 
     //number_mng_to
     @Column(name = "number_mng_to")
-    @JsonProperty("number_mng_to")
+    @JsonProperty("numberMngTo")
     private String number_mng_to;
 
     //productOwner_id
     @Column(name = "product_owner_id")
-    @JsonProperty("productOwner_id")
+    @JsonProperty("productOwnerId")
     private Integer product_owner_id;
 
     //supplierId
@@ -81,22 +81,22 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
 
     //cs_plan_quantity
     @Column(name = "cs_plan_quantity")
-    @JsonProperty("cs_plan_quantity")
+    @JsonProperty("csPlanQuantity")
     private Integer cs_plan_quantity;
 
     //bl_plan_quantity
     @Column(name = "bl_plan_quantity")
-    @JsonProperty("bl_plan_quantity")
+    @JsonProperty("blPlanQuantity")
     private Integer bl_plan_quantity;
 
     //ps_plan_quantity
     @Column(name = "ps_plan_quantity")
-    @JsonProperty("ps_plan_quantity")
+    @JsonProperty("psPlanQuantity")
     private Integer ps_plan_quantity;
 
     //total_plan_quantity
     @Column(name = "total_plan_quantity")
-    @JsonProperty("total_plan_quantity")
+    @JsonProperty("totalPlanQuantity")
     private Integer total_plan_quantity;
 
     //inventoryProductType
@@ -111,12 +111,12 @@ public class InventoryPlanOutputDetailEntity extends CommonEntity {
 
     //plan_cs_price
     @Column(name = "plan_cs_price",precision = 7,scale = 2)
-    @JsonProperty("plan_cs_price")
+    @JsonProperty("planCsPrice")
     private Double plan_cs_price;
 
     //plan_bl_price
     @Column(name = "plan_bl_price",precision = 7,scale = 2)
-    @JsonProperty("plan_bl_price")
+    @JsonProperty("planBlPrice")
     private Double plan_bl_price;
 
     //planPiecePrice

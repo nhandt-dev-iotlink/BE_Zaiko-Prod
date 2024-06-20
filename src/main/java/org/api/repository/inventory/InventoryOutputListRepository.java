@@ -20,6 +20,17 @@ import static org.api.bean.request.InventorySearchCriteria.*;
 @Repository
 public interface InventoryOutputListRepository extends JpaRepository <InventoryOutputEntity, Integer> {
 
+
+
+    @Query(value = "SELECT max(t.slip_no) \n" +
+            "FROM t_inventory_output t \n" +
+            "WHERE t.slip_no LIKE CONCAT(:datePattern, '%') \n" +
+            "ORDER BY t.slip_no DESC", nativeQuery = true)
+    String findLastSlipNoByDate(@Param("datePattern") String datePattern);
+
+    @Query(value = InventoryOutputQuery.CHECK_SLIP_NO)
+    boolean existsBySlipNo(@Param("slipNo") String slipNo);
+
     @Query(value = InventoryOutputQuery.FIND_WITH_FILTERS)
     public Page<InventoryOutputListDTO> findInventoryOutputWithFilters(Pageable pageable,
                                                                        @Param("repositoryIdFrom") Integer repositoryIdFrom,@Param("repositoryIdTo") Integer repositoryIdTo,

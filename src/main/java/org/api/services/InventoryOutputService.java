@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface InventoryOutputService {
 
+    boolean existsBySlipNo(String slipNo);
 
-
-
+    String getNextAutomaticSlipNo();
 
     public Page<InventoryOutputListDTO> findInventoryOutputWithFilters(Pageable pageable,Integer page,Integer size,Integer repositoryIdFrom,Integer repositoryIdTo,String orderDateFrom,String orderDateTo,String planOutputDateFrom,String planOutputDateTo, String planWorkingDateFrom,String planWorkingDateTo, String planDeliverDateFrom,String planDeliverDateTo,
                                                                        String slipNoFrom,String slipNoTo, String productCodeFrom,String productCodeTo,String batchNo,String productName, String destinationCodeFrom,String destinationCodeTo,String departmentName, String supplierCodeFrom, String supplierCodeTo, String supplierName,
