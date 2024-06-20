@@ -13,7 +13,7 @@ public interface InventoryPlanOutputSerice {
 
     public ResultBean createInventoryOutputPlan(PlanFormDTO json) throws ApiValidateException ,Exception;
 
-    public ResultBean removeInventoryOutputPlan (Integer inventoryId, List<Integer> inventoryDetailId) throws ApiValidateException ,Exception;
+    public ResultBean removeInventoryOutputPlan (Integer inventoryId) throws ApiValidateException ,Exception;
 
     public ResultBean getOutputDetailById(Integer id) throws ApiValidateException;
 }

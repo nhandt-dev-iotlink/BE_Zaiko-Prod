@@ -193,29 +193,31 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
 
 
     @Override
-    public ResultBean removeInventoryOutputPlan(Integer inventoryId, List < Integer > inventoryDetailIds) throws ApiValidateException, Exception {
+    public ResultBean removeInventoryOutputPlan(Integer inventoryId) throws ApiValidateException, Exception {
         try {
             InventoryOutputEntity outputEntity = planOutputRepository.findInventoryOutputEntity(inventoryId);
+
             if (outputEntity != null) {
                 outputEntity.setDelFlg("1");
                 planOutputRepository.save(outputEntity);
+
+                List<InventoryPlanOutputDetailEntity> inventoryDetails = planOutputDetailRepository.finPlanOutputDetailEntities(inventoryId);
+                for (InventoryPlanOutputDetailEntity detail : inventoryDetails) {
+                    detail.setDelFlg("1");
+                    planOutputDetailRepository.save(detail);
+                }
+
+                return new ResultBean(Constants.STATUS_201, "InventoryOutputEntityとInventoryPlanOutputDetailEntityのレコードを削除しました");
             } else {
                 throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "inventoryId", "IDでInventoryOutputEntityのレコードが見つかりませんでした：" + inventoryId);
             }
-            for (Integer detailId : inventoryDetailIds) {
-                InventoryPlanOutputDetailEntity planOutputDetailEntity = planOutputDetailRepository.findPlanOutputDetailEntity(detailId);
-                if (planOutputDetailEntity != null) {
-                    planOutputDetailEntity.setDelFlg("1");
-                    planOutputDetailRepository.save(planOutputDetailEntity);
-                } else {
-                    throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "inventoryDetailId", "IDでInventoryPlanOutputDetailEntityのレコードが見つかりませんでした：" + detailId);
-                }
-            }
-            return new ResultBean(Constants.STATUS_201, "InventoryOutputEntityとInventoryPlanOutputDetailEntityのレコードを削除しました");
+        
         } catch (Exception e) {
+            // Xử lý các ngoại lệ khác
             throw new Exception("データの削除中にエラーが発生しました：" + e.getMessage());
         }
     }
+
     @Override
     public ResultBean getOutputDetailById(Integer id) throws ApiValidateException  {
 

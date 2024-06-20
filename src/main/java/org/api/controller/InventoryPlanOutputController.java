@@ -59,14 +59,14 @@ public class InventoryPlanOutputController {
             return new ResultBean(Constants.STATUS_SYSTEM_ERROR, "在庫出荷計画の作成中にエラーが発生しました");
         }
     }
-    @DeleteMapping(value = "/api/inventory-output-plan", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResultBean> removeInventoryOutputPlan(@RequestParam("inventoryId") Integer inventoryId, @RequestParam("inventoryDetailId") List<Integer> inventoryDetailId) throws Exception, ApiValidateException  {
+    @DeleteMapping(value = "/api/inventory-output-plan/{inventoryId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultBean> removeInventoryOutputPlan(@PathVariable("inventoryId") Integer inventoryId) throws Exception, ApiValidateException  {
              ResultBean resultBean = null;
-            if (inventoryId == null && (inventoryDetailId == null || inventoryDetailId.isEmpty())) {
+            if (inventoryId == null ) {
                 return ResponseEntity.badRequest().body(new ResultBean(null, Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_SYSTEM_ERROR));
             }
-            resultBean = planOutputSerice.removeInventoryOutputPlan(inventoryId,inventoryDetailId);
-        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.CREATED);
+            resultBean = planOutputSerice.removeInventoryOutputPlan(inventoryId);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
 
     }
 
