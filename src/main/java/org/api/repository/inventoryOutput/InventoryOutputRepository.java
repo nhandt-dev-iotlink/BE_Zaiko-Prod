@@ -3,16 +3,14 @@ package org.api.repository.inventoryOutput;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.api.bean.jpa.InventoryOutputEntity;
 import org.api.dto.InventoryOutputDto;
-import org.api.dto.InventoryOutputPlanDto;
+import org.api.dto.InventoryOutputDetailDto;
 import org.api.repository.BaseRepository;
-import org.api.repository.sql.InventoryOutputQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -218,19 +216,21 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
     );
 
 
-    @Query(value = "SELECT new org.api.dto.InventoryOutputPlanDto(io.inventoryOutputId, io.isClosed, io.outputStatus, " +
-            "io.orderDate, io.planOutputDate, io.planWorkingDate, io.planDeliverDate, io.createSlipType, io.slipNo, " +
-            "io.planSupplierSlipNo, io.planCustomerDeliveryDestinationId, io.planCustomerId, io.planRepositoryId, io.checked, " +
-            "cdd.destinationCode, cdd.departmentName, cdd.phoneNumber, cdd.faxNumber, cdd.postCode, cdd.address1, " +
-            "cdd.address2, cdd.address3, cdd.address4, c.customerCode, c.customerName, r.routeCode, r.routeName," +
-            "co.courseCode, co.courseName, rp.repositoryCode, rp.repositoryName, io.slipNote) FROM InventoryOutputEntity io " +
+    @Query(value = "SELECT new org.api.dto.InventoryOutputPlanDto(" +
+                "io.inventoryOutputId, io.isClosed, io.outputStatus, " +
+                "io.orderDate, io.planOutputDate, io.planWorkingDate, io.planDeliverDate, io.createSlipType, io.slipNo, " +
+                "io.planSupplierSlipNo, io.planCustomerDeliveryDestinationId, io.planCustomerId, io.planRepositoryId, io.checked, " +
+                "cdd.destinationCode, cdd.departmentName, cdd.phoneNumber, cdd.faxNumber, cdd.postCode, cdd.address1, " +
+                "cdd.address2, cdd.address3, cdd.address4, c.customerCode, c.customerName, r.routeCode, r.routeName," +
+                "co.courseCode, co.courseName, rp.repositoryCode, rp.repositoryName, io.slipNote) " +
+            "FROM InventoryOutputEntity io " +
             "LEFT JOIN CustomerDeliveryDestEntity cdd ON io.planCustomerDeliveryDestinationId = cdd.deliveryDestinationId AND cdd.delFlg = '0' " +
             "LEFT JOIN CustomerEntity c ON io.planCustomerId = c.customerId AND c.delFlg = '0' " +
             "LEFT JOIN RouteEntity r ON (io.routeCode = r.routeCode OR c.routeCode = r.routeCode) AND r.delFlg = '0' " +
             "LEFT JOIN CourseEntity co ON r.routeCode = co.routeCode AND (io.courseCode = co.courseCode OR c.courseCode = co.courseCode) AND co.delFlg = '0' " +
             "LEFT JOIN RepositoryEntity rp ON io.planRepositoryId = rp.repositoryId AND rp.delFlg = '0'" +
             "WHERE io.delFlg = '0' AND io.inventoryOutputId = :id AND io.planOutputDate IS NOT NULL ")
-    Optional<InventoryOutputPlanDto> getInfoOutputPlanById(@Param("id") Integer id);
+    Optional<InventoryOutputDetailDto> getInfoOutputPlanById(@Param("id") Integer id);
 
     @Query(nativeQuery = true, value = "SELECT * FROM t_inventory_output ioe WHERE ioe.del_flg = '0' AND ioe.slip_no = :slipNo")
     Optional<InventoryOutputEntity> findBySlipNo(@Param("slipNo") String slipNo);

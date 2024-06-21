@@ -19,12 +19,12 @@ public class InventoryOutputDto {
     private String orderDate;
     private String actualOutputDate;
     private String planWorkingDate;
-    private String planDeliveDate;
-    private String actualDeliveDate;
+    private String planDeliveryDate;
+    private String actualDeliveryDate;
     private String destinationCodePlan;
-    private String deparmentNamePlan;
+    private String departmentNamePlan;
     private String destinationCodeActual;
-    private String deparmentNameActual;
+    private String departmentNameActual;
     private String customerCodePlan;
     private String customerNamePlan;
     private String customerCodeActual;

@@ -2,15 +2,11 @@ package org.api.services.impl;
 
 import org.api.bean.ResultBean;
 import org.api.bean.jpa.*;
-import org.api.dto.InventoryOutputPlanDto;
 import org.api.dto.InventoryPlanOutputDetailDto;
-import org.api.dto.PlanFormDto;
 import org.api.mapper.InventoryPlanOutputDetailMapper;
 import org.api.repository.inventoryPlanOutputDetail.InventoryPlanOutputDetailRepository;
-import org.api.repository.salePrice.SalePriceRepository;
 import org.api.services.*;
 import org.api.utils.Constants;
-import org.api.utils.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,9 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

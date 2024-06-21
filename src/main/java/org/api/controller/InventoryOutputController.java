@@ -1,13 +1,11 @@
 package org.api.controller;
 
 
+import com.google.gson.JsonObject;
 import org.api.bean.ResultBean;
 import org.api.dto.InventoryOutputDto;
 import org.api.services.InventoryOutputService;
-import org.api.services.impl.InventoryPlanOutputDetailServiceImpl;
-import org.api.utils.PageableConstrants;
-import org.api.utils.PaginationUtils;
-import org.api.utils.Paging;
+import org.api.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,14 +17,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.Date;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class InventoryOutputController {
     @Autowired
     private InventoryOutputService inventoryOutputService;
-    @Autowired
-    private InventoryPlanOutputDetailServiceImpl inventoryPlanOutputDetailService;
+    public static final String ALIAS = "User";
 
     @GetMapping(value = "/inventory-output")
     public ResponseEntity<Paging<InventoryOutputDto>> getAllPage(@PageableDefault(size = PageableConstrants.DEFAULT_SIZE, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable,
@@ -77,20 +76,46 @@ public class InventoryOutputController {
 //    }
 
     @GetMapping("/check-slip-no")
-    public ResponseEntity<ResultBean> checkSlipNo(@RequestParam(value = "slipNo") String slipNo) throws  Exception{
+    public ResponseEntity<ResultBean> checkSlipNo(@RequestParam(value = "slipNo") String slipNo) throws Exception {
         ResultBean resultBean = inventoryOutputService.checkSlipNo(slipNo);
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 
-//    @PutMapping(value = "/inventory-output/plan")
-//    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception{
-//        ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
-//        return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
-//    }
+    @PutMapping(value = "/inventory-output/plan", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResultBean> demo(@RequestBody String json) throws Exception {
+        ResultBean resultBean = null;
+        System.out.println(json);
+        String date1 = "2022/01/01";
+        JsonObject jsonObject = DataUtil.getJsonObject(json);
+        Date date = DataUtil.convertStringToDate(date1, "yyyy-MM-dd");
+        if (DataUtil.isDate(date.toString(), "yyyy-MM-dd")) {
+            throw new ApiValidateException(Constants.ID_BKE00004, ConstantColumns.DATETIME_MNG_FROM,
+                    MessageUtils.getMessage(Constants.ID_BKE00004, new Object[]{ItemNameUtils.getItemName(ConstantColumns.USER_ID, ALIAS)}));
+        }
+        if (DataUtil.isNull(jsonObject, ConstantColumns.USER_ID)) {
+            throw new ApiValidateException(Constants.ID_BKE00004, ConstantColumns.USER_ID,
+                    MessageUtils.getMessage(Constants.ID_BKE00004, new Object[]{ItemNameUtils.getItemName(ConstantColumns.USER_ID, ALIAS)}));
+        }
+
+        Integer userId = DataUtil.getJsonInteger(jsonObject, ConstantColumns.USER_ID);
+
+//        Optional<UserLoginEntity> userLoginEntity = UserLoginRepo.findOneById(userId);
+//        if (!userLoginEntity.isPresent()) {
+//            throw new ApiValidateException(Constants.ID_BKE00019, ConstantColumns.USER_ID,
+//                    MessageUtils.getMessage(Constants.ID_BKE00019, null, ItemNameUtils.getItemName(ConstantColumns.USER_ID, ALIAS)));
+//        }
+//        UserLoginEntity loginEntity = userLoginEntity.get();
+//        loginEntity.setAddress("TEET");
+//        // update user info
+//        this.convertJsonToEntity(jsonObject, loginEntity);
+
+        return new ResponseEntity<>(resultBean, HttpStatus.OK);
+    }
+
     @DeleteMapping(value = "/inventory-output/plan")
-    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception{
+    public ResponseEntity<ResultBean> deleteOutputPlan(@RequestParam(value = "id") Integer id) throws Exception {
         ResultBean resultBean = inventoryOutputService.deleteOutputPlanById(id);
-        return new ResponseEntity<>(resultBean, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(resultBean, HttpStatus.OK);
     }
 
 //    @PostMapping("/plan/detail")

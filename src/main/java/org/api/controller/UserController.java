@@ -32,30 +32,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  *
  * @author: (TanDX)
  * @version: 1.0
- * @History
- * [NUMBER]  [VER]     [DATE]          [USER]             [CONTENT]
+ * @History [NUMBER]  [VER]     [DATE]          [USER]             [CONTENT]
  * --------------------------------------------------------------------------
  * 001       1.0       2022/07/15      (TanDX)        Create new
-*/
+ */
 
 @LogExecutionTime
 @RestController
 public class UserController {
-    /** The Constant log. */
+    /**
+     * The Constant log.
+     */
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    /** The info service. */
+    /**
+     * The info service.
+     */
     @Autowired
     private UserService userService;
 
     /**
      * Add the user info.
      *
-     * @author (TanDX)
      * @param json
      * @return the response entity
+     * @author (TanDX)
      */
-    @PostMapping(value = "/api/user", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "/api/user", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResultBean> addUser(@RequestBody String json) throws Exception, ApiValidateException {
         ResultBean resultBean = null;
         resultBean = userService.createUser(json);
@@ -65,11 +68,11 @@ public class UserController {
     /**
      * Gets the user info.
      *
-     * @author (TanDX)
      * @param id
      * @return the user info
+     * @author (TanDX)
      */
-        @GetMapping(value = "/api/user/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(value = "/api/user/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResultBean> getUserById(@PathVariable Integer id) throws Exception {
         ResultBean resultBean = null;
         resultBean = userService.getUserById(id);
@@ -79,11 +82,11 @@ public class UserController {
     /**
      * Update user info.
      *
-     * @author (TanDX)
      * @param json
      * @return the response entity
+     * @author (TanDX)
      */
-    @PutMapping(value = "/api/user", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PutMapping(value = "/api/user", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResultBean> updateUser(@RequestBody String json) throws Exception, ApiValidateException {
         ResultBean resultBean = null;
         resultBean = userService.updateUser(json);
@@ -93,11 +96,11 @@ public class UserController {
     /**
      * Gets the users.
      *
-     * @author (TanDX)
      * @param keyWord
      * @param page
      * @param size
      * @return the users
+     * @author (TanDX)
      */
     @SuppressWarnings("unchecked")
     @GetMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)

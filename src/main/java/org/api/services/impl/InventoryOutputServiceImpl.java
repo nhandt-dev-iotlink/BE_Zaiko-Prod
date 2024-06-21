@@ -8,8 +8,6 @@ import org.api.bean.jpa.InventoryPlanOutputDetailEntity;
 import org.api.dto.*;
 import org.api.mapper.InventoryOutputPlanMapper;
 import org.api.mapper.InventoryPlanOutputDetailMapper;
-import org.api.repository.customer.CustomerRepository;
-import org.api.repository.customerDeliveryDest.CustomerDeliveryDestRepository;
 import org.api.repository.inventoryOutput.InventoryOutputRepository;
 import org.api.services.CustomerDeliveryDestService;
 import org.api.services.CustomerService;
@@ -42,18 +40,6 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     private CustomerService customerService;
     @Autowired
     private CustomerDeliveryDestService customerDeliveryDestService;
-
-
-//    public static void removeNullProperties(Object object) throws Exception {
-//        java.lang.reflect.Field[] fields = object.getClass().getDeclaredFields();
-//        for (java.lang.reflect.Field field : fields) {
-//            field.setAccessible(true);
-//            Object value = field.get(object);
-//            if (value == null) {
-//                field.set(object, null);
-//            }
-//        }
-//    }
 
     public static String createSlipNo(Integer no) throws Exception {
         LocalDate currentDate = LocalDate.now();
@@ -92,7 +78,7 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
 
     @Override
     public ResultBean getInfoOutputPlanById(Integer id) throws Exception {
-        Optional<InventoryOutputPlanDto> inventoryOutputPlanDto = inventoryOutputRepo.getInfoOutputPlanById(id);
+        Optional<InventoryOutputDetailDto> inventoryOutputPlanDto = inventoryOutputRepo.getInfoOutputPlanById(id);
         if (inventoryOutputPlanDto.isEmpty()) {
             return new ResultBean(new ArrayList<>(), Constants.STATUS_OK, Constants.MESSAGE_OK);
         } else {
@@ -103,7 +89,7 @@ public class InventoryOutputServiceImpl implements InventoryOutputService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean saveOutputPlan(PlanFormDto planFormDto) throws Exception {
-        InventoryOutputPlanDto outputPlanDto = planFormDto.getInfoForm();
+        InventoryOutputDetailDto outputPlanDto = planFormDto.getInfoForm();
         if (outputPlanDto.getOrderDate() != null) {
             outputPlanDto.setOrderDate(formatDate(outputPlanDto.getOrderDate()));
         }

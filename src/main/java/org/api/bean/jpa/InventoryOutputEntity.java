@@ -36,7 +36,7 @@ public class InventoryOutputEntity extends CommonEntity{
 
     //deliverDestinationName
     @Column(name = "deliver_destination_name")
-    @JsonProperty("deliverDestinationName")
+    @JsonProperty("deliveryDestinationName")
     private String deliverDestinationName;
 
     //postCode

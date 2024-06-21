@@ -1,0 +1,15 @@
+{
+    "alias": "infoForm.info",
+    "checks": [
+        {
+            "id": "inventoryOutputId",
+            "number": "\\d+",
+            "maxLength": 8
+        },
+        {
+            "id": "orderDate",
+            "maxLength": 10,
+            "isDate": "true"
+        }
+    ]
+}

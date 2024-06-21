@@ -12,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlanFormDto {
-    private InventoryOutputPlanDto infoForm;
+    private InventoryOutputDetailDto infoForm;
     private List<InventoryPlanOutputDetailDto> detailForm;
 }

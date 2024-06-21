@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class InventoryOutputPlanDto {
+public class InventoryOutputDetailDto {
     private Integer inventoryOutputId;
     private String isClosed;
     private String outputStatus;
