@@ -41,13 +41,13 @@ public class CustomerDeliveryDestController {
 
             if (customerDeliveryDestDTOS==null || customerDeliveryDestDTOS.isEmpty()){
                 List<CustomerDeliveryDestDTO> emptyList= new ArrayList<>();
-                ResultBean emptyResult =new ResultBean(emptyList , Constants.STATUS_OK,"No Content");
+                ResultBean emptyResult =new ResultBean(emptyList , Constants.STATUS_NO_CONTENT ,Constants.MESSAGE_NO_CONTENT);
                 return new ResponseEntity<>(emptyResult, HttpStatus.OK);
             }
             ResultBean resultBean = new ResultBean(customerDeliveryDestDTOS,Constants.STATUS_OK,Constants.MESSAGE_OK);
             return new ResponseEntity<>(resultBean,HttpStatus.OK);
      }catch (Exception e){
-            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, "Error", "An error occurred: " + e.getMessage());
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
      }
 
@@ -60,14 +60,14 @@ public class CustomerDeliveryDestController {
         try {
             CustomerDeliveryDestDTO deliveryDestEntity = customerDeliveryDestService.getCustomerDeliveryDestByCode(destinationCode);
             if(deliveryDestEntity==null){
-                ResultBean notBean = new ResultBean(deliveryDestEntity,Constants.STATUS_OK,"No Content ");
+                ResultBean notBean = new ResultBean(deliveryDestEntity,Constants.STATUS_NO_CONTENT,Constants.MESSAGE_NO_CONTENT);
                 return new ResponseEntity<>(notBean,HttpStatus.OK);
             }
             ResultBean resultBean = new ResultBean(deliveryDestEntity,Constants.STATUS_OK,Constants.MESSAGE_OK );
             return new ResponseEntity<>(resultBean,HttpStatus.OK);
 
         } catch ( Exception e){
-            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, "Error", "An error occurred: " + e.getMessage());
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

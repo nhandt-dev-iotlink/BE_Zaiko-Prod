@@ -30,6 +30,7 @@ public class Constants {
     public static final String STATUS_NOT_FOUND = "404";
     public static final String STATUS_MAINTAINMENT = "300";
     public static final String STATUS_PERMISSION = "301";
+    public static final String STATUS_NO_CONTENT = "204";
     public static final String STATUS_X_CYBOZU_AUTHORIZATION = "520";
     public static final String STATUS_DUPLICATE = "409";
 
@@ -39,6 +40,9 @@ public class Constants {
     // Message response
     public static final String MESSAGE_OK = "処理に成功しました";
     public static final String MESSAGE_SYSTEM_ERROR = "サーバーでエラーが発生しました。管理者に問い合わせてください。";
+    public static final String MESSAGE_NOT_FOUND = "リクエストされたページは見つかりません。";
+    public static final String MESSAGE_BAD_REQUEST = "リクエストが不正です。正しいリクエストを行ってください。";
+    public static final String MESSAGE_NO_CONTENT = "コンテンツがありません。";
 
     public static final String PROPERTIE_MESSAGE = "message";
     public static final String PROPERTIE_ITEM_NAME = "item_name";
@@ -122,6 +126,8 @@ public class Constants {
     public static final String BATCH_STATUS_1 = "1";
     public static final String BATCH_STATUS_2 = "2";
     public static final String BATCH_STATUS_3 = "3";
+
+    public static final String BATCH_STATUS_9 = "9";
     public static final String TIME_MILISECOND_PATTEN = "HH:mm:ss.SSS";
 
     public static final String ID_BKI00001 = "BKI00001";

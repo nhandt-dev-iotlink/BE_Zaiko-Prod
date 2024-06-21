@@ -1,0 +1,211 @@
+{
+  "alias": "inventory.output",
+  "checks": [
+    {
+      "id": "inventoryOutputId",
+      "required": "1",
+      "number": "\\d+"
+    },
+    {
+      "id": "companyId",
+      "required": "1",
+      "number": "\\d+"
+    },
+    {
+      "id": "planCustomerDeliveryDestinationId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "actualCustomerDeliveryDestinationId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "deliverDestinationName",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "postCode",
+      "required": "0",
+      "maxLength": 10
+    },
+    {
+      "id": "phoneNumber",
+      "required": "0",
+      "maxLength": 20
+    },
+    {
+      "id": "faxNumber",
+      "required": "0",
+      "maxLength": 20
+    },
+    {
+      "id": "address1",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "address2",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "address3",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "address4",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "routeCode",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "courseCode",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "planCustomerId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "actualCustomerId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "orderDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "planOutputDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "planWorkingDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "planDeliverDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "actualOutputDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "actualDeliverDate",
+      "required": "0",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "planSupplierSlipNo",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "actualSupplierSlipNo",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "createSlipType",
+      "required": "1",
+      "maxLength": 50
+    },
+    {
+      "id": "slipNo",
+      "required": "1",
+      "maxLength": 50
+    },
+    {
+      "id": "slipNote",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "planRepositoryId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "actualRepositoryId",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "batchStatus",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "outputStatus",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "isClosed",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "sumPlanQuantity",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "sumActualQuantity",
+      "required": "0",
+      "number": "\\d+"
+    },
+    {
+      "id": "newDestinationName",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "checked",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "saleCategory",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "freeItem1",
+      "required": "0",
+      "maxLength": 100
+    },
+    {
+      "id": "freeItem2",
+      "required": "0",
+      "maxLength": 100
+    },
+    {
+      "id": "freeItem3",
+      "required": "0",
+      "maxLength": 100
+    }
+    ]
+}

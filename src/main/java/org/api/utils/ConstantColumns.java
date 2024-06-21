@@ -251,4 +251,8 @@ public class ConstantColumns {
     public static final String UNIT_NAME = "unitName";
     public static final String UNIT_CODE_OLD = "unitCodeOld";
     public static final String COMMON_SETTING = "commonSetting";
+
+    public static final String INVENTORY_OUTPUT_ID = "inventoryOutputId";
+
+
 }

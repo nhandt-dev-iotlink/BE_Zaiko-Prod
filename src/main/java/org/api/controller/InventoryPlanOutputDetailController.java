@@ -1,11 +1,10 @@
 package org.api.controller;
 
 
-import io.lettuce.core.dynamic.annotation.Param;
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
 
-import org.api.bean.jpa.InventoryPlanOutputDetailEntity;
+import org.api.bean.reponse.dto.InventoryOutputPlanDTO;
 import org.api.bean.reponse.dto.PlanFormDTO;
 import org.api.bean.reponse.dto.PlanOutputDTO;
 import org.api.services.InventoryPlanOutputSerice;
@@ -20,24 +19,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @LogExecutionTime
 @RestController
-public class InventoryPlanOutputController {
+public class InventoryPlanOutputDetailController {
     @Autowired
     private InventoryPlanOutputSerice planOutputSerice;
-    private static final Logger log = LoggerFactory.getLogger(InventoryPlanOutputController.class);
+    private static final Logger log = LoggerFactory.getLogger(InventoryPlanOutputDetailController.class);
 
     @GetMapping(value = "/api/inventory-output-plan/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPlanOutputByID(@PathVariable Integer id) {
-        PlanOutputDTO planOutputDTO = planOutputSerice.getPlanOutputWithKey(id);
-        if (planOutputDTO == null) {
-            ResultBean emptyResult = new ResultBean(Constants.STATUS_BAD_REQUEST, "No Content");
+    public ResponseEntity<ResultBean> getPlanOutputByID(@PathVariable Integer id) throws ApiValidateException {
+        ResultBean resultBean = null;
+        resultBean = planOutputSerice.getPlanOutputWithKey(id);
+        if (resultBean == null) {
+            ResultBean emptyResult = new ResultBean(Constants.STATUS_NO_CONTENT,Constants.MESSAGE_NO_CONTENT);
             return new ResponseEntity<>(emptyResult, HttpStatus.OK);
         }
-        ResultBean resultBean = new ResultBean(planOutputDTO, Constants.STATUS_OK, Constants.STATUS_OK);
         return new ResponseEntity<>(resultBean, HttpStatus.OK);
     }
 
@@ -53,12 +50,20 @@ public class InventoryPlanOutputController {
         try {
             return planOutputSerice.createInventoryOutputPlan(planForm);
         } catch (ApiValidateException e) {
-            return new ResultBean(Constants.STATUS_BAD_REQUEST, MessageUtils.getMessage("入力データがnullです"));
+            return new ResultBean(Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_BAD_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultBean(Constants.STATUS_SYSTEM_ERROR, "在庫出荷計画の作成中にエラーが発生しました");
+            return new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
         }
     }
+
+    @PutMapping("/api/inventory-output-plan")
+    public ResponseEntity<ResultBean> updateInventoryOutputPlan(@RequestBody String json) throws Exception {
+        ResultBean resultBean = null;
+        resultBean = planOutputSerice.updateInventoryOutputPlan(json);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
+
     @DeleteMapping(value = "/api/inventory-output-plan/{inventoryId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResultBean> removeInventoryOutputPlan(@PathVariable("inventoryId") Integer inventoryId) throws Exception, ApiValidateException  {
              ResultBean resultBean = null;
@@ -73,12 +78,7 @@ public class InventoryPlanOutputController {
 
 }
 
-//@PostMapping(value = "/api/user", produces = { MediaType.APPLICATION_JSON_VALUE })
-//public ResponseEntity<ResultBean> addUser(@RequestBody String json) throws Exception, ApiValidateException {
-//    ResultBean resultBean = null;
-//    resultBean = userService.createUser(json);
-//    return new ResponseEntity<ResultBean>(resultBean, HttpStatus.CREATED);
-// }
+
 
 
 

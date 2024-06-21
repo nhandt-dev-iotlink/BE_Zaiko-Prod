@@ -22,7 +22,7 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_output_id")
-    @JsonProperty("inventoryOutput_id")
+    @JsonProperty("inventoryOutputId")
     private Integer inventory_output_id;
 
     //companyId
@@ -32,12 +32,12 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
 
     //planCustomerDeliveryDestination_id
     @Column(name = "plan_customer_delivery_destination_id")
-    @JsonProperty("planCustomerDeliveryDestination_id")
+    @JsonProperty("planCustomerDeliveryDestinationId")
     private Integer plan_customer_delivery_destination_id;
 
     //actualCustomerDeliveryDestination_id
     @Column(name = "actual_customer_delivery_destination_id")
-    @JsonProperty("actualCustomerDeliveryDestination_id")
+    @JsonProperty("actualCustomerDeliveryDestinationId")
     private Integer actual_customer_delivery_destination_id;
 
     //deliverDestinationName
@@ -92,12 +92,12 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
 
     //planCustomer_id
     @Column(name = "plan_customer_id")
-    @JsonProperty("planCustomer_id")
+    @JsonProperty("planCustomerId")
     private Integer plan_customer_id;
 
     //actualCustomer_id
     @Column(name = "actual_customer_id")
-    @JsonProperty("actualCustomer_id")
+    @JsonProperty("actualCustomerId")
     private Integer actual_customer_id;
 
     //orderDate
@@ -142,7 +142,7 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
 
     //create_slip_type
     @Column(name = "create_slip_type",nullable = false)
-    @JsonProperty("create_slip_type")
+    @JsonProperty("createSlipType")
     private String create_slip_type;
 
     //slipNo
@@ -157,12 +157,12 @@ public class InventoryOutputEntity extends CommonEntity implements Serializable 
 
     //planRepository_id
     @Column(name = "plan_repository_id")
-    @JsonProperty("planRepository_id")
+    @JsonProperty("planRepositoryId")
     private Integer plan_repository_id;
 
     //actualRepository_id
     @Column(name = "actual_repository_id")
-    @JsonProperty("actualRepository_id")
+    @JsonProperty("actualRepositoryId")
     private Integer actual_repository_id;
 
     //batchStatus

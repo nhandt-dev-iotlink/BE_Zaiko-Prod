@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     public ResultBean createCustomer(CustomerEntity customer) throws ApiValidateException, Exception {
 
         if (customerRepository.existsById(customer.getCustomerId())) {
-            throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "Customer with code " + customer.getCustomerCode() + " already exists.");
+            throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_BAD_REQUEST);
         }
         CustomerEntity savedCustomer = customerRepository.save(customer);
         return new ResultBean(savedCustomer, Constants.STATUS_201, Constants.MESSAGE_OK);

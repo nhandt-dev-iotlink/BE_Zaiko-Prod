@@ -15,6 +15,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class PlanFormDTO {
-    private InventoryOutputDTO planForm;
+    private InventoryOutputPlanDTO planForm;
     private List<InventoryPlanOutputDetailDTO> tableForm;
 }

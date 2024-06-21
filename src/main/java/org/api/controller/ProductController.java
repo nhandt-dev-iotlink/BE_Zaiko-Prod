@@ -63,13 +63,13 @@ public class ProductController {
         try {
             ProductDTO product = productService.getProductByCode(productCode);
             if(product==null){
-                ResultBean notData = new ResultBean(product,Constants.STATUS_OK,Constants.MESSAGE_OK);
+                ResultBean notData = new ResultBean(product,Constants.STATUS_NO_CONTENT,Constants.MESSAGE_NO_CONTENT);
                 return new ResponseEntity<>(notData,HttpStatus.OK);
             }
             ResultBean resultBean = new ResultBean(product , Constants.STATUS_OK,Constants.MESSAGE_OK);
             return new ResponseEntity<>(resultBean,HttpStatus.OK);
         }catch (Exception e){
-            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR,"Error","An error occurred: " +e.getMessage());
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR,Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
@@ -81,7 +81,7 @@ public class ProductController {
             ProductDTO product = productService.getProductById(productId);
 
             if (product == null) {
-                ResultBean notData = new ResultBean(product, Constants.STATUS_OK, Constants.MESSAGE_OK);
+                ResultBean notData = new ResultBean(product, Constants.STATUS_NO_CONTENT, Constants.MESSAGE_NO_CONTENT);
                 return new ResponseEntity<>(notData, HttpStatus.OK);
             }
 
@@ -89,7 +89,7 @@ public class ProductController {
             return new ResponseEntity<>(resultBean, HttpStatus.OK);
 
         } catch (Exception e) {
-            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, "Error", "An error occurred: " + e.getMessage());
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

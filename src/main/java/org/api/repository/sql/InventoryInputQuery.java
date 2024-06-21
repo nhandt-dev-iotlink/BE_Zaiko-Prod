@@ -44,7 +44,5 @@ public class InventoryInputQuery {
             " AND (:customerName IS NULL OR c.customerName LIKE CONCAT('%' ,:customerName ,'%')) " +
             " AND (:productCodeFrom IS NULL OR p.)" ;
 
-//  "AND (:orderDateFrom IS NULL OR i.order_date >= :orderDateFrom) " +
-//  "AND (:orderDateTo IS NULL OR i.order_date <= :orderDateTo) " +
-// "AND (:departmentName IS NULL OR cd.departmentName LIKE CONCAT('%', :departmentName, '%')) " +
+
 }

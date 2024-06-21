@@ -2,6 +2,9 @@ package org.api.services.impl;
 
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import org.api.annotation.LogExecutionTime;
 import org.api.bean.ResultBean;
 import org.api.bean.jpa.*;
@@ -12,22 +15,20 @@ import org.api.services.*;
 import org.api.utils.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @LogExecutionTime
 @Service
 @Transactional(rollbackFor = { ApiValidateException.class, Exception.class })
 public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice {
+    public static final String FILE_JSON_VALIDATE = "inventoryPlanOutput.json";
 
+    public static final String ALIAS = "InventoryOutput";
     @Autowired
     InventoryPlanOutputRepository planOutputRepository;
 
@@ -49,35 +50,72 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
     SalePriceService salePriceService;
 
     @Override
-    public PlanOutputDTO getPlanOutputWithKey(Integer key) {
-        if (key == null) {
-            throw new IllegalArgumentException("Key cannot be null");
+    public ResultBean getPlanOutputWithKey(Integer inventoryOutputId) throws ApiValidateException {
+        Optional<InventoryOutputPlanDTO>  planOptional= planOutputRepository.findPlanOutputWithKey(inventoryOutputId);
+        if(planOptional.isPresent()) {
+            return new ResultBean(planOptional.get(), Constants.STATUS_OK, Constants.MESSAGE_OK);
+        }else {
+            throw new ApiValidateException(Constants.ID_BKE00019, ConstantColumns.INVENTORY_OUTPUT_ID,
+                    MessageUtils.getMessage(Constants.ID_BKE00019, null, ItemNameUtils.getItemName(ConstantColumns.INVENTORY_OUTPUT_ID, ALIAS)));
         }
-        PlanOutputDTO planOutputDTO = planOutputRepository.findPlanOutputWithKey(key);
-        if (planOutputDTO == null) {
-            throw new EntityNotFoundException("Plan output not found for key: " + key);
-        }
-        return planOutputDTO;
     }
 
+
     @Override
-    public ResultBean createInventoryOutputPlan(PlanFormDTO form) throws ApiValidateException ,Exception {
-        if (form == null) {
-            return new ResultBean(Constants.STATUS_BAD_REQUEST, MessageUtils.getMessage("入力データがnullです"));
+    public ResultBean updateInventoryOutputPlan(String json) throws Exception {
+        // Chuyển đổi chuỗi JSON thành JsonObject
+        JsonObject jsonObject = DataUtil.getJsonObject(json);
+
+        JsonObject jsonObject1 = DataUtil.getJsonObject(String.valueOf(jsonObject.get("planForm")));
+//        ValidateData.validate(FILE_JSON_VALIDATE, jsonObject1, false);
+        if (DataUtil.isNull(jsonObject1, ConstantColumns.INVENTORY_OUTPUT_ID)) {
+            throw new ApiValidateException(Constants.ID_BKE00004, ConstantColumns.INVENTORY_OUTPUT_ID,
+                    MessageUtils.getMessage(Constants.ID_BKE00004, new Object[] { ItemNameUtils.getItemName(ConstantColumns.INVENTORY_OUTPUT_ID, ALIAS) }));
         }
-        if (form.getPlanForm() == null) {
-            return new ResultBean(Constants.STATUS_BAD_REQUEST, MessageUtils.getMessage("計画フォームデータがnullです"));
+        // Trích xuất INVENTORY_OUTPUT_ID từ JSON
+        Integer inventoryId = DataUtil.getJsonInteger(jsonObject1, ConstantColumns.INVENTORY_OUTPUT_ID);
+
+        // Tìm đối tượng InventoryOutputEntity theo ID
+        InventoryOutputEntity inventoryOutput = planOutputRepository.findInventoryOutputEntity(inventoryId);
+
+//        // Kiểm tra xem đối tượng InventoryOutputEntity có tồn tại không
+        if (inventoryOutput == null) {
+            throw new ApiValidateException(Constants.ID_BKE00019, ConstantColumns.INVENTORY_OUTPUT_ID,
+                    MessageUtils.getMessage(Constants.ID_BKE00019, new Object[] { ItemNameUtils.getItemName(ConstantColumns.INVENTORY_OUTPUT_ID, ALIAS) }));
         }
-        if (form.getTableForm() == null || form.getTableForm().isEmpty()) {
-            return new ResultBean(Constants.STATUS_BAD_REQUEST, MessageUtils.getMessage("テーブルフォームデータがnullまたは空です"));
+
+        // Chuyển đổi JSON thành đối tượng PlanFormDTO
+        PlanFormDTO updateOutputPlan = convertJsonToEntity(json);
+
+        // Cập nhật các thuộc tính từ PlanFormDTO sang InventoryOutputEntity
+        BeanUtils.copyProperties(updateOutputPlan.getPlanForm(), inventoryOutput);
+        //  cập nhật vào database
+        planOutputRepository.save(inventoryOutput);
+
+        // Xử lý và lưu các chi tiết
+        if (updateOutputPlan.getTableForm() != null) {
+            for (InventoryPlanOutputDetailDTO detailDTO : updateOutputPlan.getTableForm()) {
+                InventoryPlanOutputDetailEntity updateInventoryOutputDetail = new InventoryPlanOutputDetailEntity();
+                BeanUtils.copyProperties(detailDTO, updateInventoryOutputDetail);
+                // Lưu chi tiết cập nhật vào database
+                planOutputDetailRepository.save(updateInventoryOutputDetail);
+            }
         }
+        return new ResultBean(Constants.STATUS_OK, Constants.MESSAGE_OK);
+    }
+
+
+    @Override
+    public ResultBean createInventoryOutputPlan(PlanFormDTO createFormPlan) throws ApiValidateException ,Exception {
         try {
+
+
             InventoryOutputEntity outputEntity = new InventoryOutputEntity();
-            BeanUtils.copyProperties(form.getPlanForm(), outputEntity);
-            setDateFields(outputEntity, form);
-            outputEntity.setSum_plan_quantity(sumPlanQuantity(form.getTableForm()));
+            BeanUtils.copyProperties(createFormPlan.getPlanForm(), outputEntity);
+            setDateFields(outputEntity, createFormPlan);
+            outputEntity.setSum_plan_quantity(sumPlanQuantity(createFormPlan.getTableForm()));
             if (outputEntity.getChecked().equals('1')) {
-                createCustomerAndCustomerDeliveryDest(form.getPlanForm());
+                createCustomerAndCustomerDeliveryDest(createFormPlan.getPlanForm());
             } else {
                 String customerCode = String.format("%06d", outputEntity.getPlan_customer_id());
                 CustomerDTO customer = customerService.getCustomerByCode(customerCode);
@@ -87,32 +125,35 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
                 outputEntity.setPlan_customer_delivery_destination_id(deliveryDestDTO.getDeliveryDestinationId());
                 outputEntity.setDeliver_destination_name(deliverDestinationName(customer, deliveryDestDTO));
             }
-            outputEntity.setCompany_id(0001);
+            outputEntity.setCompany_id(Constants.DEFAULT_COMPANY_ID);
             Date date = new Date();
             outputEntity.setCreateDate(date);
             outputEntity.setSlip_no(outputService.getNextAutomaticSlipNo());
             outputEntity.setIs_closed(Constants.FREE_FLG_0);
-            outputEntity.setBatch_status("9");
+            outputEntity.setBatch_status(Constants.BATCH_STATUS_9);
             InventoryOutputEntity outputSave = planOutputRepository.save(outputEntity);
-            for (InventoryPlanOutputDetailDTO detailDTO : form.getTableForm()) {
+            for (InventoryPlanOutputDetailDTO detailDTO : createFormPlan.getTableForm()) {
                 createPlanOutputDetail(detailDTO, outputSave.getInventory_output_id());
             }
-            return new ResultBean(form, Constants.STATUS_201, "在庫出荷計画が正常に作成されました。");
+            return new ResultBean(Constants.STATUS_201, Constants.MESSAGE_OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultBean(form, Constants.STATUS_SYSTEM_ERROR, "在庫出荷計画の作成中にエラーが発生しました");
+            return new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
         }
     }
-    private void createCustomerAndCustomerDeliveryDest(InventoryOutputDTO outputEntity) {
+
+
+
+    private void createCustomerAndCustomerDeliveryDest(InventoryOutputPlanDTO outputEntity) {
         Date date = new Date();
         try {
             CustomerEntity customer = new CustomerEntity();
-            customer.setPhoneNumber(outputEntity.getPhone_number());
+            customer.setPhoneNumber(outputEntity.getPhoneNumber());
             customer.setCustomerName(outputEntity.getCustomerName());
-            customer.setPostCode(outputEntity.getPost_code());
+            customer.setPostCode(outputEntity.getPostCode());
             customer.setAddress1(outputEntity.getAddress1());
             customer.setCompanyId(Constants.DEFAULT_COMPANY_ID);
-            customer.setCustomerCode(String.valueOf(outputEntity.getPlan_customer_id()));
+            customer.setCustomerCode(String.valueOf(outputEntity.getCustomerCode()));
             customer.setOutputPriorityRank(Constants.ONE_IN);
             customer.setDelFlg(Constants.DEL_FLG_0);
             customer.setCreateDate(date);
@@ -121,12 +162,12 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
             CustomerDeliveryDestEntity deliveryDest = new CustomerDeliveryDestEntity();
             deliveryDest.setCompanyId(Constants.DEFAULT_COMPANY_ID);
             deliveryDest.setDelFlg(Constants.DEL_FLG_0);
-            deliveryDest.setDestinationCode(String.valueOf(outputEntity.getPlan_customer_delivery_destination_id()));
+            deliveryDest.setDestinationCode(String.valueOf(outputEntity.getDestinationCode()));
             deliveryDest.setDepartmentName(outputEntity.getDepartmentName());
             deliveryDest.setIsCuststomer(Constants.FLG_ZERO);
             deliveryDest.setAddress1(outputEntity.getAddress1());
-            deliveryDest.setPhoneNumber(outputEntity.getPhone_number());
-            deliveryDest.setPostCode(outputEntity.getPost_code());
+            deliveryDest.setPhoneNumber(outputEntity.getPhoneNumber());
+            deliveryDest.setPostCode(outputEntity.getPostCode());
             deliveryDest.setOutputPriorityRank(Constants.ONE_IN);
             destService.createCustomerDeliveryDest(deliveryDest);
         } catch (Exception ex) {
@@ -194,7 +235,7 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
 
     @Override
     public ResultBean removeInventoryOutputPlan(Integer inventoryId) throws ApiValidateException, Exception {
-        try {
+
             InventoryOutputEntity outputEntity = planOutputRepository.findInventoryOutputEntity(inventoryId);
 
             if (outputEntity != null) {
@@ -202,20 +243,18 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
                 planOutputRepository.save(outputEntity);
 
                 List<InventoryPlanOutputDetailEntity> inventoryDetails = planOutputDetailRepository.finPlanOutputDetailEntities(inventoryId);
+//               List<Integer> id =inventoryDetails.stream().mapMultiToInt( ei -> ei.getPlan_detail_id()).collect(Collections.toList)
                 for (InventoryPlanOutputDetailEntity detail : inventoryDetails) {
                     detail.setDelFlg("1");
                     planOutputDetailRepository.save(detail);
                 }
 
-                return new ResultBean(Constants.STATUS_201, "InventoryOutputEntityとInventoryPlanOutputDetailEntityのレコードを削除しました");
+                return new ResultBean(Constants.STATUS_OK, Constants.MESSAGE_OK);
             } else {
-                throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "inventoryId", "IDでInventoryOutputEntityのレコードが見つかりませんでした：" + inventoryId);
+                throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_BAD_REQUEST);
             }
-        
-        } catch (Exception e) {
-            // Xử lý các ngoại lệ khác
-            throw new Exception("データの削除中にエラーが発生しました：" + e.getMessage());
-        }
+
+
     }
 
     @Override
@@ -233,14 +272,16 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
     }
 
 
+
+
     private void setDateFields(InventoryOutputEntity outputEntity, PlanFormDTO form) {
         try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
-            outputEntity.setOrder_date(convertDateFormat(form.getPlanForm().getOrder_date(), inputFormat, outputFormat));
-            outputEntity.setPlan_output_date(convertDateFormat(form.getPlanForm().getPlan_output_date(), inputFormat, outputFormat));
-            outputEntity.setPlan_working_date(convertDateFormat(form.getPlanForm().getPlan_working_date(), inputFormat, outputFormat));
-            outputEntity.setPlan_deliver_date(convertDateFormat(form.getPlanForm().getPlan_deliver_date(), inputFormat, outputFormat));
+            SimpleDateFormat inputFormat = new SimpleDateFormat(Constants.DATE_PATTEN_YYYY_MM_DD);
+            SimpleDateFormat outputFormat = new SimpleDateFormat(Constants.DATE_PATTEN);
+            outputEntity.setOrder_date(convertDateFormat(form.getPlanForm().getOrderDate(), inputFormat, outputFormat));
+            outputEntity.setPlan_output_date(convertDateFormat(form.getPlanForm().getPlanOutputDate(), inputFormat, outputFormat));
+            outputEntity.setPlan_working_date(convertDateFormat(form.getPlanForm().getPlanWorkingDate(), inputFormat, outputFormat));
+            outputEntity.setPlan_deliver_date(convertDateFormat(form.getPlanForm().getPlanDeliverDate(), inputFormat, outputFormat));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -249,6 +290,11 @@ public class InventoryPlanOutputSericeImpl implements InventoryPlanOutputSerice 
     private String convertDateFormat(String dateStr, SimpleDateFormat inputFormat, SimpleDateFormat outputFormat) throws ParseException {
         Date date = inputFormat.parse(dateStr);
         return outputFormat.format(date);
+    }
+
+    public PlanFormDTO convertJsonToEntity(String json) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(json, PlanFormDTO.class);
     }
 
 

@@ -69,10 +69,10 @@ public class CustomerDeliveryDestServiceImpl implements CustomerDeliveryDestServ
     @Transactional
     public ResultBean createCustomerDeliveryDest(CustomerDeliveryDestEntity deliveryDest) throws ApiValidateException, Exception {
         if(customerDeliveryDestRepository.existsByDeliveryDestinationId(deliveryDest.getDeliveryDestinationId())){
-            throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, "Customer with code " + deliveryDest.getDeliveryDestinationId() + " already exists.");
+            throw new ApiValidateException(Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_BAD_REQUEST);
         }
         CustomerDeliveryDestEntity saveDeliveryDest= customerDeliveryDestRepository.save(deliveryDest);
-        return new ResultBean(saveDeliveryDest,Constants.STATUS_201,Constants.STATUS_OK);
+        return new ResultBean(saveDeliveryDest,Constants.STATUS_201,Constants.MESSAGE_OK);
     }
 
 }

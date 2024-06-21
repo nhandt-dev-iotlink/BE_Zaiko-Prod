@@ -65,7 +65,7 @@ public class InventoryOutputController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            String errorMessage = "An error occurred while retrieving the next automatic slip number: " + e.getMessage();
+            String errorMessage = "自動伝票番号の取得中にエラーが発生しました。 " + e.getMessage();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
     }

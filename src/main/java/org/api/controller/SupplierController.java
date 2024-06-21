@@ -8,6 +8,7 @@ import org.api.bean.reponse.dto.CustomerDTO;
 import org.api.bean.reponse.dto.SupplierDTO;
 import org.api.services.CustomerService;
 import org.api.services.SupplierService;
+import org.api.utils.Constants;
 import org.api.utils.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,13 +47,13 @@ public class SupplierController {
             }
             if (suppliers == null || suppliers.isEmpty()) {
                 List<SupplierDTO> emptyList = new ArrayList<>();
-                ResultBean emptyResult = new ResultBean(emptyList, "200", "No Content");
+                ResultBean emptyResult = new ResultBean(emptyList, Constants.STATUS_NO_CONTENT, Constants.MESSAGE_NO_CONTENT);
                 return new ResponseEntity<>(emptyResult, HttpStatus.OK);
             }
-            ResultBean successResult = new ResultBean(suppliers, "200", "Success");
+            ResultBean successResult = new ResultBean(suppliers,Constants.STATUS_OK, Constants.MESSAGE_OK);
             return new ResponseEntity<>(successResult, HttpStatus.OK);
         } catch (Exception e) {
-            ResultBean errorResult = new ResultBean("500", "Error", "An error occurred: " + e.getMessage());
+            ResultBean errorResult = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
