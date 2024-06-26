@@ -64,7 +64,14 @@ public class InventoryOutputController {
     @GetMapping(value = "/inventory-output/plan")
     public ResponseEntity<ResultBean> getInfoOutputPlan(@RequestParam(value = "id") Integer id) throws Exception {
         ResultBean resultBean = null;
-        resultBean = inventoryOutputService.getInfoOutputPlanById(id);
+        resultBean = inventoryOutputService.getInfoOutputDetailPlanById(id);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/inventory-output/actual")
+    public ResponseEntity<ResultBean> getInfoOutputActual(@RequestParam(value = "id") Integer id) throws Exception {
+        ResultBean resultBean = null;
+        resultBean = inventoryOutputService.getInfoOutputDetailPlanById(id);
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 
@@ -98,16 +105,6 @@ public class InventoryOutputController {
         }
 
         Integer userId = DataUtil.getJsonInteger(jsonObject, ConstantColumns.USER_ID);
-
-//        Optional<UserLoginEntity> userLoginEntity = UserLoginRepo.findOneById(userId);
-//        if (!userLoginEntity.isPresent()) {
-//            throw new ApiValidateException(Constants.ID_BKE00019, ConstantColumns.USER_ID,
-//                    MessageUtils.getMessage(Constants.ID_BKE00019, null, ItemNameUtils.getItemName(ConstantColumns.USER_ID, ALIAS)));
-//        }
-//        UserLoginEntity loginEntity = userLoginEntity.get();
-//        loginEntity.setAddress("TEET");
-//        // update user info
-//        this.convertJsonToEntity(jsonObject, loginEntity);
 
         return new ResponseEntity<>(resultBean, HttpStatus.OK);
     }

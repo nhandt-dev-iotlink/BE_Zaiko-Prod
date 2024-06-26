@@ -16,14 +16,10 @@ public class InventoryPlanOutputDetailDto {
     private String batchStatus;
     private String batchNo;
     private Integer productId;
-
     private String datetimeMngType;
-
     private String datetimeMngFrom;
     private String datetimeMngTo;
-
     private String isNumberMng;
-
     private String numberMngFrom;
     private String numberMngTo;
     private Integer productOwnerId;
@@ -31,18 +27,16 @@ public class InventoryPlanOutputDetailDto {
     private Integer locationId;
     private String inventoryProductType;
     private String billingPackType;
-
     private Integer csPlanQuantity;
     private Integer blPlanQuantity;
     private Integer psPlanQuantity;
     private Integer packCsAmount;
     private Integer packBlAmount;
     private Integer totalPlanQuantity;
-
+    private Integer totalActualQuantity;
     private Double planCsPrice;
     private Double planBlPrice;
     private Double planPiecePrice;
-
     private Double amountTotal;
     private String productCode;
     private String productName;
@@ -51,7 +45,7 @@ public class InventoryPlanOutputDetailDto {
     private String customerName;
     private String departmentName;
     private String saleCategory;
-
+    private String delFlg;
 }
 
 

@@ -1,0 +1,163 @@
+{
+  "alias": "infoForm.info",
+  "checks": [
+    {
+      "id": "planDetailId",
+      "required": "0",
+      "number": "\\d+",
+      "maxLength": 50
+    },
+    {
+      "id": "companyId",
+      "number": "\\d+",
+      "maxLength": 4
+    },
+    {
+      "id": "inventoryOutputId",
+      "required": "0",
+      "number": "\\d+",
+      "maxLength": 8
+    },
+    {
+      "id": "batchStatus",
+      "required": "0",
+      "maxLength": 1
+    },
+    {
+      "id": "batchNo",
+      "maxLength": 10
+    },
+    {
+      "id": "productId",
+      "number": "\\d+",
+      "maxLength": 10
+    },
+    {
+      "id": "datetimeMngType",
+      "maxLength": 1
+    },
+    {
+      "id": "datetimeMngFrom",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "datetimeMngTo",
+      "maxLength": 10,
+      "isDate": "true"
+    },
+    {
+      "id": "isNumberMng",
+      "maxLength": 1
+    },
+    {
+      "id": "numberMngFrom",
+      "maxLength": 10
+    },
+    {
+      "id": "numberMngTo",
+      "maxLength": 10
+    },
+    {
+      "id": "productOwnerId",
+      "number": "\\d+",
+      "maxLength": 7
+    },
+    {
+      "id": "repositoryId",
+      "required": "0",
+      "number": "\\d+",
+      "maxLength": 7
+    },
+    {
+      "id": "locationId",
+      "number": "\\d+",
+      "maxLength": 7
+    },
+    {
+      "id": "inventoryProductType",
+      "maxLength": 2
+    },
+    {
+      "id": "billingPackType",
+      "maxLength": 1
+    },
+    {
+      "id": "csPlanQuantity",
+      "number": "\\d+",
+      "maxLength": 6
+    },
+    {
+      "id": "blPlanQuantity",
+      "number": "\\d+",
+      "maxLength": 9
+    },
+    {
+      "id": "psPlanQuantity",
+      "number": "\\d+",
+      "maxLength": 9
+    },
+    {
+      "id": "packCsAmount",
+      "number": "\\d+",
+      "maxLength": 6
+    },
+    {
+      "id": "packBlAmount",
+      "maxLength": 1
+    },
+    {
+      "id": "totalPlanQuantity",
+      "required": "0"
+    },
+    {
+      "id": "planCsPrice",
+      "required": "0",
+      "maxLength": 7
+    },
+    {
+      "id": "planBlPrice",
+      "required": "0",
+      "maxLength": 7
+    },
+    {
+      "id": "planPiecePrice",
+      "required": "0",
+      "maxLength": 7
+    },
+    {
+      "id": "amountTotal",
+      "maxLength": 19
+    },
+    {
+      "id": "productCode",
+      "required": "0",
+      "maxLength": 8
+    },
+    {
+      "id": "productName",
+      "maxLength": 100
+    },
+    {
+      "id": "standardInfo",
+      "maxLength": 255
+    },
+    {
+      "id": "customerCode",
+      "required": "0",
+      "maxLength": 8
+    },
+    {
+      "id": "customerName",
+      "maxLength": 100
+    },
+    {
+      "id": "departmentName",
+      "maxLength": 100
+    },
+    {
+      "id": "saleCategory",
+      "maxLength": 3
+    }
+  ]
+}

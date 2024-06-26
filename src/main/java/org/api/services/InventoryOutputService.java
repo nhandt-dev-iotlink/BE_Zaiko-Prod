@@ -21,11 +21,16 @@ public interface InventoryOutputService {
                                         String deliveryStatus, String isClose)
             throws Exception;
 
-    ResultBean getInfoOutputPlanById(Integer id) throws Exception;
+    ResultBean getInfoOutputDetailPlanById(Integer id) throws Exception;
+    ResultBean getInfoOutputDetailActualById(Integer id) throws Exception;
 
     ResultBean saveOutputPlan(PlanFormDto planFormDto) throws Exception;
 
     ResultBean deleteOutputPlanById(Integer id) throws Exception;
 
     ResultBean checkSlipNo(String slipNo) throws Exception;
+
+    ResultBean create(String json) throws Exception;
+
+    ResultBean update(String json) throws Exception;
 }

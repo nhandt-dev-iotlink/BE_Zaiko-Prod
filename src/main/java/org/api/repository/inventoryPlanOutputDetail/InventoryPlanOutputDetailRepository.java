@@ -18,8 +18,8 @@ public interface InventoryPlanOutputDetailRepository extends BaseRepository<Inve
             "ipode.productId, pe.datetimeMngType, ipode.datetimeMngFrom, ipode.datetimeMngTo, pe.isNumberMng, ipode.numberMngFrom, ipode.numberMngTo, " +
             "ipode.productOwnerId, ipode.repositoryId, ipode.locationId, ipode.inventoryProductType, ipode.billingPackType, " +
             "ipode.csPlanQuantity, ipode.blPlanQuantity, ipode.psPlanQuantity, pe.packCsAmount, pe.packBlAmount, " +
-            "ipode.totalPlanQuantity, ipode.planCsPrice, ipode.planBlPrice, ipode.planPiecePrice, ipode.amountTotal, " +
-            "pe.productCode, pe.name1, pe.standardInfo, ce.customerCode, ce.customerName, ce.departmentName, ioe.saleCategory) " +
+            "ipode.totalPlanQuantity, 0, ipode.planCsPrice, ipode.planBlPrice, ipode.planPiecePrice, ipode.amountTotal, " +
+            "pe.productCode, pe.name1, pe.standardInfo, ce.customerCode, ce.customerName, ce.departmentName, ioe.saleCategory, ipode.delFlg) " +
             "FROM InventoryPlanOutputDetailEntity ipode " +
             "LEFT JOIN ProductEntity pe ON ipode.productId = pe.productId AND pe.delFlg = '0' " +
             "LEFT JOIN CustomerEntity ce ON ipode.productOwnerId = ce.customerId AND ce.delFlg = '0' " +

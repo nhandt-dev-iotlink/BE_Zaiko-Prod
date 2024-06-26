@@ -44,7 +44,7 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
         InventoryPlanOutputDetailEntity detailEntityToSave = new InventoryPlanOutputDetailEntity();
         List<InventoryPlanOutputDetailEntity> detailEntityToSaveList = new ArrayList<>();
         for (InventoryPlanOutputDetailDto dto : listDto) {
-            detailEntityToSave = mapper.toEntity(dto);
+//            detailEntityToSave = mapper.toEntity(dto);
             inventoryPlanOutputDetailRepository.save(detailEntityToSave);
 
             detailEntityToSaveList.add(detailEntityToSave);
@@ -72,6 +72,7 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public ResultBean savePlanOutputDetail(InventoryPlanOutputDetailDto dto, InventoryOutputEntity outputEntity) throws Exception {
         InventoryPlanOutputDetailEntity detailEntityToSave = new InventoryPlanOutputDetailEntity();
+//        Check create or update
         if(dto.getPlanDetailId() != null){
             Optional<InventoryPlanOutputDetailEntity> optional = inventoryPlanOutputDetailRepository.findById(dto.getPlanDetailId());
             detailEntityToSave = optional.get();
@@ -85,13 +86,8 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
             detailEntityToSave.setDelFlg(Constants.DEL_FLG_0);
             detailEntityToSave.setBatchNo(outputEntity.getSlipNo());
         }
+//        End
 
-        if(detailEntityToSave.getDatetimeMngFrom() != null){
-            detailEntityToSave.setDatetimeMngFrom(formatDate(detailEntityToSave.getDatetimeMngFrom()));
-        }
-        if(detailEntityToSave.getDatetimeMngTo() != null){
-            detailEntityToSave.setDatetimeMngTo(formatDate(detailEntityToSave.getDatetimeMngTo()));
-        }
         CustomerEntity customerEntity = customerService.findOneCustomerByCode(dto.getCustomerCode());
         detailEntityToSave.setProductOwnerId(customerEntity.getCustomerId());
 
@@ -99,11 +95,11 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
         detailEntityToSave.setProductId(productEntity.getProductId());
         detailEntityToSave.setSupplierId(productEntity.getSupplierId());
 
+//      Start Set Amount Total
         SalePriceEntity salePrice = salePriceService.findOneByProductId(productEntity.getProductId());
         detailEntityToSave.setPlanCsPrice(salePrice.getPackCsPrice());
         detailEntityToSave.setPlanBlPrice(salePrice.getPackBlPrice());
         detailEntityToSave.setPlanPiecePrice(salePrice.getPiecePrice());
-
         if(detailEntityToSave.getPlanPiecePrice() > 0) {
             detailEntityToSave.setAmountTotal(detailEntityToSave.getTotalPlanQuantity() * detailEntityToSave.getPlanPiecePrice());
         }else if(detailEntityToSave.getPlanBlPrice() > 0){
@@ -111,13 +107,10 @@ public class InventoryPlanOutputDetailServiceImpl implements InventoryPlanOutput
         }else if(detailEntityToSave.getPlanCsPrice() > 0){
             detailEntityToSave.setAmountTotal(((detailEntityToSave.getTotalPlanQuantity()/ productEntity.getPackBlAmount()) / productEntity.getPackCsAmount()) * detailEntityToSave.getPlanCsPrice());
         }
+//      End
 
         InventoryPlanOutputDetailEntity detailEntityReturn = inventoryPlanOutputDetailRepository.save(detailEntityToSave);
 
         return new ResultBean(detailEntityReturn, Constants.STATUS_201, Constants.MESSAGE_OK);
-    }
-
-    public static String formatDate(String date) throws Exception {
-        return date.replaceAll("-", "/");
     }
 }

@@ -1,0 +1,186 @@
+{
+    "alias": "infoForm.info",
+    "checks": [
+        {
+            "id": "inventoryOutputId",
+            "number": "\\d+",
+            "maxLength": 8
+        },
+        {
+            "id": "isClosed",
+            "maxLength": 50
+        },
+        {
+            "id": "outputStatus",
+            "maxLength": 1
+        },
+        {
+            "id": "orderDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "planOutputDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "planWorkingDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "planDeliveryDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "actualOutputDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "actualDeliverDate",
+            "maxLength": 10,
+            "isDate": "true"
+        },
+        {
+            "id": "createSlipType",
+            "required": "0",
+            "maxLength": 1
+        },
+        {
+            "id": "slipNo",
+            "maxLength": 20
+        },
+        {
+            "id": "planSupplierSlipNo",
+            "maxLength": 20
+        },
+        {
+            "id": "actualSupplierSlipNo",
+            "maxLength": 20
+        },
+        {
+            "id": "planCustomerDeliveryDestinationId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "actualCustomerDeliveryDestinationId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "planCustomerId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "actualCustomerId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "planRepositoryId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "actualRepositoryId",
+            "number": "\\d+",
+            "maxLength": 7
+        },
+        {
+            "id": "checked",
+            "maxLength": 1
+        },
+        {
+            "id": "destinationCode",
+            "required": "0",
+            "maxLength": 6
+        },
+        {
+            "id": "departmentName",
+            "maxLength": 100
+        },
+        {
+            "id": "phoneNumber",
+            "required": "0",
+            "maxLength": 15
+        },
+        {
+            "id": "faxNumber",
+            "maxLength": 15
+        },
+        {
+            "id": "postCode",
+            "maxLength": 8
+        },
+        {
+            "id": "address1",
+            "maxLength": 50
+        },
+        {
+            "id": "address2",
+            "maxLength": 50
+        },
+        {
+            "id": "address3",
+            "maxLength": 50
+        },
+        {
+            "id": "address4",
+            "maxLength": 50
+        },
+        {
+            "id": "customerCode",
+            "required": "0",
+            "maxLength": 6
+        },
+        {
+            "id": "customerName",
+            "maxLength": 100
+        },
+        {
+            "id": "routeCode",
+            "maxLength": 3
+        },
+        {
+            "id": "routeName",
+            "maxLength": 100
+        },
+        {
+            "id": "courseCode",
+            "maxLength": 3
+        },
+        {
+            "id": "courseName",
+            "maxLength": 100
+        },
+        {
+            "id": "repositoryCode",
+            "maxLength": 10
+        },
+        {
+            "id": "repositoryName",
+            "maxLength": 100
+        },
+        {
+            "id": "slipNote",
+            "maxLength": 255
+        },
+        {
+            "id": "freeItem1",
+            "maxLength": 100
+        },
+        {
+            "id": "freeItem2",
+            "maxLength": 100
+        },
+        {
+            "id": "freeItem3",
+            "maxLength": 100
+        }
+    ]
+}

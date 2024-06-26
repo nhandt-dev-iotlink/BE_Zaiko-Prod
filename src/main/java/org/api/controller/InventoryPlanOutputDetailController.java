@@ -24,14 +24,16 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/inventory-output-plan")
+@RequestMapping("/api")
 public class InventoryPlanOutputDetailController {
+    public static final String FILE_JSON_VALIDATE_CREATE = "createOutputPlanInfo.json";
+    public static final String FILE_JSON_VALIDATE_UPDATE = "updateOutputPlanInfo.json";
     @Autowired
     private InventoryPlanOutputDetailService inventoryPlanOutputDetailService;
     @Autowired
     private InventoryOutputService inventoryOutputService;
 
-    @GetMapping("/detail")
+    @GetMapping("/inventory-output-plan/detail")
     public ResponseEntity<Paging<InventoryPlanOutputDetailDto>> getAllInventoryPlanOutputDetailByInventoryOutputId(@PageableDefault(size = 1000, page = PageableConstrants.DEFAULT_PAGE) Pageable pageable,
                                                                                                                    Integer page, Integer size,
                                                                                                                    @RequestParam(value = "id") Integer id) throws Exception {
@@ -41,25 +43,23 @@ public class InventoryPlanOutputDetailController {
         return new ResponseEntity<>(PaginationUtils.generatePage(pages), headers, HttpStatus.OK);
     }
 
-    //        @PostMapping(value = "/detail", produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<ResultBean> save(@RequestBody PlanFormDto planFormDto) throws Exception {
-//        ResultBean resultBean = inventoryOutputService.saveOutputPlan(planFormDto);
-//        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
-//    }
-    public static final String FILE_JSON_VALIDATE = "infoForm.json";
+    @PostMapping(value = "/inventory-output-plan/detail", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResultBean> save(@RequestBody PlanFormDto planFormDto) throws Exception {
+        ResultBean resultBean = inventoryOutputService.saveOutputPlan(planFormDto);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
 
-    @PostMapping(value = "/detail", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResultBean> update(@RequestBody String planFormDto) throws Exception {
-        JsonObject planFormDtoObject = DataUtil.getJsonObject(planFormDto);
-        JsonObject infoFormObject = DataUtil.getJsonObjectWithMember(planFormDtoObject, "infoForm");
-        ValidateData.validate(FILE_JSON_VALIDATE, infoFormObject, false);
-        JsonArray jsonArray = planFormDtoObject.get("detailForm").getAsJsonArray();
-        for (JsonElement jsonElement: jsonArray) {
-            JsonObject jsonObjectDetail = jsonElement.getAsJsonObject();
-            ValidateData.validate(FILE_JSON_VALIDATE, jsonObjectDetail, false);
-        }
+    @PostMapping(value = "/inventory-output-plan/create", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResultBean> create(@RequestBody String json) throws Exception {
         ResultBean resultBean = null;
-//        ResultBean resultBean = inventoryOutputService.saveOutputPlan(planFormDto);
+        resultBean = inventoryOutputService.create(json);
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/inventory-output-plan/update", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResultBean> update(@RequestBody String json) throws Exception {
+        ResultBean resultBean = null;
+        resultBean = inventoryOutputService.update(json);
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 }

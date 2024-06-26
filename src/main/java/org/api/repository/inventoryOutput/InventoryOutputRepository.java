@@ -216,10 +216,11 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
     );
 
 
-    @Query(value = "SELECT new org.api.dto.InventoryOutputPlanDto(" +
-                "io.inventoryOutputId, io.isClosed, io.outputStatus, " +
-                "io.orderDate, io.planOutputDate, io.planWorkingDate, io.planDeliverDate, io.createSlipType, io.slipNo, " +
-                "io.planSupplierSlipNo, io.planCustomerDeliveryDestinationId, io.planCustomerId, io.planRepositoryId, io.checked, " +
+    @Query(value = "SELECT new org.api.dto.InventoryOutputDetailDto(" +
+                "io.inventoryOutputId, io.isClosed, io.outputStatus, io.orderDate, io.planOutputDate, io.planWorkingDate, " +
+                "io.planDeliverDate, io.actualOutputDate, io.actualDeliverDate, io.createSlipType, io.slipNo, " +
+                "io.planSupplierSlipNo, io.actualSupplierSlipNo, io.planCustomerDeliveryDestinationId, " +
+                "io.actualCustomerDeliveryDestinationId, io.planCustomerId, io.actualCustomerId, io.planRepositoryId, io.actualRepositoryId, io.checked, " +
                 "cdd.destinationCode, cdd.departmentName, cdd.phoneNumber, cdd.faxNumber, cdd.postCode, cdd.address1, " +
                 "cdd.address2, cdd.address3, cdd.address4, c.customerCode, c.customerName, r.routeCode, r.routeName," +
                 "co.courseCode, co.courseName, rp.repositoryCode, rp.repositoryName, io.slipNote) " +
@@ -229,8 +230,19 @@ public interface InventoryOutputRepository extends BaseRepository<InventoryOutpu
             "LEFT JOIN RouteEntity r ON (io.routeCode = r.routeCode OR c.routeCode = r.routeCode) AND r.delFlg = '0' " +
             "LEFT JOIN CourseEntity co ON r.routeCode = co.routeCode AND (io.courseCode = co.courseCode OR c.courseCode = co.courseCode) AND co.delFlg = '0' " +
             "LEFT JOIN RepositoryEntity rp ON io.planRepositoryId = rp.repositoryId AND rp.delFlg = '0'" +
-            "WHERE io.delFlg = '0' AND io.inventoryOutputId = :id AND io.planOutputDate IS NOT NULL ")
-    Optional<InventoryOutputDetailDto> getInfoOutputPlanById(@Param("id") Integer id);
+                "WHERE io.delFlg = '0' AND io.inventoryOutputId = :id AND io.planOutputDate IS NOT NULL ")
+    Optional<InventoryOutputDetailDto> getInfoOutputDetailPlanById(@Param("id") Integer id);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM t_inventory_output tio " +
+            "LEFT JOIN m_customer_delivery_dest mcdd ON tio.actual_customer_delivery_destination_id = mcdd.delivery_destination_id AND mcdd.del_flg = 0 " +
+            "LEFT JOIN m_repository mre ON tio.actual_repository_id = mre.repository_id AND mre.del_flg = 0 " +
+            "LEFT JOIN m_customer mc ON tio.actual_customer_id = mc.customer_id AND mc.del_flg = 0 " +
+            "LEFT JOIN m_route mr ON (tio.route_code = mr.route_code) AND mr.del_flg = 0 " +
+            "LEFT JOIN m_course mco ON mr.route_code = mco.route_code AND (tio.course_code = mco.course_code) AND mco.del_flg = 0 " +
+                "WHERE tio.del_flg = 0 " +
+                                    "AND tio.inventory_output_id = 0000000037 " +
+                                    "AND tio.actual_output_date is not null")
+    Optional<InventoryOutputEntity> getInfoOutputDetailActualById(@Param("id") Integer id);
 
     @Query(nativeQuery = true, value = "SELECT * FROM t_inventory_output ioe WHERE ioe.del_flg = '0' AND ioe.slip_no = :slipNo")
     Optional<InventoryOutputEntity> findBySlipNo(@Param("slipNo") String slipNo);
